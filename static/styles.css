@@ -42,7 +42,7 @@ body {
 
 .form-btn {
     /* update display */
-    display: block;
+    display: inline-block;
 
     /* basic button styles */
     width: 150px;
