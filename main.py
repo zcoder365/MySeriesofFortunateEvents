@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -47,7 +47,7 @@ def add_entry():
         entry = Event(content=content, rating=rating, user_id=session['user_id'])
         db.session.add(entry)
         db.session.commit()
-        return redirect('/')
+        return redirect(url_for('home'))
     
     return render_template('add_entry.html')
 
