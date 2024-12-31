@@ -37,6 +37,7 @@ def index():
 def add_entry():
     if 'user_id' not in session:
         return redirect('/login')
+    
     if request.method == 'POST':
         content = request.form['content']
         rating = int(request.form['rating'])
