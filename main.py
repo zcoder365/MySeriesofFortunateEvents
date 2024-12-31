@@ -12,7 +12,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    entries = db.relationship('Entry', backref='user', lazy=True)
+    events = db.relationship('Event', backref='user', lazy=True)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
