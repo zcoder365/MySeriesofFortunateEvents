@@ -14,7 +14,7 @@ class User(db.Model):
     password = db.Column(db.String(120), nullable=False)
     entries = db.relationship('Entry', backref='user', lazy=True)
 
-class Entry(db.Model):
+class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
