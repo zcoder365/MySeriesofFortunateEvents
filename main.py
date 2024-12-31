@@ -26,7 +26,10 @@ def index():
     if 'user_id' not in session:
         return redirect('/login')
     
+    # get entries
     entries = Entry.query.filter_by(user_id=session['user_id']).order_by(Entry.date.desc()).all()
+    
+    # return the template with the entries retrieved
     return render_template('index.html', entries=entries)
 
 @app.route('/add_entry', methods=['GET', 'POST'])
