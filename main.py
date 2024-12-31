@@ -45,6 +45,7 @@ def add_entry():
         db.session.add(entry)
         db.session.commit()
         return redirect('/')
+    
     return render_template('add_entry.html')
 
 @app.route('/login', methods=['GET', 'POST'])
