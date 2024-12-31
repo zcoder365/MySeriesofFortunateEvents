@@ -2,17 +2,21 @@
 {% block content %}
     <div class="max-w-md mx-auto bg-white shadow rounded-lg p-6">
         <h2 class="login-text">Login</h2>
+        
         <form method="POST">
             <div class="form-block1">
                 <label class="form-block2">Username</label>
                 <input type="text" name="username" required class="rounded-border">
             </div>
+
             <div class="form-block1">
                 <label class="form-block2">Password</label>
                 <input type="password" name="password" required class="rounded-border">
             </div>
+
             <button type="submit" class="form-btn">Login</button>
         </form>
+
         <p class="reg-text">Don't have an account? <a href="/register" class="blue-text">Register</a></p>
     </div>
 {% endblock %}
