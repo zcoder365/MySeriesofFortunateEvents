@@ -20,6 +20,9 @@ body {
 .login-text {
     font-family: inherit;
     display: inline;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
 }
 
 .form-block1 {
@@ -61,7 +64,7 @@ body {
 
 .blue-text {
     font-family: inherit;
-    color: cornflowerblue;
+    color: white;
     text-decoration: none;
     font-weight: bold;
 }
@@ -76,7 +79,9 @@ body {
     display: inline-block;
     align-self: center;
     background-color: skyblue;
-    padding: 10px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
     border: none;
     border-radius: 25px;
 }
