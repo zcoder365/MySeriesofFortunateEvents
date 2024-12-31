@@ -40,7 +40,7 @@ def add_entry():
     if request.method == 'POST':
         content = request.form['content']
         rating = int(request.form['rating'])
-        entry = Entry(content=content, rating=rating, user_id=session['user_id'])
+        entry = Event(content=content, rating=rating, user_id=session['user_id'])
         db.session.add(entry)
         db.session.commit()
         return redirect('/')
