@@ -25,6 +25,7 @@ class Entry(db.Model):
 def index():
     if 'user_id' not in session:
         return redirect('/login')
+    
     entries = Entry.query.filter_by(user_id=session['user_id']).order_by(Entry.date.desc()).all()
     return render_template('index.html', entries=entries)
 
