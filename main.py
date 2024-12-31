@@ -91,6 +91,7 @@ def add_event():
         rating = int(rating)
         if not 1 <= rating <= 10:
             raise ValueError
+    
     except ValueError:
         flash('Rating must be a number between 1 and 10')
         return redirect(url_for('home'))
@@ -100,14 +101,17 @@ def add_event():
     db.session.commit()
     
     flash('Event added successfully!')
+    
     return redirect(url_for('home'))
 
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
+    
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+    
     app.run(debug=True)
