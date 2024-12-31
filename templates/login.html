@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="max-w-md mx-auto bg-white shadow rounded-lg p-6">
-        <h2 class="text-xl mb-4">Login</h2>
+        <h2 class="login-text">Login</h2>
         <form method="POST">
-            <div class="mb-4">
-                <label class="block mb-2">Username</label>
-                <input type="text" name="username" required class="w-full p-2 border rounded">
+            <div class="form-block1">
+                <label class="form-block2">Username</label>
+                <input type="text" name="username" required class="rounded-border">
             </div>
             <div class="mb-4">
-                <label class="block mb-2">Password</label>
-                <input type="password" name="password" required class="w-full p-2 border rounded">
+                <label class="form-block2">Password</label>
+                <input type="password" name="password" required class="rounded-border">
             </div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</button>
+            <button type="submit" class="form-btn">Login</button>
         </form>
         <p class="mt-4">Don't have an account? <a href="/register" class="text-blue-500">Register</a></p>
     </div>
