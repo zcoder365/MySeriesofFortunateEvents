@@ -64,15 +64,23 @@ def login():
     
     return render_template('login.html')
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
     if request.method == 'POST':
+        # hash the password
         hashed_password = generate_password_hash(request.form['password'])
+        
+        # find the user
         user = User(username=request.form['username'], password=hashed_password)
+        
+        # add the user to the database, and commit the changes
         db.session.add(user)
         db.session.commit()
+        
+        # return the login page so the user can login
         return redirect('/login')
-    return render_template('register.html')
+    
+    return render_template('signup.html')
 
 @app.route('/logout')
 def logout():
