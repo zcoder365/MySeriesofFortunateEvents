@@ -41,6 +41,7 @@ body {
 }
 
 .form-btn {
+    /* update display */
     display: block;
 
     /* basic button styles */
