@@ -47,7 +47,7 @@ def add_entry():
         entry = Event(content=content, rating=rating, user_id=session['user_id'])
         db.session.add(entry)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     
     return render_template('add_entry.html')
 
