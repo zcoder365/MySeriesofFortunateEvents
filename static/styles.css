@@ -59,6 +59,10 @@ body {
     background-color: skyblue;
 }
 
-.blue-text {}
+.blue-text {
+    font-family: inherit;
+    color: cornflowerblue;
+    text-decoration: none;
+}
 
 .reg-text {}
