@@ -25,19 +25,19 @@ body {
 .form-block1 {
     margin: 5px;
     padding: 5px;
-    display: inline-flex;
+    display: block;
 }
 
 .form-block2 {
     margin: 5px;
     padding: 5px;
-    display: inline-flex;
+    display: block;
 }
 
 .rounded-border {
     margin: 5px;
     padding: 5px;
-    display: inline-block;
+    display: block;
 }
 
 .form-btn {
