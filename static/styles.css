@@ -17,11 +17,20 @@ body {
     display: inline-flex;
 }
 
-.login-text {}
+.login-text {
+    font-family: inherit;
+    display: inline;
+}
 
-.form-block1 {}
+.form-block1 {
+    margin: 5px;
+    padding: 5px;
+}
 
-.form-block2 {}
+.form-block2 {
+    margin: 5px;
+    padding: 5px;
+}
 
 .rounded-border {}
 
