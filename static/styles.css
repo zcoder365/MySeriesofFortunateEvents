@@ -63,6 +63,11 @@ body {
     font-family: inherit;
     color: cornflowerblue;
     text-decoration: none;
+    font-weight: bold;
 }
 
-.reg-text {}
+.reg-text {
+    font-family: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
