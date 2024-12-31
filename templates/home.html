@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for entry in entries %}
+                {% for event in events %}
                 <tr class="border-b">
                     <td class="py-2">{{ entry.date.strftime('%Y-%m-%d %H:%M') }}</td>
                     <td class="py-2">{{ entry.content }}</td>
