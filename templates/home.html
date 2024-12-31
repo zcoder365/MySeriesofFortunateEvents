@@ -1,16 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h1>My Series of Fortunate Events</h1>
-<h3><i>A journal for keeping good memories</i></h3>
-
-<table>
-    {% for event in events %}
-    <tr>
-        <td>{{event.date}}</td>
-        <td>{{event.text}}</td>
-    </tr>
-    {% endfor %}
-</table>
-
+    <div class="mb-4">
+        <a href="/add_entry" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add New Entry</a>
+    </div>
+    <div class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-xl mb-4">Your Entries</h2>
+        <table class="w-full">
+            <thead>
+                <tr class="border-b">
+                    <th class="text-left py-2">Date</th>
+                    <th class="text-left py-2">Event</th>
+                    <th class="text-left py-2">Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr class="border-b">
+                    <td class="py-2">{{ entry.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td class="py-2">{{ entry.content }}</td>
+                    <td class="py-2">{{ entry.rating }}/10</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
