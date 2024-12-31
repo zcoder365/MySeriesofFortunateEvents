@@ -25,14 +25,20 @@ body {
 .form-block1 {
     margin: 5px;
     padding: 5px;
+    display: inline-flex;
 }
 
 .form-block2 {
     margin: 5px;
     padding: 5px;
+    display: inline-flex;
 }
 
-.rounded-border {}
+.rounded-border {
+    margin: 5px;
+    padding: 5px;
+    display: inline-block;
+}
 
 .form-btn {}
 
