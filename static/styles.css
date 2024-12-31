@@ -2,8 +2,17 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.nav-bar {}
+.nav-bar {
+    width: auto;
+    height: 150px;
+    display: inline-block;
+}
 
-.left-justify {}
+.left-justify {
+    display: block;
+    float: left;
+}
 
-.content-container {}
+.content-container {
+    display: inline-flex;
+}
