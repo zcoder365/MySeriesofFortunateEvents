@@ -72,4 +72,13 @@ body {
     font-weight: bold;
 }
 
-.form-header {}
+.form-container {
+    display: inline-block;
+    align-self: center;
+    background-color: skyblue;
+    padding: 10px;
+}
+
+form {
+    padding: 10px;
+}
