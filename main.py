@@ -52,10 +52,13 @@ def add_entry():
 def login():
     if request.method == 'POST':
         user = User.query.filter_by(username=request.form['username']).first()
+    
         if user and check_password_hash(user.password, request.form['password']):
             session['user_id'] = user.id
             return redirect('/')
+    
         flash('Invalid username or password')
+    
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
