@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>My Series of Fortunate Events</h1>
+<h3><i>A journal for keeping good memories</i></h3>
+
+<table>
+    {% for event in events %}
+    <tr>
+        <td>{{event.date}}</td>
+        <td>{{event.text}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
