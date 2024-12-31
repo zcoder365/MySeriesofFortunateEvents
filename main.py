@@ -21,6 +21,9 @@ class Event(db.Model):
     rating = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
+with app.app_context():
+        db.create_all()
+
 @app.route('/')
 def index():
     if 'user_id' not in session:
@@ -78,7 +81,4 @@ def logout():
 
 # mainloop
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    
     app.run(port=8080, debug=True)
