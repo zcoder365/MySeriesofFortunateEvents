@@ -77,11 +77,14 @@ body {
     align-self: center;
     background-color: skyblue;
     padding: 10px;
+    border: none;
+    border-radius: 25px;
 }
 
 form {
     padding: 10px;
     background-color: whitesmoke;
+    padding: 10px;
 }
 
 input {
