@@ -26,7 +26,8 @@ def index():
     if 'user_id' not in session:
         return redirect('/login')
     
-    # get entries
+    # get user and their entries
+    user = User.query.get(session['user_id'])
     entries = Entry.query.filter_by(user_id=session['user_id']).order_by(Entry.date.desc()).all()
     
     # return the template with the entries retrieved
