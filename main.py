@@ -27,7 +27,7 @@ def index():
         return redirect('/login')
     
     # get user and their entries
-    user = User.query.get_or_404(session['user_id'])
+    user = User.query.get(session['user_id'])
     events = Event.query.filter_by(user_id=session['user_id']).order_by(Event.date.desc()).all()
     
     # return the template with the entries retrieved
