@@ -12,6 +12,7 @@ nav {
 form {
     padding: 10px;
     background-color: whitesmoke;
+    display: block;
 }
 
 input {
