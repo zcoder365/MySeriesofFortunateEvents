@@ -1,21 +1,23 @@
+# imports
 from flask import Flask, render_template, request, redirect, session, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
+# prep the app and add configurations
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gratitude.db' # get the database
 db = SQLAlchemy(app) # set up the SQLAlchemy database
 
-# create the user database
+# set up the user database
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     events = db.relationship('Event', backref='user', lazy=True)
 
-# create the event database
+# set up the event database
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False, default=datetime.now)
@@ -50,6 +52,8 @@ def add_entry():
         # get the information from the form
         content = request.form['content']
         rating = int(request.form['rating'])
+        
+        # create an event entry given the information
         entry = Event(content=content, rating=rating, user_id=session['user_id'])
         
         # add user to database and save changes
