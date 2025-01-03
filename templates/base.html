@@ -8,13 +8,17 @@
         <nav class="nav-bar">
             <div class="left-justify">
                 <h1 class="text-xl">My Series of Fortunate Events</h1>
+                
                 {% if session.user_id %}
                     <a href="/logout" class="hover:text-gray-200">Logout</a>
                 {% endif %}
+                
             </div>
         </nav>
+
         <div class="content-container">
             {% block content %}{% endblock %}
         </div>
+    
     </body>
 </html>
