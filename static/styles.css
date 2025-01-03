@@ -78,6 +78,7 @@ body {
 }
 
 .form-container {
+    width: inherit;
     display: inline-block;
     align-self: center;
     background-color: skyblue;
