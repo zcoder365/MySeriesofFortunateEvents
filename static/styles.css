@@ -3,6 +3,11 @@ body {
     width: auto;
 }
 
+.content-container {
+    width: inherit;
+    display: inline-block;
+}
+
 .nav-bar {
     width: inherit;
     height: 150px;
@@ -12,10 +17,6 @@ body {
 .left-justify {
     display: block;
     float: left;
-}
-
-.content-container {
-    display: inline-flex;
 }
 
 .login-text {
