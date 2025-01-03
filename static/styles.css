@@ -3,6 +3,12 @@ body {
     width: auto;
 }
 
+nav {
+    width: inherit;
+    height: 150px;
+    display: inline-block;
+}
+
 form {
     padding: 10px;
     background-color: whitesmoke;
@@ -14,14 +20,9 @@ input {
     height: 25px;
 }
 
+/* general content block */
 .content-container {
     width: inherit;
-    display: inline-block;
-}
-
-.nav-bar {
-    width: inherit;
-    height: 150px;
     display: inline-block;
 }
 
