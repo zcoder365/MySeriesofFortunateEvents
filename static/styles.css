@@ -6,7 +6,7 @@ body {
 nav {
     width: inherit;
     height: 150px;
-    display: inline-block;
+    display: block;
 }
 
 form {
