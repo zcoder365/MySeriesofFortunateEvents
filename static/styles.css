@@ -1,9 +1,10 @@
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
+    width: auto;
 }
 
 .nav-bar {
-    width: auto;
+    width: inherit;
     height: 150px;
     display: inline-block;
 }
