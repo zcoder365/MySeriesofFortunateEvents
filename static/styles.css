@@ -3,6 +3,17 @@ body {
     width: auto;
 }
 
+form {
+    padding: 10px;
+    background-color: whitesmoke;
+}
+
+input {
+    border: lightgrey 1px solid;
+    border-radius: 10px;
+    height: 25px;
+}
+
 .content-container {
     width: inherit;
     display: inline-block;
@@ -87,15 +98,4 @@ body {
     padding-right: 40px;
     border: none;
     border-radius: 25px;
-}
-
-form {
-    padding: 10px;
-    background-color: whitesmoke;
-}
-
-input {
-    border: lightgrey 1px solid;
-    border-radius: 10px;
-    height: 25px;
 }
