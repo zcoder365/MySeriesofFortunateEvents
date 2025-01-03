@@ -27,7 +27,8 @@ input {
     display: inline-block;
 }
 
-.left-justify {
+/* left justify of nav bar */
+nav .left-justify {
     display: block;
     float: left;
 }
