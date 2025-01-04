@@ -1,27 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="mb-4">
-        <a href="/add_entry" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add New Entry</a>
-    </div>
-    <div class="bg-white shadow rounded-lg p-6">
-        <h2 class="text-xl mb-4">Your Entries</h2>
-        <table class="w-full">
+<div class="form-container">
+    <h2 class="form-text">Your Entries</h2>
+    <form>
+        <div class="form-block1">
+            <a href="/add_entry" class="form-btn">Add New Entry</a>
+        </div>
+        <table>
             <thead>
-                <tr class="border-b">
-                    <th class="text-left py-2">Date</th>
-                    <th class="text-left py-2">Event</th>
-                    <th class="text-left py-2">Rating</th>
+                <tr>
+                    <th>Date</th>
+                    <th>Event</th>
+                    <th>Rating</th>
                 </tr>
             </thead>
             <tbody>
                 {% for event in events %}
-                <tr class="border-b">
-                    <td class="py-2">{{ event.date.strftime('%Y-%m-%d %H:%M') }}</td>
-                    <td class="py-2">{{ event.content }}</td>
-                    <td class="py-2">{{ event.rating }}/10</td>
+                <tr>
+                    <td>{{ event.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ event.content }}</td>
+                    <td>{{ event.rating }}/10</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+    </form>
+</div>
 {% endblock %}
