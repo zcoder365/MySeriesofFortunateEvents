@@ -40,6 +40,18 @@ form {
     display: block;
 }
 
+.form-block1 {
+    margin: 5px;
+    padding: 5px;
+    display: block;
+}
+
+.form-block2 {
+    margin: 5px;
+    padding: 5px;
+    display: block;
+}
+
 .form-container {
     width: 400px; /* update width for better readability */
     background-color: skyblue;
@@ -54,18 +66,6 @@ input[type="text"], input[type="password"] {
     border-radius: 10px;
     height: 25px;
     width: 237px;
-}
-
-.form-block1 {
-    margin: 5px;
-    padding: 5px;
-    display: block;
-}
-
-.form-block2 {
-    margin: 5px;
-    padding: 5px;
-    display: block;
 }
 
 .form-btn {
