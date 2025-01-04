@@ -28,10 +28,11 @@ form {
     display: block;
 }
 
-input {
+input[type="text"], input[type="password"] {
     border: lightgrey 1px solid;
     border-radius: 10px;
     height: 25px;
+    width: 237px;
 }
 
 .form-text {
