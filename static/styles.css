@@ -41,15 +41,12 @@ form {
 }
 
 .form-container {
-    width: 300px;
-    display: inline-block;
-    align-self: center;
+    width: 400px; /* update width for better readability */
     background-color: skyblue;
-    padding-top: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border: none;
-    border-radius: 25px;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 input[type="text"], input[type="password"] {
