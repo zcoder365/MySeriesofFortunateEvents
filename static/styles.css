@@ -20,8 +20,8 @@ nav {
 }
 
 .left-justify {
-    display: block;
-    float: left;
+    display: flex;
+    align-items: center;
 }
 
 /* general content block */
