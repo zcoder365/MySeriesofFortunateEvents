@@ -3,22 +3,22 @@ body {
     width: auto;
 }
 
+/* nav bar styling */
 nav {
     width: inherit;
     height: 150px;
     display: block;
 }
 
+.left-justify {
+    display: block;
+    float: left;
+}
+
 /* general content block */
 .content-container {
     width: inherit;
     display: inline-block;
-}
-
-/* left justify of nav bar */
-nav .left-justify {
-    display: block;
-    float: left;
 }
 
 /* form styles */
