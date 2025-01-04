@@ -9,18 +9,6 @@ nav {
     display: block;
 }
 
-form {
-    padding: 10px;
-    background-color: whitesmoke;
-    display: block;
-}
-
-input {
-    border: lightgrey 1px solid;
-    border-radius: 10px;
-    height: 25px;
-}
-
 /* general content block */
 .content-container {
     width: inherit;
@@ -34,6 +22,18 @@ nav .left-justify {
 }
 
 /* form styles */
+form {
+    padding: 10px;
+    background-color: whitesmoke;
+    display: block;
+}
+
+input {
+    border: lightgrey 1px solid;
+    border-radius: 10px;
+    height: 25px;
+}
+
 .form-text {
     font-family: inherit;
     display: inline;
