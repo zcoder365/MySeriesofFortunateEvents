@@ -35,9 +35,10 @@ nav {
 
 /* form styles */
 form {
-    padding: 10px;
     background-color: whitesmoke;
-    display: block;
+    padding: 1.5rem;
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 1rem;
 }
 
 .form-block1 {
