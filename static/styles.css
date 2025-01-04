@@ -94,6 +94,11 @@ input[type="text"]:focus, input[type="password"]:focus {
     margin-top: 1.5rem;
 }
 
+.form-btn:hover {
+    background-color: #7cb9d1;
+    transform: translateY(-1px);
+}
+
 /* general text styling */
 .blue-text {
     font-family: inherit;
