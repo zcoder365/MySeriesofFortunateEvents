@@ -56,18 +56,6 @@ input[type="text"], input[type="password"] {
     width: 237px;
 }
 
-.form-text {
-    font-family: inherit;
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-color: whitesmoke;
-    padding: 1rem 1.5rem;
-    border-radius: 10px 10px 0 0;
-    width: calc(100% - 3rem);
-    margin: -2rem -2rem 1.5rem -2rem;
-    display: block;
-}
-
 .form-block1 {
     margin: 5px;
     padding: 5px;
@@ -111,6 +99,18 @@ input[type="text"], input[type="password"] {
     font-family: inherit;
     text-decoration: none;
     font-weight: bold;
+}
+
+.form-text {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: whitesmoke;
+    padding: 1rem 1.5rem;
+    border-radius: 10px 10px 0 0;
+    width: calc(100% - 3rem);
+    margin: -2rem -2rem 1.5rem -2rem;
+    display: block;
 }
 
 /* general shape styling */
