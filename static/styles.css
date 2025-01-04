@@ -79,22 +79,19 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 .form-btn {
-    /* update display */
-    display: inline-block;
-
-    /* basic button styles */
-    width: 150px;
-    height: 50px;
-    border-radius: 50px;
+    display: block;
+    width: 100%;
+    height: 48px;
     border: none;
-
-    /* fonts */
-    font-family: inherit;
-    font-size: medium;
-
-    /* color scheme */
-    color: white;
+    border-radius: 24px;
     background-color: skyblue;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 1.5rem;
 }
 
 /* general text styling */
