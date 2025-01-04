@@ -42,15 +42,14 @@ form {
 }
 
 .form-block1 {
-    margin: 5px;
-    padding: 5px;
-    display: block;
+    margin-bottom: 1.25rem;
 }
 
 .form-block2 {
-    margin: 5px;
-    padding: 5px;
     display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
 }
 
 .form-container {
