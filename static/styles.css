@@ -28,6 +28,18 @@ form {
     display: block;
 }
 
+.form-container {
+    width: 300px;
+    display: inline-block;
+    align-self: center;
+    background-color: skyblue;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border: none;
+    border-radius: 25px;
+}
+
 input[type="text"], input[type="password"] {
     border: lightgrey 1px solid;
     border-radius: 10px;
@@ -41,6 +53,7 @@ input[type="text"], input[type="password"] {
     background-color: whitesmoke;
     padding: 10px;
     border-radius: 10px 10px 0 0;
+    width: inherit;
 }
 
 .form-block1 {
@@ -72,18 +85,6 @@ input[type="text"], input[type="password"] {
     /* color scheme */
     color: white;
     background-color: skyblue;
-}
-
-.form-container {
-    width: 300px;
-    display: inline-block;
-    align-self: center;
-    background-color: skyblue;
-    padding-top: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border: none;
-    border-radius: 25px;
 }
 
 /* general text styling */
