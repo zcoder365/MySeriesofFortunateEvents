@@ -33,6 +33,7 @@ nav .left-justify {
     float: left;
 }
 
+/* form styles */
 .form-text {
     font-family: inherit;
     display: inline;
@@ -48,12 +49,6 @@ nav .left-justify {
 }
 
 .form-block2 {
-    margin: 5px;
-    padding: 5px;
-    display: block;
-}
-
-.rounded-border {
     margin: 5px;
     padding: 5px;
     display: block;
@@ -78,6 +73,19 @@ nav .left-justify {
     background-color: skyblue;
 }
 
+.form-container {
+    width: 300px;
+    display: inline-block;
+    align-self: center;
+    background-color: skyblue;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border: none;
+    border-radius: 25px;
+}
+
+/* general text styling */
 .blue-text {
     font-family: inherit;
     color: white;
@@ -91,14 +99,9 @@ nav .left-justify {
     font-weight: bold;
 }
 
-.form-container {
-    width: 300px;
-    display: inline-block;
-    align-self: center;
-    background-color: skyblue;
-    padding-top: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border: none;
-    border-radius: 25px;
+/* general shape styling */
+.rounded-border {
+    margin: 5px;
+    padding: 5px;
+    display: block;
 }
