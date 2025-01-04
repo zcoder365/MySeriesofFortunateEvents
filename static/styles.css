@@ -99,6 +99,10 @@ input[type="text"]:focus, input[type="password"]:focus {
     transform: translateY(-1px);
 }
 
+.form-btn:active {
+    transform: translateY(0);
+}
+
 /* general text styling */
 .blue-text {
     font-family: inherit;
