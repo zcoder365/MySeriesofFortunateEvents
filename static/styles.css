@@ -131,8 +131,10 @@ input[type="text"]:focus, input[type="password"]:focus {
     padding: 1rem 1.5rem;
     border-radius: 10px 10px 0 0;
     width: calc(100% - 3rem);
-    margin: -2rem -2rem 1.5rem -2rem;
+    margin: -2rem -2rem 0 -2rem; /* remove bottom margin to connect with the form */
     display: block;
+    position: relative; /* For z-index to work */
+    z-index: 1; /* Ensure the tab appears above the form */
 }
 
 /* general shape styling */
