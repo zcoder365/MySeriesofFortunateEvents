@@ -1,3 +1,15 @@
+:root {
+    /* primary colors */
+    --soft-blue: #60A5FA; /* used for btns and accents */
+    --light-purple: #a78bfa; /* used in gradients and highlights */
+    --cool-white: #eef6ff; /* used for the background */
+
+    /* secondary colors */
+    --deep-purple: #7e22ce; /* used for headings */
+    --light-blue: #bfdbfe; /* used for borders */
+    --pale-purple: #f5f3ff; /* used for content sections */
+}
+
 /* base styles */
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
