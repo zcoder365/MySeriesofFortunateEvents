@@ -26,8 +26,11 @@ nav {
 
 /* general content block */
 .content-container {
-    width: inherit;
-    display: inline-block;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
 /* form styles */
