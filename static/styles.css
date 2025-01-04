@@ -92,7 +92,7 @@ nav .left-justify {
 }
 
 .form-container {
-    width: inherit;
+    width: 300px;
     display: inline-block;
     align-self: center;
     background-color: skyblue;
