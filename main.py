@@ -42,7 +42,7 @@ def index():
     return render_template('index.html', events=events)
 
 # add entry route
-@app.route('/add_entry', methods=['GET', 'POST'])
+@app.route('/add-entry', methods=['GET', 'POST'])
 def add_entry():
     # if the user isn't login, make the user log in
     if 'user_id' not in session:
