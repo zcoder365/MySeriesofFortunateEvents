@@ -145,15 +145,11 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 /* Text Styling */
-.blue-text {
-    color: var(--soft-blue);
+a {
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s ease;
 }
 
-.blue-text:hover {
-    opacity: 0.8;
+a:hover {
     text-decoration: underline;
 }
 
@@ -179,4 +175,215 @@ input[type="text"]:focus, input[type="password"]:focus {
     form {
         padding: var(--spacing-lg);
     }
+}
+
+/* Table Styles */
+.table-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: var(--spacing-xl) auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow-x: auto; /* enables horizontal scroll on mobile */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: inherit;
+}
+
+/* Header Styles */
+thead {
+    background: linear-gradient(to right, var(--soft-blue), var(--light-purple));
+    color: white;
+}
+
+th {
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Row Styles */
+tr {
+    border-bottom: 1px solid var(--light-blue);
+    transition: background-color 0.2s ease;
+}
+
+tr:last-child {
+    border-bottom: none;
+}
+
+tr:hover {
+    background-color: var(--pale-purple);
+}
+
+td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: #333;
+}
+
+/* Alternating Row Colors */
+tbody tr:nth-child(even) {
+    background-color: var(--cool-white);
+}
+
+/* Status Indicators if needed */
+.status-active,
+.status-inactive,
+.status-pending {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background-color: #DEF7EC;
+    color: #03543F;
+}
+
+.status-inactive {
+    background-color: #FDE8E8;
+    color: #9B1C1C;
+}
+
+.status-pending {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+/* Action Buttons within table */
+.table-action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--soft-blue);
+    color: white;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.table-action-btn:hover {
+    background-color: var(--light-purple);
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table-container {
+        margin: var(--spacing-md);
+        border-radius: 8px;
+    }
+
+    th, td {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    /* Optional: Stack the table on mobile */
+    .table-stack-mobile {
+        display: block;
+    }
+
+    .table-stack-mobile thead {
+        display: none;
+    }
+
+    .table-stack-mobile tbody,
+    .table-stack-mobile tr,
+    .table-stack-mobile td {
+        display: block;
+    }
+
+    .table-stack-mobile tr {
+        margin-bottom: var(--spacing-md);
+        border: 1px solid var(--light-blue);
+        border-radius: 8px;
+    }
+
+    .table-stack-mobile td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-blue);
+        padding: var(--spacing-md);
+    }
+
+    .table-stack-mobile td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        margin-right: var(--spacing-md);
+    }
+}
+
+/* Search and Filter Section */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.table-search {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.table-search input {
+    padding: 8px var(--spacing-md);
+    border: 1px solid var(--light-blue);
+    border-radius: 6px;
+    min-width: 200px;
+}
+
+.table-filter {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* Pagination */
+.table-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--cool-white);
+    border-top: 1px solid var(--light-blue);
+}
+
+.pagination-info {
+    color: #666;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.pagination-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--light-blue);
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover {
+    background-color: var(--soft-blue);
+    color: white;
+    border-color: var(--soft-blue);
+}
+
+.pagination-btn.active {
+    background-color: var(--soft-blue);
+    color: white;
+    border-color: var(--soft-blue);
 }
