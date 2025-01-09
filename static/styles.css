@@ -1,95 +1,122 @@
 :root {
     /* primary colors */
-    --soft-blue: #60A5FA; /* used for btns and accents */
-    --light-purple: #a78bfa; /* used in gradients and highlights */
-    --cool-white: #eef6ff; /* used for the background */
-
+    --soft-blue: #4A90E2;  /* darker for better contrast */
+    --light-purple: #9B7BFA; /* adjusted for better visibility */
+    --cool-white: #F7FAFF; /* slightly adjusted for warmth */
+    
     /* secondary colors */
-    --deep-purple: #7e22ce; /* used for headings */
-    --light-blue: #bfdbfe; /* used for borders */
-    --pale-purple: #f5f3ff; /* used for content sections */
+    --deep-purple: #5D16A5; /* darkened for better contrast */
+    --light-blue: #D1E4FD; /* slightly lighter */
+    --pale-purple: #F8F7FF; /* subtle adjustment */
+    
+    /* spacing variables for consistency */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
 }
 
-/* base styles */
+/* Reset and Base Styles */
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
     width: 100%;
+    min-height: 100vh; /* ensure full height coverage */
     margin: 0;
     display: flex;
     flex-direction: column;
     background-color: var(--cool-white);
 }
 
-/* nav bar styling */
+/* Navigation */
 nav {
     width: 100%;
-    height: 80px; /* reduce height for better proportion */
-    background-color: var(--light-blue);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    background-color: white; /* changed for cleaner look */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 var(--spacing-xl);
+    position: sticky; /* added for better UX */
+    top: 0;
+    z-index: 100;
 }
 
 .left-justify {
     display: flex;
     align-items: center;
+    gap: var(--spacing-md); /* added consistent spacing */
 }
 
-/* general content block */
+/* Content Layout */
 .content-container {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: var(--spacing-xl);
 }
 
-/* form styles */
+/* Form Styling */
+.form-container {
+    width: 400px;
+    background: linear-gradient(135deg, var(--light-purple), var(--soft-blue)); /* fixed gradient */
+    padding: var(--spacing-xl);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    position: relative;
+}
+
+.form-text {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background-color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    color: var(--deep-purple);
+}
+
 form {
-    background-color: var(--cool-white);
-    padding: 1.5rem;
+    background-color: white; /* changed from cool-white for contrast */
+    padding: var(--spacing-xl);
     border-radius: 0 0 10px 10px;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-md);
 }
 
 .form-block1 {
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--spacing-lg);
 }
 
 .form-block2 {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-sm);
     font-weight: 600;
     color: var(--deep-purple);
 }
 
-.form-container {
-    width: 400px; /* update width for better readability */
-    background-color: linear-gradient(to right, var(--light-purple), var(--soft-blue));
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-input[type="text"], input[type="password"] {
+/* Input Styling */
+input[type="text"],
+input[type="password"] {
     width: 100%;
-    height: 40px;
-    padding: 0.5rem 1rem;
+    height: 44px;
+    padding: var(--spacing-sm) var(--spacing-md);
     border: 2px solid var(--light-blue);
     border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.2s ease;
     box-sizing: border-box;
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
     border-color: var(--soft-blue);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(135, 206, 235, 0.2);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }
 
+/* Button Styling */
 .form-btn {
     display: block;
     width: 100%;
@@ -102,25 +129,27 @@ input[type="text"]:focus, input[type="password"]:focus {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 1.5rem;
+    transition: all 0.2s ease;
+    margin-top: var(--spacing-lg);
 }
 
 .form-btn:hover {
     background-color: var(--light-purple);
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .form-btn:active {
     transform: translateY(0);
+    box-shadow: none;
 }
 
-/* general text styling */
+/* Text Styling */
 .blue-text {
-    color: white;
+    color: var(--soft-blue);
     text-decoration: none;
-    font-weight: bold;
-    transition: opacity 0.3s ease;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
 .blue-text:hover {
@@ -131,43 +160,23 @@ input[type="text"]:focus, input[type="password"]:focus {
 .reg-text {
     font-family: inherit;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: var(--spacing-md);
     color: var(--deep-purple);
 }
 
-.form-text {
-    font-family: inherit;
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 10px 10px 0 0;
-    width: calc(100% - 3rem);
-    display: block;
-    margin: 0;
-    color: var(--deep-purple);
-}
-
-/* general shape styling */
-.rounded-border {
-    margin: 5px;
-    padding: 5px;
-    display: block;
-}
-
-/* responsive design */
+/* Responsive Design */
 @media (max-width: 480px) {
     .form-container {
         width: 100%;
         max-width: 400px;
-        padding: 1.5rem;
+        padding: var(--spacing-lg);
     }
 
     .form-text {
-        padding: 0.75rem 1rem;
+        padding: var(--spacing-md) var(--spacing-lg);
     }
 
     form {
-        padding: 1rem;
+        padding: var(--spacing-lg);
     }
 }
