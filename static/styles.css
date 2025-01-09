@@ -387,3 +387,139 @@ tbody tr:nth-child(even) {
     color: white;
     border-color: var(--soft-blue);
 }
+/* Button Base Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    gap: 0.5rem; /* space between icon and text if needed */
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: var(--soft-blue);
+    color: white;
+    box-shadow: 0 2px 4px rgba(96, 165, 250, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--light-purple);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(96, 165, 250, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: white;
+    color: var(--soft-blue);
+    border: 2px solid var(--light-blue);
+}
+
+.btn-secondary:hover {
+    border-color: var(--soft-blue);
+    background-color: var(--cool-white);
+}
+
+/* Outline Button */
+.btn-outline {
+    background-color: transparent;
+    color: var(--soft-blue);
+    border: 2px solid var(--soft-blue);
+}
+
+.btn-outline:hover {
+    background-color: var(--soft-blue);
+    color: white;
+}
+
+/* Small Button */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* Large Button */
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* Danger Button */
+.btn-danger {
+    background-color: #EF4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #DC2626;
+}
+
+/* Success Button */
+.btn-success {
+    background-color: #10B981;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #059669;
+}
+
+/* Disabled State */
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Icon Button */
+.btn-icon {
+    padding: 0.5rem;
+    border-radius: 6px;
+}
+
+/* Button Group */
+.btn-group {
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+/* Full Width Button */
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+/* Loading State */
+.btn-loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: button-loading 0.8s linear infinite;
+}
+
+@keyframes button-loading {
+    to {
+        transform: rotate(360deg);
+    }
+}
