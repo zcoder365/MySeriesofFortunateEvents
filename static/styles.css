@@ -291,6 +291,10 @@ a:hover {
     color: var(--deep-purple);
 }
 
+.form-link {
+    color: var(--pale-purple);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .form-container,
