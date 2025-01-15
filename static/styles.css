@@ -54,33 +54,29 @@ nav {
     box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
-    justify-content: space-between; /* This spreads out the left and right content */
+    justify-content: space-between;
     padding: 0 var(--spacing-xl);
     position: sticky;
     top: 0;
     z-index: 100;
+    overflow-x: hidden; /* Prevents horizontal overflow */
+    box-sizing: border-box; /* Ensures padding is included in width */
 }
 
 .left-justify {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
+    min-width: 0; /* Allows content to shrink if needed */
+    flex-shrink: 1; /* Allows this section to shrink */
 }
 
 .logout {
     display: inline-flex;
     align-items: center;
-    margin-left: auto; /* This pushes the logout to the right */
-}
-
-/* Form Components */
-.form-container {
-    width: 400px;
-    background: linear-gradient(135deg, var(--light-purple), var(--soft-blue));
-    padding: var(--spacing-xl);
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
-    position: relative;
+    margin-left: auto;
+    white-space: nowrap; /* Keeps logout text on one line */
+    flex-shrink: 0; /* Prevents logout from shrinking */
 }
 
 .form-text {
