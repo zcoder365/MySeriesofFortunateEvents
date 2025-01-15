@@ -365,3 +365,7 @@ a:hover {
     transform: translateY(0);
     box-shadow: none;
 }
+
+.new-entry-link {
+    padding-right: 30px;
+}
