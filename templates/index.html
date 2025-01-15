@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="table-container">
     <h2 class="form-text">Your Entries</h2>
+    
     <div class="table-controls">
         <a href="/add-entry" class="btn btn-primary">Add New Entry</a>
     </div>
+    
     <table>
         <thead>
             <tr>
@@ -13,6 +16,7 @@
                 <th>Rating</th>
             </tr>
         </thead>
+
         <tbody>
             {% for event in events %}
             <tr>
@@ -24,4 +28,5 @@
         </tbody>
     </table>
 </div>
+
 {% endblock %}

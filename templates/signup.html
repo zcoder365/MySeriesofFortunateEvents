@@ -2,17 +2,21 @@
 {% block content %}
 <div class="form-container">
     <h2 class="form-text">Register</h2>
+    
     <form method="POST">
         <div class="form-block1">
             <label class="form-block2">Username</label>
             <input type="text" name="username" required>
         </div>
+    
         <div class="form-block1">
             <label class="form-block2">Password</label>
             <input type="password" name="password" required>
         </div>
+    
         <button type="submit" class="form-btn">Register</button>
     </form>
+    
     <p class="reg-text">Have an account? <a href="/login">Login.</a></p>
 </div>
 {% endblock %}
