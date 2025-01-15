@@ -276,6 +276,12 @@ tbody tr:nth-child(even) {
 }
 
 /* Text Styles */
+h1, h2, h3 {
+    color: var(--deep-purple);
+    padding: 10px;
+    padding-left: 30px;
+}
+
 a {
     text-decoration: none;
     color: var(--soft-blue);
