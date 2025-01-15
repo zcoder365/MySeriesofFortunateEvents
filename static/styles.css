@@ -331,7 +331,8 @@ a:hover {
 .site-actions {
     display: flex;
     align-items: center;
-    justify-content: flex-end;  /* Right justifies the content */
+    justify-content: space-between; /* This spreads items apart - text left, button right */
+    width: 100%; /* Ensures the container takes full width */
     gap: var(--spacing-md);
     margin: var(--spacing-md) 0;
 }
@@ -339,7 +340,7 @@ a:hover {
 .new-entry {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Changed from flex-end to center for button text */
     padding: 0.75rem 1.5rem;
     background-color: var(--soft-blue);
     color: var(--cool-white);
