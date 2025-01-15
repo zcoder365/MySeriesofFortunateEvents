@@ -54,6 +54,7 @@ nav {
     box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
+    justify-content: space-between; /* This spreads out the left and right content */
     padding: 0 var(--spacing-xl);
     position: sticky;
     top: 0;
@@ -64,6 +65,12 @@ nav {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
+}
+
+.logout {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto; /* This pushes the logout to the right */
 }
 
 /* Form Components */
