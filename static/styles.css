@@ -282,6 +282,11 @@ h1, h2, h3 {
     padding-left: 30px;
 }
 
+.page-title {
+    color: var(--deep-purple);
+    padding: 5px;
+}
+
 a {
     text-decoration: none;
     color: var(--soft-blue);
