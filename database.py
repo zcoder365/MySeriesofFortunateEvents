@@ -5,9 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 client = MongoClient("mongodb+srv://zdroulias:FrozenAnna0306@cluster0.h9zxq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 # get access to data
-client.my_series_of_fortunate_events    # connect to the database
-users = client.users                # get the users
-events = client.events              # get the events
+db = client['MySeriesOfFortunateEvents']    # connect to the database
+users = client.users                        # get the users
+events = client.events                      # get the events
 
 # USER FUNCTIONS
 def find_user(username: str):
