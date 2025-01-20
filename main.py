@@ -49,11 +49,15 @@ def add_entry():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        # get info from the form
+        username = request.form.get("username")
+        password = request.form.get("password")
+        
         # find the user from MongoDB using the imported function
-        user = database.find_user(request.form['username'])
+        user = database.find_user(username)
     
         # if the user exists and the hashed passwords match
-        if user and database.check_password(user['password'], request.form['password']):
+        if user and database.check_password(user['password'], password):
             # create the session with the user's ID and return the home route
             session['user_id'] = str(user['_id'])  # MongoDB uses ObjectId, convert to string
             return redirect(url_for('index'))
@@ -68,18 +72,22 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
+        # get info from the form
+        username = request.form.get("username")
+        password = request.form.get("password")
+        
         # hash the password
-        hashed_password = database.hash_password(request.form['password'])
+        hashed_password = database.hash_password(password)
         
         # Check if username already exists
-        existing_user = database.find_user(request.form['username'])
+        existing_user = database.find_user(username)
         if existing_user:
             flash('Username already exists')
             return redirect('/signup')
         
         # add the user using MongoDB function
         database.add_user(
-            username=request.form['username'],
+            username=username,
             password=hashed_password
         )
         
