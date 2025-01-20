@@ -14,6 +14,9 @@ events = client.events                      # get the events
 def check_password(password_hash: str, password: str):
     return check_password_hash(password_hash, password)
 
+def hash_password(password: str):
+    return generate_password_hash(password)
+
 # USER FUNCTIONS
 def find_user(username: str):
     return users.find_one({"username": username})
