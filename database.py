@@ -42,4 +42,4 @@ def create_event(user_id: str, event_description: str, event_rating: int):
     }
     
     # insert the document into the database
-    events.insert_one(event)
+    return events.insert_one(event)
