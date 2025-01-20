@@ -1,7 +1,7 @@
 # imports
 from flask import Flask, render_template, request, redirect, session, flash, url_for
 from datetime import datetime
-from database import find_user, add_user, create_event  # Import the MongoDB functions
+import database
 
 # prep the app and add configurations
 app = Flask(__name__)
@@ -33,7 +33,7 @@ def add_entry():
         rating = int(request.form['rating'])
         
         # create an event entry using MongoDB function
-        create_event(
+        database.create_event(
             user_id=session['user_id'],
             event_description=content,
             event_rating=rating
@@ -50,10 +50,10 @@ def add_entry():
 def login():
     if request.method == 'POST':
         # find the user from MongoDB using the imported function
-        user = find_user(request.form['username'])
+        user = database.find_user(request.form['username'])
     
         # if the user exists and the hashed passwords match
-        if user and check_password_hash(user['password'], request.form['password']):
+        if user and database.check_password(user['password'], request.form['password']):
             # create the session with the user's ID and return the home route
             session['user_id'] = str(user['_id'])  # MongoDB uses ObjectId, convert to string
             return redirect(url_for('index'))
@@ -69,16 +69,16 @@ def login():
 def signup():
     if request.method == 'POST':
         # hash the password
-        hashed_password = generate_password_hash(request.form['password'])
+        hashed_password = database.hash_password(request.form['password'])
         
         # Check if username already exists
-        existing_user = find_user(request.form['username'])
+        existing_user = database.find_user(request.form['username'])
         if existing_user:
             flash('Username already exists')
             return redirect('/signup')
         
         # add the user using MongoDB function
-        add_user(
+        database.add_user(
             username=request.form['username'],
             password=hashed_password
         )
