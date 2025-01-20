@@ -10,6 +10,10 @@ db = client['MySeriesOfFortunateEvents']    # connect to the database
 users = client.users                        # get the users
 events = client.events                      # get the events
 
+# SECURITY FUNCTIONS
+def check_password(password_hash: str, password: str):
+    return check_password_hash(password_hash, password)
+
 # USER FUNCTIONS
 def find_user(username: str):
     return users.find_one({"username": username})
