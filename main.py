@@ -6,9 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # prep the app and add configurations
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gratitude.db' # get the database
-db = SQLAlchemy(app) # set up the SQLAlchemy database
 
 # set up the user database
 class User(db.Model):
