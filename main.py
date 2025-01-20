@@ -1,11 +1,11 @@
 # imports
 from flask import Flask, render_template, request, redirect, session, flash, url_for
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
+from database import find_user, add_user, create_event  # Import the MongoDB functions
 
 # prep the app and add configurations
 app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'  # Required for session management
 
 # landing route
 @app.route('/')
@@ -13,8 +13,9 @@ def index():
     if 'user_id' not in session:
         return redirect('/login')
     
-    # get user's entries
-    events = Event.query.filter_by(user_id=session['user_id']).order_by(Event.date.desc()).all()
+    # get user's entries from MongoDB events collection
+    # Note: In MongoDB, we'll query events by user_id directly
+    events = events.find({"user_id": session['user_id']}).sort("date", -1)
     
     # return the template with the entries retrieved
     return render_template('index.html', events=events)
@@ -31,12 +32,12 @@ def add_entry():
         content = request.form['content']
         rating = int(request.form['rating'])
         
-        # create an event entry given the information
-        entry = Event(content=content, rating=rating, user_id=session['user_id'])
-        
-        # add user to database and save changes
-        db.session.add(entry)
-        db.session.commit()
+        # create an event entry using MongoDB function
+        create_event(
+            user_id=session['user_id'],
+            event_description=content,
+            event_rating=rating
+        )
         
         # return the home page
         return redirect(url_for('index'))
@@ -48,13 +49,13 @@ def add_entry():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # find the user from the database
-        user = User.query.filter_by(username=request.form['username']).first()
+        # find the user from MongoDB using the imported function
+        user = find_user(request.form['username'])
     
-        # if the user exists and the hashed passwords match (the hashed in the database, and the password from the form)
-        if user and check_password_hash(user.password, request.form['password']):
+        # if the user exists and the hashed passwords match
+        if user and check_password_hash(user['password'], request.form['password']):
             # create the session with the user's ID and return the home route
-            session['user_id'] = user.id
+            session['user_id'] = str(user['_id'])  # MongoDB uses ObjectId, convert to string
             return redirect(url_for('index'))
     
         # flash error message for incorrect username or password
@@ -70,12 +71,17 @@ def signup():
         # hash the password
         hashed_password = generate_password_hash(request.form['password'])
         
-        # find the user
-        user = User(username=request.form['username'], password=hashed_password)
+        # Check if username already exists
+        existing_user = find_user(request.form['username'])
+        if existing_user:
+            flash('Username already exists')
+            return redirect('/signup')
         
-        # add the user to the database, and commit the changes
-        db.session.add(user)
-        db.session.commit()
+        # add the user using MongoDB function
+        add_user(
+            username=request.form['username'],
+            password=hashed_password
+        )
         
         # return the login page so the user can login
         return redirect('/login')
@@ -86,8 +92,8 @@ def signup():
 # logout route
 @app.route('/logout')
 def logout():
-    session.pop('user_id', None) # remove user from session
-    return redirect('/login') # return login page
+    session.pop('user_id', None)  # remove user from session
+    return redirect('/login')     # return login page
 
 # mainloop
 if __name__ == '__main__':
