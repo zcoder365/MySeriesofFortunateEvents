@@ -7,44 +7,6 @@ import database
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Required for session management
 
-# landing route
-@app.route('/')
-def index():
-    if 'user_id' not in session:
-        return redirect('/login')
-    
-    # get user's entries from MongoDB events collection
-    # Note: In MongoDB, we'll query events by user_id directly
-    events = events.find({"user_id": session['user_id']}).sort("date", -1)
-    
-    # return the template with the entries retrieved
-    return render_template('index.html', events=events)
-
-# add entry route
-@app.route('/add-entry', methods=['GET', 'POST'])
-def add_entry():
-    # if the user isn't login, make the user log in
-    if 'user_id' not in session:
-        return redirect('/login')
-    
-    if request.method == 'POST':
-        # get the information from the form
-        content = request.form['content']
-        rating = int(request.form['rating'])
-        
-        # create an event entry using MongoDB function
-        database.create_event(
-            user_id=session['user_id'],
-            event_description=content,
-            event_rating=rating
-        )
-        
-        # return the home page
-        return redirect(url_for('index'))
-    
-    # if method is GET, return the add entry page
-    return render_template('add_entry.html')
-
 # login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -102,6 +64,44 @@ def signup():
 def logout():
     session.pop('user_id', None)  # remove user from session
     return redirect('/login')     # return login page
+
+# landing route
+@app.route('/')
+def index():
+    if 'user_id' not in session:
+        return redirect('/login')
+    
+    # get user's entries from MongoDB events collection
+    # Note: In MongoDB, we'll query events by user_id directly
+    events = events.find({"user_id": session['user_id']}).sort("date", -1)
+    
+    # return the template with the entries retrieved
+    return render_template('index.html', events=events)
+
+# add entry route
+@app.route('/add-entry', methods=['GET', 'POST'])
+def add_entry():
+    # if the user isn't login, make the user log in
+    if 'user_id' not in session:
+        return redirect('/login')
+    
+    if request.method == 'POST':
+        # get the information from the form
+        content = request.form['content']
+        rating = int(request.form['rating'])
+        
+        # create an event entry using MongoDB function
+        database.create_event(
+            user_id=session['user_id'],
+            event_description=content,
+            event_rating=rating
+        )
+        
+        # return the home page
+        return redirect(url_for('index'))
+    
+    # if method is GET, return the add entry page
+    return render_template('add_entry.html')
 
 # mainloop
 if __name__ == '__main__':
