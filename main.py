@@ -1,6 +1,5 @@
 # imports
 from flask import Flask, render_template, request, redirect, session, flash, url_for
-from datetime import datetime
 import database
 
 # prep the app and add configurations
