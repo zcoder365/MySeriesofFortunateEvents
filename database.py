@@ -10,7 +10,7 @@ events = client.events              # get the events
 
 # USER FUNCTIONS
 def find_user(username: str):
-    pass
+    return users.find_one({"username": username})
 
 def add_user(username: str, password: str):
     pass
