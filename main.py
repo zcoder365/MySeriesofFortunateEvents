@@ -87,15 +87,14 @@ def add_entry():
     
     if request.method == 'POST':
         # get the information from the form
-        content = request.form['content']
-        rating = int(request.form['rating'])
+        content = request.form.get('content')
+        rating = int(request.form.get("rating"))
+        
+        # get the user id
+        user_id = session['user_id']
         
         # create an event entry using MongoDB function
-        database.create_event(
-            user_id=session['user_id'],
-            event_description=content,
-            event_rating=rating
-        )
+        database.create_event(user_id, event_description, event_rating)
         
         # return the home page
         return redirect(url_for('index'))
