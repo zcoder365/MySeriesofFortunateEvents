@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from bson.objectid import ObjectId
 
 # create a mongo client
 client = MongoClient("mongodb+srv://zdroulias:FrozenAnna0306@cluster0.h9zxq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
@@ -36,6 +37,7 @@ def create_event(user_id: str, event_description: str, event_rating: int):
     
     # create an event document
     event = {
+        "date": today,
         "description": event_description,
         "rating": event_rating,
         "user_id": user_id
@@ -43,3 +45,10 @@ def create_event(user_id: str, event_description: str, event_rating: int):
     
     # insert the document into the database
     return events.insert_one(event)
+
+def get_events(user_id: str):
+    return events.find({"_id": ObjectId(user_id)})
+
+def check_entries(user_id: str):
+    # get all entries for the user
+    entries = get_events(user_id)
