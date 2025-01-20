@@ -33,7 +33,7 @@ def add_user(username: str, password: str):
 # EVENT FUNCTIONS
 def create_event(user_id: str, event_description: str, event_rating: int):
     # get today's date
-    today = datetime.today()
+    today = datetime.today().strftime("%Y-%m-%d")
     
     # create an event document
     event = {
@@ -49,6 +49,15 @@ def create_event(user_id: str, event_description: str, event_rating: int):
 def get_events(user_id: str):
     return events.find({"_id": ObjectId(user_id)})
 
-def check_entries(user_id: str):
+def check_entries(user_id: str) -> bool:
     # get all entries for the user
     entries = get_events(user_id)
+    
+    # get and format today's date
+    today = datetime.today().strftime("%Y-%m-%d")
+    
+    for entry in entries:
+        if entry.get("date") == today:
+            return True
+    
+    return False
