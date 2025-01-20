@@ -7,25 +7,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # prep the app and add configurations
 app = Flask(__name__)
 
-# set up the user database
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
-    events = db.relationship('Event', backref='user', lazy=True)
-
-# set up the event database
-class Event(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    content = db.Column(db.Text, nullable=False)
-    rating = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-# create all databases
-with app.app_context():
-    db.create_all()
-
 # landing route
 @app.route('/')
 def index():
