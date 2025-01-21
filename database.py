@@ -8,7 +8,7 @@ client = MongoClient("mongodb+srv://zdroulias:FrozenAnna0306@cluster0.h9zxq.mong
 
 # get access to data
 db = client['MySeriesOfFortunateEvents'] # connect to the database
-db = db.users # get the users
+users = db.users # get the users
 events = db.events # get the events
 
 # SECURITY FUNCTIONS
