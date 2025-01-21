@@ -7,9 +7,9 @@ from bson.objectid import ObjectId
 client = MongoClient("mongodb+srv://zdroulias:FrozenAnna0306@cluster0.h9zxq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 # get access to data
-db = client['MySeriesOfFortunateEvents']    # connect to the database
-users = client.users                        # get the users
-events = client.events                      # get the events
+db = client['MySeriesOfFortunateEvents'] # connect to the database
+users = client.users # get the users
+events = client.events # get the events
 
 # SECURITY FUNCTIONS
 def check_password(password_hash: str, password: str):
