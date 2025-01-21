@@ -18,7 +18,7 @@ def login():
         user = database.find_user(username)
     
         # if the user exists and the hashed passwords match
-        if user and database.check_password(user['password'], password):
+        if user != None and database.check_password(user['password'], password):
             # create the session with the user's ID and return the home route
             session['user_id'] = str(user['_id'])  # MongoDB uses ObjectId, convert to string
             return redirect(url_for('index'))
@@ -42,6 +42,7 @@ def signup():
         
         # Check if username already exists
         existing_user = database.find_user(username)
+        
         if existing_user:
             flash('Username already exists')
             return redirect('/signup')
