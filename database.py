@@ -8,8 +8,8 @@ client = MongoClient("mongodb+srv://zdroulias:FrozenAnna0306@cluster0.h9zxq.mong
 
 # get access to data
 db = client['MySeriesOfFortunateEvents'] # connect to the database
-users = client.users # get the users
-events = client.events # get the events
+db = db.users # get the users
+events = db.events # get the events
 
 # SECURITY FUNCTIONS
 def check_password(password_hash: str, password: str):
