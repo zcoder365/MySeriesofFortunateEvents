@@ -85,6 +85,12 @@ def add_entry():
         return redirect('/login')
     
     if request.method == 'POST':
+        # check if an entry exists for today
+        entry = database.check_entries(session['user_id'])
+        if entry:
+            print("An entry already exists for today.")
+            return redirect(url_for("home"))
+        
         # get the information from the form
         content = request.form.get('content')
         rating = int(request.form.get("rating"))
