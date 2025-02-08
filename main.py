@@ -97,7 +97,7 @@ def add_entry():
         user_id = session['user_id']
         
         # create an event entry using MongoDB function
-        database.create_event(user_id, content, rating)
+        model.add_event(user_id, content, rating)
         
         # return the home page
         return redirect(url_for('index'))
