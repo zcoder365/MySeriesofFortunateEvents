@@ -27,3 +27,18 @@ def create_db():
     # close the connection
     conn.commit()
     conn.close()
+
+def create_user(username, password):
+    # connect to the database
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    
+    # insert the user into the database
+    c.execute('''
+        INSERT INTO users (username, password)
+        VALUES (?, ?)
+    ''', (username, password))
+    
+    # commit changes and close the connection
+    conn.commit()
+    conn.close()
