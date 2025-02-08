@@ -24,5 +24,6 @@ def create_db():
         )
     ''')
     
+    # close the connection
     conn.commit()
     conn.close()
