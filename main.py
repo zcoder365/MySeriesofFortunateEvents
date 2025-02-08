@@ -1,6 +1,6 @@
 # imports
 from flask import Flask, render_template, request, redirect, session, flash, url_for
-import database
+import utils.database as database
 
 # prep the app and add configurations
 app = Flask(__name__)
