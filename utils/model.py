@@ -1,4 +1,5 @@
 import utils.database as db
+import hashlib, os
 
 def create_database():
     db.create_db()
