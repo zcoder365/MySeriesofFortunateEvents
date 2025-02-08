@@ -20,3 +20,6 @@ def can_add_entry(user_id):
 
 def add_event(user_id, title, rating):
     db.create_event(user_id, title, rating)
+    
+def hash_password(password):
+    return db.hash_password(password)
