@@ -1,10 +1,10 @@
 # imports
 from flask import Flask, render_template, request, redirect, session, flash, url_for
-import utils.database as database
+import utils.model as model
 
 # prep the app and add configurations
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Required for session management
+app.secret_key = 'your_secret_key_here'
 
 # login route
 @app.route('/login', methods=['GET', 'POST'])
@@ -15,7 +15,7 @@ def login():
         password = request.form.get("password")
         
         # find the user from MongoDB using the imported function
-        user = database.find_user(username)
+        user = model.find_user(username)
     
         # if the user exists and the hashed passwords match
         if user != None and database.check_password(user['password'], password):
