@@ -14,3 +14,6 @@ def find_events(user_id):
 
 def can_add_entry(user_id):
     return db.get_event_by_date(user_id)
+
+def add_event(user_id, title, rating):
+    db.create_event(user_id, title, rating)
