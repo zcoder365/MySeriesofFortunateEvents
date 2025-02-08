@@ -109,7 +109,7 @@ def add_entry():
 # mainloop
 if __name__ == '__main__':
     # create the database
-    model.create_database()
+    db.create_db()
     
     # run the app
     app.run(port=8080, debug=True)
