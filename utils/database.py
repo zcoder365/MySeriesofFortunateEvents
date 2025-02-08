@@ -73,3 +73,19 @@ def create_event(user_id, title, rating, date):
     # commit changes and close the connection
     conn.commit()
     conn.close()
+
+def get_events(user_id):
+    # connect to the database
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    
+    # get the events from the database
+    c.execute('''
+        SELECT * FROM events WHERE user_id = ?
+    ''', (user_id,))
+    events = c.fetchall()
+    
+    # close the connection
+    conn.close()
+    
+    return events
