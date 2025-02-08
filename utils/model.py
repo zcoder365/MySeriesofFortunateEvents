@@ -1,5 +1,5 @@
 import utils.database as db
-import hashlib, os
+import bcrypt
 
 def create_database():
     db.create_db()
@@ -23,4 +23,4 @@ def add_event(user_id, title, rating):
     db.create_event(user_id, title, rating)
     
 def hash_password(password):
-    return db.hash_password(password)
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
