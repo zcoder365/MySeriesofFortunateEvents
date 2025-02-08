@@ -18,7 +18,7 @@ def login():
         user = model.find_user(username)
     
         # if the user exists and the hashed passwords match
-        if user != None and database.check_password(user['password'], password):
+        if user != None and model.check_password(password, user['password']):
             # create the session with the user's ID and return the home route
             session['user_id'] = str(user['_id'])  # MongoDB uses ObjectId, convert to string
             return redirect(url_for('index'))
