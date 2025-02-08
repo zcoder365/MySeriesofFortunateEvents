@@ -3,30 +3,37 @@ import sqlite3
 DB_PATH = 'data/fortunate_events.db'
 
 def create_db():
-    # create connection to and cursor for the database
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    
-    # create tables
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            password TEXT NOT NULL
-        )
+    try:
+        # create connection to and cursor for the database
+        conn = sqlite3.connect(DB_PATH)
+        c = conn.cursor()
         
-        CREATE TABLE IF NOT EXISTS events (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            title TEXT NOT NULL,
-            rating INTEGER NOT NULL,
-            date TEXT NOT NULL,
-            FOREIGN KEY (user_id) REFERENCES users (id)
-        )
-    ''')
-    
-    # commit the changes
-    conn.commit()
+        # create tables
+        c.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                password TEXT NOT NULL
+            )
+            
+            CREATE TABLE IF NOT EXISTS events (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                title TEXT NOT NULL,
+                rating INTEGER NOT NULL,
+                date TEXT NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users (id)
+            )
+        ''')
+        
+        # commit the changes
+        conn.commit()
+    except sqlite3.Error as e:
+        print("Error creating database: ", e)
+    finally:
+        # close the connection
+        if conn:
+            conn.close()
 
 def create_user(username, password):
     # connect to the database
