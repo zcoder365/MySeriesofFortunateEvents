@@ -84,7 +84,7 @@ def add_entry():
     
     if request.method == 'POST':
         # check if an entry exists for today
-        entry = database.check_entries(session['user_id'])
+        entry = model.can_add_entry(session['user_id'])
         if entry:
             print("An entry already exists for today.")
             return redirect(url_for("home"))
