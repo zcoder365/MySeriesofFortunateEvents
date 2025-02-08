@@ -58,3 +58,18 @@ def get_user(username):
     conn.close()
     
     return user
+
+def create_event(user_id, title, rating, date):
+    # connect to the database
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    
+    # insert the event into the database
+    c.execute('''
+        INSERT INTO events (user_id, title, rating, date)
+        VALUES (?, ?, ?, ?)
+    ''', (user_id, title, rating, date))
+    
+    # commit changes and close the connection
+    conn.commit()
+    conn.close()
