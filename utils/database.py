@@ -30,10 +30,9 @@ def create_db():
         conn.commit()
     except sqlite3.Error as e:
         print("Error creating database: ", e)
-    finally:
-        # close the connection
-        if conn:
-            conn.close()
+    # finally:
+    #     # close the connection
+    #     conn.close()
 
 def create_user(username, password):
     # connect to the database
