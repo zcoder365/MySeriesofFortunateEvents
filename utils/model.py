@@ -1,5 +1,8 @@
 import utils.database as db
 
+def create_database():
+    db.create_db()
+
 def find_user(username):
     return db.get_user(username)
 
