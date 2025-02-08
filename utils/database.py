@@ -25,9 +25,8 @@ def create_db():
         )
     ''')
     
-    # close the connection
+    # commit the changes
     conn.commit()
-    conn.close()
 
 def create_user(username, password):
     # connect to the database
