@@ -38,20 +38,17 @@ def signup():
         password = request.form.get("password")
         
         # hash the password
-        hashed_password = database.hash_password(password)
+        hashed_password = model.hash_password(password)
         
         # Check if username already exists
-        existing_user = database.find_user(username)
+        existing_user = model.find_user(username)
         
         if existing_user:
             flash('Username already exists')
             return redirect('/signup')
         
         # add the user using MongoDB function
-        database.add_user(
-            username=username,
-            password=hashed_password
-        )
+        model.add_user(username, hashed_password)
         
         # return the login page so the user can login
         return redirect('/login')
