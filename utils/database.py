@@ -89,3 +89,20 @@ def get_events(user_id):
     conn.close()
     
     return events
+
+def get_entry_by_date(user_id, date):
+    # connect to the database
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    
+    # get the event from the database
+    c.execute('''
+        SELECT * FROM events WHERE user_id = ? AND date = ?
+    ''', (user_id, date))
+    event = c.fetchone()
+    
+    # close the connection
+    conn.close()
+    
+    # return the event
+    return event
