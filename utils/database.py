@@ -42,3 +42,19 @@ def create_user(username, password):
     # commit changes and close the connection
     conn.commit()
     conn.close()
+    
+def get_user(username):
+    # connect to the database
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    
+    # get the user from the database
+    c.execute('''
+        SELECT * FROM users WHERE username = ?
+    ''', (username,))
+    user = c.fetchone()
+    
+    # close the connection
+    conn.close()
+    
+    return user
