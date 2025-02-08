@@ -20,7 +20,8 @@ def create_db():
             user_id INTEGER NOT NULL,
             title TEXT NOT NULL,
             rating INTEGER NOT NULL,
-            date TEXT NOT NULL
+            date TEXT NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES users (id)
         )
     ''')
     
