@@ -55,3 +55,13 @@ a:hover {
     padding: 10px;
     padding-left: 15px;
 }
+
+input[type='text'], input[type='password'] {
+    font-family: var(--body-font);
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid var(--off-white);
+    background-color: var(--lavender);
+    color: var(--off-white);
+}
