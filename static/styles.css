@@ -26,9 +26,14 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--mint-green);
-    margin-bottom: 20px;
     width: 100%;
+    background-color: var(--mint-green);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
 a {
@@ -49,12 +54,6 @@ a:hover {
     width: auto;
     background-color: var(--lavender);
     border-radius: 1.5rem;
-}
-
-.page-title {
-    margin-top: 0px;
-    padding: 10px;
-    padding-left: 15px;
 }
 
 input[type='text'], input[type='password'] {
