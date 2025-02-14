@@ -5,7 +5,7 @@ import utils.database as db
 
 # prep the app and add configurations
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'
+app.secret_key = 'key'
 
 # login route
 @app.route('/login', methods=['GET', 'POST'])
