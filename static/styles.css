@@ -41,7 +41,7 @@ a:hover {
     border-radius: 1.5rem;
 }
 
-form {
+.form-container-dash {
     border: 2px dashed var(--soft-yellow);
     border-radius: 1.5rem;
 }
