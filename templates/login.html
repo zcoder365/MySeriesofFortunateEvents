@@ -2,25 +2,23 @@
 {% block content %}
 
 <div class="form-container">
-    <div class="form-container-dash"></div>
-        <h2 class="form-text">Login</h2>
+    <h2 class="form-text">Login</h2>
+    
+    <form method="POST">
+        <label class="form-block2">Username:</label>
+        <input type="text" name="username" required>
         
-        <form method="POST">
-            <label class="form-block2">Username:</label>
-            <input type="text" name="username" required>
-            
-            <br>
-            
-            <label class="form-block2">Password:</label>
-            <input type="password" name="password" required>
-
-            <br><br>
+        <br>
         
-            <input type="submit" value="Login">
-        </form>
+        <label class="form-block2">Password:</label>
+        <input type="password" name="password" required>
 
-        <p class="reg-text">Don't have an account? <a href="/signup">Sign Up</a>.</p>
-    </div>
+        <br><br>
+    
+        <input type="submit" value="Login">
+    </form>
+
+    <p class="reg-text">Don't have an account? <a href="/signup">Sign Up</a>.</p>
 </div>
 
 {% endblock %}
