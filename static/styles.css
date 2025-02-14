@@ -9,4 +9,6 @@
     --lavender: #D4A5E5;
 
     /* fonts */
+    --header-font: "Poppins", sans-serif;
+    --body-font: "Nunito", sans-serif;
 }
