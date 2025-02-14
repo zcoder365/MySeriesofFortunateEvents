@@ -27,7 +27,7 @@ nav {
     background-color: var(--mint-green);
     height: 50px;
     margin-bottom: 20px;
-    width: auto;
+    width: 100%;
 }
 
 a {
