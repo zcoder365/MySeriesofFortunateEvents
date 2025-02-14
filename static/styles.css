@@ -7,7 +7,6 @@
     --sky-blue: #72C6E9;
     --mint-green: #A8E6CF;
     --lavender: #D4A5E5;
-    --off-white: #FAF3E0;
 
     /* fonts */
     --header-font: "Poppins", sans-serif;
@@ -16,7 +15,7 @@
 
 body {
     font-family: var(--body-font);
-    background-color: var(--off-white);
+    background-color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -61,7 +60,7 @@ input[type='text'], input[type='password'] {
     font-size: 14px;
     padding: 10px;
     border-radius: 20px;
-    border: 2px solid var(--off-white);
+    border: 2px solid white;
     background-color: var(--lavender);
-    color: var(--off-white);
+    color: white;
 }
