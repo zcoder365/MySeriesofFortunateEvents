@@ -42,8 +42,3 @@ a:hover {
     background-color: var(--lavender);
     border-radius: 1.5rem;
 }
-
-.form-container-dash {
-    border: 2px dashed var(--soft-yellow);
-    border-radius: 1.5rem;
-}
