@@ -23,6 +23,13 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
 }
 
+nav {
+    background-color: var(--mint-green);
+    height: 50px;
+    margin-bottom: 20px;
+    width: auto;
+}
+
 a {
     font-family: var(--body-font);
     text-decoration: none;
