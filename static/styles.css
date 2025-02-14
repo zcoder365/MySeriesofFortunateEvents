@@ -23,8 +23,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 nav {
+    position: fixed;
+    top: 0;
+    left: 0;
     background-color: var(--mint-green);
-    /* height: 50px; */
     margin-bottom: 20px;
     width: 100%;
 }
