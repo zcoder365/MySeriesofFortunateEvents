@@ -31,3 +31,17 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.form-container {
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 10px;
+    width: auto;
+    background-color: var(--lavender);
+    border-radius: 1.5rem;
+}
+
+form {
+    border: 2px dashed var(--soft-yellow);
+    border-radius: 1.5rem;
+}
