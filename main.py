@@ -5,6 +5,37 @@ import utils.database as db
 
 # prep the app and add configurations
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "key"
+
+@app.route("/")
+def landing():
+    return redirect(url_for("login"))
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # get info from the form
+        username = request.form["username"]
+        password = request.form["password"]
+
+        # check if the user exists
+        user = model.find_user(username)
+        if not user:
+            flash("User does not exist", "danger")
+            return redirect(url_for("login"))
+
+        # check if the password is correct
+        if not model.check_password(password, user[0]["password"]):
+            flash("Incorrect password", "danger")
+            return redirect(url_for("login"))
+
+        # set the session
+        session["user_id"] = user[0]["id"]
+        session["username"] = username
+
+        return redirect(url_for("home"))
+
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
