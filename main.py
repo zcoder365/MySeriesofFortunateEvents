@@ -17,21 +17,32 @@ def login():
         # get info from the form
         username = request.form["username"]
         password = request.form["password"]
+        
+        # Debug: Print what we're trying to log in with
+        print(f"Debug - Login attempt with username: '{username}', password: '{password}'")
 
         # check if the user exists
         user = model.find_user(username)
+        print(f"Debug - find_user returned: {user}")
+        
         if not user:
             flash("User does not exist", "danger")
             return redirect(url_for("login"))
 
         # check if the password is correct
-        if not model.login(username, password):
+        login_result = model.login(username, password)
+        print(f"Debug - login result: {login_result}")
+        
+        if not login_result:
             flash("Incorrect password", "danger")
             return redirect(url_for("login"))
 
+        # Fix: user is now a single user object, not a list
         # set the session
-        session["user_id"] = user[0]["id"]
+        session["user_id"] = user["id"]  # Remove the [0] since user is now a single object
         session["username"] = username
+        
+        print(f"Debug - Login successful! Session set with user_id: {user['id']}")
 
         return redirect(url_for("home"))
 
@@ -43,6 +54,8 @@ def signup():
         # get info from the form
         username = request.form["username"]
         password = request.form["password"]
+        
+        print(f"Debug - Signup attempt with username: '{username}'")
 
         # check if the user exists
         user = model.find_user(username)
@@ -51,7 +64,8 @@ def signup():
             return redirect(url_for("signup"))
 
         # add the user to the database
-        db.add_user(username, password)
+        result = db.add_user(username, password)
+        print(f"Debug - add_user result: {result}")
 
         return redirect(url_for("login"))
 
@@ -59,6 +73,11 @@ def signup():
 
 @app.route("/home", methods=["GET", "POST"])
 def home():
+    # Add session check to prevent accessing home without login
+    if "username" not in session:
+        flash("Please log in first", "warning")
+        return redirect(url_for("login"))
+        
     if request.method == "POST":
         # get info from the form
         entry = request.form["entry"]
@@ -75,6 +94,11 @@ def home():
 
 @app.route("/add-entry", methods=["GET", "POST"])
 def add_entry():
+    # Add session check to prevent accessing add-entry without login
+    if "username" not in session:
+        flash("Please log in first", "warning")
+        return redirect(url_for("login"))
+        
     if request.method == "POST":
         # get info from the form
         entry = request.form["entry"]
@@ -85,6 +109,13 @@ def add_entry():
         return redirect(url_for("home"))
 
     return render_template("add-entry.html")
+
+@app.route("/logout")
+def logout():
+    # Clear the session when logging out
+    session.clear()
+    flash("You have been logged out", "info")
+    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
