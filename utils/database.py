@@ -56,3 +56,13 @@ def add_entry(entry: str, username: str):
         return None
     
     return response.data
+
+def get_entries(username: str):
+    # get all entries from the database
+    response = supabase.table("entries").select("*").eq("username", username).execute()
+    
+    if response.error:
+        print("Error getting entries:", response.error)
+        return None
+    
+    return response.data
