@@ -54,6 +54,7 @@ form input[type="text"], input[type="password"] {
     margin: 5px 0;
     border: 2px solid var(--primary-color);
     border-radius: 5px;
+    text-align: center;
 }
 
 form input[type="submit"] {
