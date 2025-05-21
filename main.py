@@ -107,9 +107,5 @@ def add_entry():
     return render_template('add_entry.html')
 
 # mainloop
-if __name__ == '__main__':
-    # create the database
-    db.create_db()
-    
-    # run the app
-    app.run(port=8080, debug=True)
+if __name__ == '__main__':    
+    app.run(port=5001, debug=True)
