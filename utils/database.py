@@ -35,7 +35,8 @@ def get_user(username: str):
     
     if response.data and response.data > 0:
         return response.data
-    else: return None
+    else:
+        return None
 
 # ENTRY FUNCTIONS
 # add an entry to the database
