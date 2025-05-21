@@ -57,5 +57,21 @@ def signup():
 
     return render_template("signup.html")
 
+@app.route("/home", methods=["GET", "POST"])
+def home():
+    if request.method == "POST":
+        # get info from the form
+        entry = request.form["entry"]
+
+        # add the entry to the database
+        db.add_entry(entry, session["username"])
+
+        return redirect(url_for("home"))
+
+    # get all entries from the database
+    entries = db.get_entries(session["username"])
+
+    return render_template("home.html", entries=entries)
+
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
