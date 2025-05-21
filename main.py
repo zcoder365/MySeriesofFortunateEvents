@@ -78,21 +78,12 @@ def signup():
 
     return render_template("signup.html")
 
-@app.route("/home", methods=["GET", "POST"])
+@app.route("/home")
 def home():
     # Add session check to prevent accessing home without login
     if "username" not in session:
         flash("Please log in first", "warning")
         return redirect(url_for("login"))
-        
-    if request.method == "POST":
-        # get info from the form
-        entry = request.form["entry"]
-
-        # add the entry to the database
-        db.add_entry(entry, session["username"])
-
-        return redirect(url_for("home"))
 
     # get all entries from the database
     entries = db.get_entries(session["username"])
