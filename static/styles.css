@@ -1,76 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Poppins:wght@400;700&display=swap');
-
 :root {
-    /* colors */
-    --soft-yellow: #FFEB99;
-    --peachy-orange: #FFAD60;
-    --sky-blue: #72C6E9;
-    --mint-green: #A8E6CF;
-    --lavender: #D4A5E5;
-
-    /* fonts */
-    --header-font: "Poppins", sans-serif;
-    --body-font: "Nunito", sans-serif;
+    /* color scheme */
+    --primary-color: #FFE066;
+    --secondary-color: #FFD6BA;
+    --accent-color: #A3D5FF;
+    --background-color: #F5EBDD;
+    --surface-color: #C6F1D6;
+    --text-dark: #4C4C6D;
+    --text-light: #FFFFFF;
 }
 
 body {
-    font-family: var(--body-font);
-    background-color: white;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--header-font);
-}
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    background-color: var(--mint-green);
-    padding: 15px 20px;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-a {
-    font-family: var(--body-font);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.form-container {
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 80px; /* Adjusted to be below the navbar */
-    padding: 10px;
-    width: auto;
-    background-color: var(--lavender);
-    border-radius: 1.5rem;
-}
-
-input[type='text'], input[type='password'] {
-    font-family: var(--body-font);
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 20px;
-    border: 2px solid white;
-    background-color: var(--lavender);
-    color: white;
-}
-
-input[type='submit'] {
-    width: 100px;
-    height: 50px;
-    border-radius: 15px;
-    border: 2px solid white;
-    background-color: var(--lavender);
-    color: white;
-    font-size: 14px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
 }
