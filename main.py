@@ -25,7 +25,7 @@ def login():
             return redirect(url_for("login"))
 
         # check if the password is correct
-        if not model.check_password(password, user[0]["password"]):
+        if not model.login(username, password):
             flash("Incorrect password", "danger")
             return redirect(url_for("login"))
 
