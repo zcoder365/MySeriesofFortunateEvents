@@ -16,3 +16,10 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.logo {
+    width: 75px;
+    height: auto;
+    padding: 10px;
+    margin: 0 auto;
+}
