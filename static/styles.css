@@ -55,6 +55,7 @@ form input[type="text"], input[type="password"] {
     border: 2px solid var(--primary-color);
     border-radius: 5px;
     text-align: center;
+    font-family: inherit;
 }
 
 form input[type="submit"] {
