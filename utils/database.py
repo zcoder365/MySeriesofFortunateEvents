@@ -33,11 +33,9 @@ def get_user(username: str):
     # get a user from the database
     response = supabase.table("users").select("*").eq("username", username).execute()
     
-    if response.error:
-        print("Error getting user:", response.error)
-        return None
-    
-    return response.data
+    if response.data and response.data > 0:
+        return response.data
+    else: return None
 
 # ENTRY FUNCTIONS
 # add an entry to the database
