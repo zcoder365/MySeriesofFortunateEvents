@@ -37,5 +37,25 @@ def login():
 
     return render_template("login.html")
 
+@app.route("signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        # get info from the form
+        username = request.form["username"]
+        password = request.form["password"]
+
+        # check if the user exists
+        user = model.find_user(username)
+        if user:
+            flash("User already exists", "danger")
+            return redirect(url_for("signup"))
+
+        # add the user to the database
+        db.add_user(username, password)
+
+        return redirect(url_for("login"))
+
+    return render_template("signup.html")
+
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
