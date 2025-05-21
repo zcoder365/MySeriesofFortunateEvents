@@ -38,3 +38,21 @@ def get_user(username: str):
         return None
     
     return response.data
+
+# ENTRY FUNCTIONS
+# add an entry to the database
+def add_entry(entry: str, username: str):
+    # create an entry
+    new_entry = {
+        "entry": entry,
+        "username": username
+    }
+    
+    # add an entry to the database
+    response = supabase.table("entries").insert(new_entry).execute()
+    
+    if response.error:
+        print("Error adding entry:", response.error)
+        return None
+    
+    return response.data
