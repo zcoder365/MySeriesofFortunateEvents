@@ -88,7 +88,7 @@ def home():
     # get all entries from the database
     entries = db.get_entries(session["username"])
 
-    return render_template("home.html", entries=entries)
+    return render_template("index.html", entries=entries)
 
 @app.route("/add-entry", methods=["GET", "POST"])
 def add_entry():
