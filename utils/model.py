@@ -1,9 +1,6 @@
 import utils.database as db
 import bcrypt
 
-def create_database():
-    db.create_db()
-
 def find_user(username):
     return db.get_user(username)
 
