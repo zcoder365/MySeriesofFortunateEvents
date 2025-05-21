@@ -73,5 +73,18 @@ def home():
 
     return render_template("home.html", entries=entries)
 
+@app.route("/add-entry", methods=["GET", "POST"])
+def add_entry():
+    if request.method == "POST":
+        # get info from the form
+        entry = request.form["entry"]
+
+        # add the entry to the database
+        db.add_entry(entry, session["username"])
+
+        return redirect(url_for("home"))
+
+    return render_template("add-entry.html")
+
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
