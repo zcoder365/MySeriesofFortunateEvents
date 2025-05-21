@@ -1,4 +1,4 @@
-from supabase import create_client
+from supabase import create_client, Client
 import os
 from dotenv import load_dotenv
 import bcrypt
@@ -8,8 +8,23 @@ load_dotenv()
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_ANON_KEY")
 
-# create a client
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+# Debug: Print environment variables (be careful with this in production!)
+print(f"Debug - SUPABASE_URL: {SUPABASE_URL}")
+print(f"Debug - SUPABASE_KEY: {SUPABASE_KEY[:20]}..." if SUPABASE_KEY else "Debug - SUPABASE_KEY: None")
+
+# Check if environment variables are loaded
+if not SUPABASE_URL or not SUPABASE_KEY:
+    print("ERROR: Supabase environment variables not found!")
+    print("Make sure you have a .env file with SUPABASE_URL and SUPABASE_ANON_KEY")
+    exit(1)
+
+try:
+    # create a client
+    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+    print("Debug - Supabase client created successfully")
+except Exception as e:
+    print(f"ERROR creating Supabase client: {e}")
+    exit(1)
 
 # USER FUNCTIONS
 # add a user to the database
