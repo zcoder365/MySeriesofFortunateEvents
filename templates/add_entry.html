@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="form-container">
-    <h2 class="form-text">Add New Entry</h2>
-    
-    <form action="/add-entry" method="post">
-        <div class="form-block1">
-            <label class="form-block2">What happened today?</label>
-            <textarea name="content" required class="form-input" style="width: 100%; min-height: 100px;"></textarea>
-        </div>
-    
-        <div class="form-block1">
-            <label class="form-block2">Rate this event (1-10)</label>
-            <input type="number" name="rating" min="1" max="10" required class="form-input">
-        </div>
-    
-        <button type="submit" class="form-btn">Save Entry</button>
-    </form>
-</div>
+
+<h2 class="form-text">Add New Entry</h2>
+
+<form action="/add-entry" method="post">
+    <div class="form-block1">
+        <label class="form-block2">What happened today?</label>
+        <textarea name="content" required class="form-input" style="width: 100%; min-height: 100px;"></textarea>
+    </div>
+
+    <div class="form-block1">
+        <label class="form-block2">Rate this event (1-10)</label>
+        <input type="number" name="rating" min="1" max="10" required class="form-input">
+    </div>
+
+    <button type="submit" class="form-btn">Save Entry</button>
+</form>
+
 {% endblock %}
