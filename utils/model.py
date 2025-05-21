@@ -1,17 +1,14 @@
 import utils.database as db
 import bcrypt
 
-def find_user(username):
+def find_user(username: str):
     return db.get_user(username)
 
-def check_password(password, hashed_password):
-    return db.check_password(password, hashed_password)
+def add_user(username: str, password: str):
+    return db.add_user(username, password)
 
-def add_user(username, password):
-    db.create_user(username, password)
-
-def find_events(user_id):
-    return db.get_events(user_id)
+def get_events(username: str):
+    return db.get_entries(username)
 
 def can_add_entry(user_id):
     return db.get_event_by_date(user_id)
