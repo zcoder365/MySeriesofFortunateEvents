@@ -12,7 +12,7 @@ def get_events(username: str):
     return db.get_entries(username)
 
 def add_event(user_id, title, rating):
-    db.create_event(user_id, title, rating)
+    return db.create_event(user_id, title, rating)
 
 def login(username: str, password: str):
     # get the user from the database
