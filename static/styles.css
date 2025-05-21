@@ -26,6 +26,7 @@ a:hover {
     color: var(--accent-color);
     text-decoration: underline;
     text-decoration-thickness: 2px;
+    font-weight: bold;
 }
 
 .logo {
