@@ -12,3 +12,16 @@ def get_events(username: str):
 
 def add_event(user_id, title, rating):
     db.create_event(user_id, title, rating)
+
+def login(username: str, password: str):
+    # get the user from the database
+    user = db.get_user(username)
+    
+    if not user:
+        return False
+    
+    # check if the password is correct
+    if bcrypt.checkpw(password.encode('utf-8'), user[0]["password"].encode('utf-8')):
+        return True
+    else:
+        return False
