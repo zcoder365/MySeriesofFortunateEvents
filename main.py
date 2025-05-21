@@ -36,15 +36,22 @@ def login():
         if not login_result:
             flash("Incorrect password", "danger")
             return redirect(url_for("login"))
+        elif username == "admin" and password == "admin":
+            # if the password is correct, set the session
+            session["user_id"] = user["id"]  # Remove the [0] since user is now a single object
+            session["username"] = username
+            
+            print(f"Debug - Login successful! Session set with user_id: {user['id']}")
 
-        # Fix: user is now a single user object, not a list
-        # set the session
-        session["user_id"] = user["id"]  # Remove the [0] since user is now a single object
-        session["username"] = username
-        
-        print(f"Debug - Login successful! Session set with user_id: {user['id']}")
+            return redirect(url_for("home"))
+        else:
+            # if the password is correct, set the session
+            session["user_id"] = user["id"]  # Remove the [0] since user is now a single object
+            session["username"] = username
+            
+            print(f"Debug - Login successful! Session set with user_id: {user['id']}")
 
-        return redirect(url_for("home"))
+            return redirect(url_for("home"))
 
     return render_template("login.html")
 
