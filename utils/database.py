@@ -53,6 +53,7 @@ def add_entry(entry: str, username: str, rating: int):
     # add an entry to the database
     response = supabase.table("entries").insert(new_entry).execute()
     
+    # handle errors
     if response.error:
         print("Error adding entry:", response.error)
         return None
