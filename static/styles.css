@@ -40,6 +40,17 @@ form input[type="text"], input[type="password"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    border: 1px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
+}
+
+form input[type="submit"] {
+    font-family: inherit;
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
