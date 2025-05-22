@@ -80,6 +80,9 @@ def home():
 
     # get all entries from the database
     entries = db.get_entries(session["username"])
+    
+    # Debug: Print the entries retrieved
+    print(f"Debug - Entries retrieved: {entries}")
 
     return render_template("index.html", entries=entries)
 
