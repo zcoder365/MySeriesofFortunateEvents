@@ -93,9 +93,10 @@ def add_entry():
     if request.method == "POST":
         # get info from the form
         entry = request.form["entry"]
+        rating = request.form["rating"]
 
         # add the entry to the database
-        db.add_entry(entry, session["username"])
+        db.add_entry(entry, rating, session["username"])
 
         return redirect(url_for("home"))
 
