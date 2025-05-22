@@ -66,7 +66,8 @@ def signup():
         result = db.add_user(username, password)
         print(f"Debug - add_user result: {result}")
 
-        return redirect(url_for("login"))
+        # # return the login page
+        # return redirect(url_for("login"))
 
     return render_template("signup.html")
 
