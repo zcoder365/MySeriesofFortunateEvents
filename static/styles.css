@@ -117,3 +117,14 @@ table td {
     border: none;
     color: var(--text-dark);
 }
+
+.logout-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+    padding: 10px 20px;
+    border: 2px solid var(--text-dark);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+}
