@@ -75,13 +75,24 @@ form input[type="submit"]:hover {
 }
 
 table {
-    width: auto;
+    width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    font-family: inherit;
 }
 
 table th {
     border-bottom: #A3D5FF 2px solid;
     color: var(--text-dark);
     padding: 10px;
+}
+
+table td {
+    border-bottom: #FFE066 1px solid;
+    color: var(--text-dark);
 }
