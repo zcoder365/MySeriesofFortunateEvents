@@ -103,6 +103,6 @@ table th {
 }
 
 table td {
-    border-bottom: #FFE066 1px solid;
+    border: none;
     color: var(--text-dark);
 }
