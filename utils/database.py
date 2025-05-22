@@ -76,13 +76,13 @@ def get_user(username: str):
 
 # ENTRY FUNCTIONS
 # add an entry to the database
-def add_entry(entry: str, username: str, rating: int = 5):  # Default rating
+def add_entry(entry: str, rating: int, username: str): 
     try:
         # create an entry
         new_entry = {
             "entry": entry,
-            "username": username,
-            "rating": rating
+            "rating": rating,
+            "username": username
         }
         
         # add an entry to the database
