@@ -15,9 +15,9 @@
 
         {% for event in events %}
         <tr>
-            <td>{{ event.date.strftime('%Y-%m-%d %H:%M') }}</td>
-            <td>{{ event.content }}</td>
-            <td>{{ event.rating }}/10</td>
+            <td>{{ event['created_at'].strftime('%m/%d/%Y') }}</td>
+            <td>{{ event['entry'] }}</td>
+            <td>{{ event[rating] }}/10</td>
         </tr>
         {% endfor %}
     </table>
