@@ -29,14 +29,14 @@ def login(username: str, password: str):
     print(f"Debug - stored password: {stored_password}")
     print(f"Debug - entered password: {password}")
     
-    # # check if the password is correct
-    # try:
-    #     if bcrypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
-    #         print("Debug - Password match!")
-    #         return True
-    #     else:
-    #         print("Debug - Password mismatch!")
-    #         return False
-    # except Exception as e:
-    #     print(f"Debug - Error checking password: {e}")
-    #     return False
+    # check if the password is correct
+    try:
+        if bcrypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
+            print("Debug - Password match!")
+            return True
+        else:
+            print("Debug - Password mismatch!")
+            return False
+    except Exception as e:
+        print(f"Debug - Error checking password: {e}")
+        return False
