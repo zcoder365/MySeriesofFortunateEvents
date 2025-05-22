@@ -5,15 +5,15 @@
 
 <form action="/add-entry" method="post">
     <div class="form-block1">
-        <label for="content">What happened today?</label>
-        <textarea name="content" required class="form-input" style="width: 100%; min-height: 100px;" placeholder="Start typing..."></textarea>
+        <label for="entry">What happened today?</label>
+        <textarea name="entry" id="entry" required class="form-input" style="width: 100%; min-height: 100px;" placeholder="Start typing..."></textarea>
     </div>
 
     <br><br>
 
     <div class="form-block1">
         <label for="rating">Rate this event (1-10)</label>
-        <input type="number" name="rating" min="1" max="10" required class="form-input">
+        <input type="number" name="rating" id="entry" min="1" max="10" required>
     </div>
     
     <br><br>
