@@ -68,7 +68,7 @@ form {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-form input[type="text"], input[type="password"] {
+form input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
@@ -92,6 +92,17 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
     background-color: var(--secondary-color);
     color: var(--text-light);
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    text-align: center;
+    font-family: inherit;
 }
 
 .table-container {
