@@ -15,7 +15,7 @@
 
         {% for entry in entries %}
         <tr>
-            <td>{{ entry['created_at'][:10] }}</td>
+            <td>{{ entry['created_at'] }}</td>
             <td>{{ entry['entry'] }}</td>
             <td>{{ entry['rating'] }}/10</td>
         </tr>
