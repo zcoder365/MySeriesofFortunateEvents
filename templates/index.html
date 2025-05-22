@@ -4,21 +4,23 @@
 <h2>Your Entries</h2>
 
 <a href="/add-entry" class="new-entry-link"><button class="new-entry">Add New Entry</button></a>
-    
-<table align="center">
-    <tr>
-        <th>Date</th>
-        <th>Event</th>
-        <th>Rating</th>
-    </tr>
 
-    {% for event in events %}
-    <tr>
-        <td>{{ event.date.strftime('%Y-%m-%d %H:%M') }}</td>
-        <td>{{ event.content }}</td>
-        <td>{{ event.rating }}/10</td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="table-container">
+    <table align="center">
+        <tr>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Rating</th>
+        </tr>
+
+        {% for event in events %}
+        <tr>
+            <td>{{ event.date.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>{{ event.content }}</td>
+            <td>{{ event.rating }}/10</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 
 {% endblock %}
