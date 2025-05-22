@@ -52,7 +52,8 @@ a:hover {
     width: 75px;
     height: auto;
     padding: 10px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    /* the margin was centering the logo */
 }
 
 form {
