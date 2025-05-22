@@ -96,9 +96,9 @@ table th, table td {
 }
 
 table th {
-    border-bottom: #A3D5FF 2px solid;
-    background-color: var(--primary-color);
-    color: var(--text-color);
+    border-bottom: var(--text-dark) 2px solid;
+    background-color: var(--accent-color);
+    color: var(--text-dark);
     padding: 10px;
 }
 
