@@ -13,11 +13,11 @@
             <th>Rating</th>
         </tr>
 
-        {% for event in events %}
+        {% for entry in entries %}
         <tr>
-            <td>{{ event['created_at'].strftime('%m/%d/%Y') }}</td>
-            <td>{{ event['entry'] }}</td>
-            <td>{{ event['rating'] }}/10</td>
+            <td>{{ entry['created_at'].strftime('%m/%d/%Y') }}</td>
+            <td>{{ entry['entry'] }}</td>
+            <td>{{ entry['rating'] }}/10</td>
         </tr>
         {% endfor %}
     </table>
