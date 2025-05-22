@@ -75,7 +75,7 @@ form input[type="submit"]:hover {
 }
 
 table {
-    width: 80%;
+    width: auto;
     border-collapse: collapse;
     margin: 20px 0;
 }
