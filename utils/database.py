@@ -2,6 +2,7 @@ from supabase import create_client, Client
 import os
 from dotenv import load_dotenv
 import bcrypt
+from datetime import datetime
 
 # load the environment variables from the .env file
 load_dotenv()
@@ -82,7 +83,8 @@ def add_entry(entry: str, rating: int, username: str):
         new_entry = {
             "entry": entry,
             "rating": rating,
-            "username": username
+            "username": username,
+            "created_at": datetime.today().strftime('%Y-%m-%d %H:%M:%S') # Store as string
         }
         
         # add an entry to the database
