@@ -99,7 +99,7 @@ def add_entry():
 
         return redirect(url_for("home"))
 
-    return render_template("add-entry.html")
+    return render_template("add_entry.html")
 
 @app.route("/logout")
 def logout():
