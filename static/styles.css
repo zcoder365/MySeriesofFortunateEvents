@@ -73,3 +73,15 @@ form input[type="submit"]:hover {
     background-color: var(--secondary-color);
     color: var(--text-light);
 }
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th {
+    border-bottom: #A3D5FF 2px solid;
+    color: var(--text-dark);
+    padding: 10px;
+}
