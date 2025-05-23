@@ -25,6 +25,25 @@ nav {
     padding: 10px 20px;
 }
 
+.nav-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+    padding: 10px auto;
+    margin: 5px;
+    border: 2px solid var(--text-dark);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.nav-bar-btns {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+}
+
 button {
     background-color: var(--primary-color);
     color: var(--text-dark);
@@ -148,37 +167,4 @@ table th {
 table td {
     border: none;
     color: var(--text-dark);
-}
-
-.profile-table-container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 90%;
-    margin: 20px;
-}
-
-.profile-table td, th {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.nav-btn {
-    background-color: var(--secondary-color);
-    color: var(--text-dark);
-    padding: 10px auto;
-    margin: 5px;
-    border: 2px solid var(--text-dark);
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 16px;
-}
-
-.nav-bar-btns {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    width: 100%;
 }
