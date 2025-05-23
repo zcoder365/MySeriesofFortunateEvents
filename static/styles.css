@@ -178,7 +178,7 @@ table td {
     background-color: #f9f9f9;
 }
 
-.profile-info-streak, .profile-info-entries {
+.profile-info-streak, .profile-info-entries, .profile-info-username {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -186,12 +186,15 @@ table td {
     border-bottom: 1px solid #e0e0e0;
 }
 
-.profile-info-streak {
+.profile-info-streak, .profile-info-username {
     padding-bottom: 30px;
 }
 
+.profile-info-streak, .profile-info-entries {
+    padding-top: 30px;;
+}
+
 .profile-info-entries {
-    padding-top: 30px;
     border-bottom: none;
 }
 
