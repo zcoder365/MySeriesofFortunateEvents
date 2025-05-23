@@ -5,8 +5,8 @@
     --accent-color: #A3D5FF;
     --background-color: #F5EBDD;
     --surface-color: #C6F1D6;
-    --text-dark: #4C4C6D;
-    --text-light: #FFFFFF;
+    --text-dark: #333;
+    /* --text-light: #FFFFFF; */
 }
 
 body {
