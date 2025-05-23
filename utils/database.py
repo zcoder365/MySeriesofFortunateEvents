@@ -90,6 +90,9 @@ def add_entry(entry: str, rating: int, username: str):
         # add an entry to the database
         response = supabase.table("entries").insert(new_entry).execute()
         
+        # increase the entry count for the user
+        supabase.table("users").update({"entry_count": supabase.table("users").select("entry_count").eq("username", username).execute().data[0]["entry_count"] + 1}).eq("username", username).execute()
+        
         print(f"Debug - add_entry response: {response.data}")
         return response.data
         
