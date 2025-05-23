@@ -128,13 +128,14 @@ textarea {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    /* margin: 20px 0; */
 }
 
 table th, table td {
     padding: 10px;
     text-align: center;
     font-family: inherit;
+    margin: 0;
 }
 
 table th {
@@ -149,20 +150,18 @@ table td {
     color: var(--text-dark);
 }
 
-.profile-table {
-    display: flex;
+.profile-table-container {
+    display: grid;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 90%;
-    margin: 20px auto;
+    margin: 20px;
 }
 
-.profile-table table th, .profile-table table td {
-    /* padding: 10px; */
-    text-align: center;
-    font-family: inherit;
-    width: 50%;
+.profile-table td, th {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .nav-btn {
