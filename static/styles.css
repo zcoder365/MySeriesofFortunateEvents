@@ -169,6 +169,7 @@ table td {
     color: var(--text-dark);
 }
 
+/* styles.css */
 .profile-info {
     max-width: 400px;
     margin: 20px auto;
@@ -190,14 +191,19 @@ table td {
     border-bottom: none;
 }
 
+/* Give labels a consistent width so values align properly */
 .profile-info p:first-child {
     font-weight: bold;
     margin: 0;
     color: #333;
+    flex: 0 0 60%; /* Fixed width for labels - takes up 60% of space */
 }
 
+/* Values take up the remaining space and align to the right */
 .profile-info p:last-child {
     margin: 0;
     color: #666;
     font-size: 1.1em;
+    text-align: right; /* Right-align the values for clean look */
+    flex: 1; /* Takes up remaining space */
 }
