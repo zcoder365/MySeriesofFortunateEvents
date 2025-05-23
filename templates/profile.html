@@ -3,23 +3,8 @@
 
 <h1>Your Profile</h1>
 
-<div align="center" class="profile-table-container">
-    <table class="profile-table">
-        <tr>
-            <td>Username:</td>
-            <td>{{ username }}</td>
-        </tr>
-
-        <tr>
-            <td>Streak:</td>
-            <td>{{ streak }}</td>
-        </tr>
-
-        <tr>
-            <td>Total Number of Entries:</td>
-            <td>{{ num_entries }}</td>
-        </tr>
-    </table>
-</div>
+<p>Welcome, {{ username }}! Here are your profile details:</p>
+<p>Streak: {{ streak }}</p>
+<p>Number of Entries: {{ num_entries }}</p>
 
 {% endblock %}
