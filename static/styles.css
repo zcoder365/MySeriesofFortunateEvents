@@ -149,7 +149,7 @@ table td {
     color: var(--text-dark);
 }
 
-.logout-btn {
+.nav-btn {
     background-color: var(--secondary-color);
     color: var(--text-dark);
     padding: 10px 20px;
