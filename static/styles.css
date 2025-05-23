@@ -1,7 +1,7 @@
 :root {
     /* color scheme */
-    --primary-color: #FFE066;
-    --secondary-color: #FFD6BA;
+    --primary-color: #ffe16a;
+    --secondary-color: #ffcead;
     --accent-color: #A3D5FF;
     --background-color: #F5EBDD;
     --surface-color: #C6F1D6;
@@ -152,7 +152,8 @@ table td {
 .nav-btn {
     background-color: var(--secondary-color);
     color: var(--text-dark);
-    padding: 10px 20px;
+    padding: 10px auto;
+    margin: 5px;
     border: 2px solid var(--text-dark);
     border-radius: 5px;
     cursor: pointer;
