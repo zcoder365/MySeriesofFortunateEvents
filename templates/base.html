@@ -11,8 +11,10 @@
             <img src="/static/assets/logo.png" alt="pen writing" class="logo">
 
             {% if session.user_id %}
-            <a href="/my-profile"><button>My Profile</button class="nav-btn"></a>
-            <a href="/logout" class="logout"><button class="nav-btn">Logout</button></a>
+            <div class="nav-bar-btns">
+                <a href="/my-profile"><button class="nav-btn">My Profile</button></a>
+                <a href="/logout" class="logout"><button class="nav-btn">Logout</button></a>
+            </div>
             {% endif %}
         </nav>
         
