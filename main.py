@@ -123,7 +123,7 @@ def my_profile():
     # debug: Print the user retrieved
     print(f"Debug - User retrieved: {user}")
 
-    return render_template("my_profile.html", username=username, streak=streak, num_entries=num_entries)
+    return render_template("profile.html", username=username, streak=streak, num_entries=num_entries)
 
 @app.route("/logout")
 def logout():
