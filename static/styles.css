@@ -149,6 +149,22 @@ table td {
     color: var(--text-dark);
 }
 
+.profile-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.profile-table table th, .profile-table table td {
+    /* padding: 10px; */
+    text-align: center;
+    font-family: inherit;
+    width: 50%;
+}
+
 .nav-btn {
     background-color: var(--secondary-color);
     color: var(--text-dark);
