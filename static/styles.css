@@ -168,3 +168,21 @@ table td {
     border: none;
     color: var(--text-dark);
 }
+
+.profile-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.profile-info-streak, .profile-info-entries {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 20px;
+    width: 100%;
+}
