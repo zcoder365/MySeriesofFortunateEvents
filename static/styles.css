@@ -159,3 +159,10 @@ table td {
     font-family: inherit;
     font-size: 16px;
 }
+
+.nav-bar-btns {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+}
