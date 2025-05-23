@@ -169,20 +169,28 @@ table td {
     color: var(--text-dark);
 }
 
+/* styles.css */
 .profile-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 10px 20px; /* Row gap, column gap */
+    max-width: 400px; /* Limit the width */
     margin: 20px auto;
-    width: 100%;
+    padding: 20px;
+    border: 1px solid #ddd; /* Optional: table-like border */
+    border-radius: 8px; /* Optional: rounded corners */
 }
 
 .profile-info-streak, .profile-info-entries {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin: 20px;
-    width: 100%;
+    display: contents; /* This makes the children act as direct grid items */
+}
+
+.profile-info p:first-child {
+    font-weight: bold; /* Make labels bold */
+    text-align: right; /* Align labels to the right */
+    padding-right: 10px;
+}
+
+.profile-info p:last-child {
+    text-align: left; /* Align values to the left */
 }
