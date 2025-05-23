@@ -3,6 +3,5 @@ A website that lets users write down something that happened to them every day, 
 
 ## Todo
 - [ ] Add a profile page
-    - [ ] Number of entries (just a stat on the page)
-    - [ ] Streak (just a stat on the page)
     - [ ] Frequency of ratings (graph)
+- [ ] Streak function!!
