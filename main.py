@@ -105,6 +105,26 @@ def add_entry():
 
     return render_template("add_entry.html")
 
+@app.route("/my-profile")
+def my_profile():
+    # add session check to prevent accessing my-profile without login
+    if "username" not in session:
+        flash("Please log in first", "warning")
+        return redirect(url_for("login"))
+
+    # get the user from the database
+    user = model.find_user(session["username"])
+    
+    # set up the vars to pass into the template
+    username = user["username"]
+    streak = user["streak"]
+    num_entries = user["num_entries"]
+    
+    # debug: Print the user retrieved
+    print(f"Debug - User retrieved: {user}")
+
+    return render_template("my_profile.html", username=username, streak=streak, num_entries=num_entries)
+
 @app.route("/logout")
 def logout():
     # Clear the session when logging out
