@@ -156,3 +156,15 @@ def get_user_entries_count(username: str):
     except Exception as e:
         print(f"Error getting user entry count: {e}")
         return 0
+
+def update_user_entries_count(username: str, new_count: int):
+    try:
+        # Update the entry_count field for the specified user
+        response = supabase.table("users").update({"entry_count": new_count}).eq("username", username).execute()
+        
+        # Check if the update was successful
+        return len(response.data) > 0
+        
+    except Exception as e:
+        print(f"Error updating user entry count: {e}")
+        return False
