@@ -3,5 +3,3 @@ A website that lets users write down something that happened to them every day, 
 
 ## Todo
 - [ ] Add a bar chart to profile page?
-- [x] ~~Add a profile page~~
-- [x] ~~Streak function!!~~
