@@ -107,9 +107,17 @@ def add_entry():
         # check if the user already made an entry today
         today = datetime.today.strftime('%Y-%m-%d')
         existing_entries_today = db.get_entries_by_date(username, date=today)
+        
+        # only update the streak if the user has not made an entry today
+        is_first_entry_today = len(existing_entries_today) == 0
 
         # add the entry to the database
         db.add_entry(entry, rating, username)
+        
+        # update the user's streak if this is their first entry today
+        if is_first_entry_today:
+            model.update_streak(username)
+            flash("Streak updated!", "success")
 
         return redirect(url_for("home"))
 
