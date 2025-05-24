@@ -118,6 +118,9 @@ def add_entry():
         if is_first_entry_today:
             model.update_streak(username)
             flash("Streak updated!", "success")
+            
+        # update the number of entries for the user
+        model.update_user_entries_count(username)
 
         return redirect(url_for("home"))
 
