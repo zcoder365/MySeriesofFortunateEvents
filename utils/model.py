@@ -50,3 +50,13 @@ def update_streak(username: str):
     
     # update the user's streak in the database
     db.update_user_streak(username, new_streak)
+
+def update_user_entries_count(username: str):
+    # get the user's current entry count from the database
+    user_current_entry_count = db.get_user_entries_count(username)
+    
+    # increment the user's entry count by 1
+    new_entry_count = user_current_entry_count + 1
+    
+    # update the user's entry count in the database
+    db.update_user_entries_count(username, new_entry_count)
