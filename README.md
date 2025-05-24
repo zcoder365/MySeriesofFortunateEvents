@@ -2,6 +2,6 @@
 A website that lets users write down something that happened to them every day, and they can rate it’s positivity.
 
 ## Todo
-- [ ] Add a profile page
-    - [ ] Frequency of ratings (graph)
+- [ ] Add a bar chart to profile page?
+- [x] ~~Add a profile page~~
 - [x] ~~Streak function!!~~
