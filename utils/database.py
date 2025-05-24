@@ -144,3 +144,14 @@ def update_user_streak(username: str, streak: int):
     except Exception as e:
         print(f"Error updating user streak: {e}")
         return None
+
+def get_user_entries_count(username: str):
+    try:
+        # get the user entry count from the database
+        response = supabase.table("users").select("entry_count").eq("username", username).execute()
+        
+        return response.data[0]["entry_count"] if response.data else 0
+        
+    except Exception as e:
+        print(f"Error getting user entry count: {e}")
+        return 0
