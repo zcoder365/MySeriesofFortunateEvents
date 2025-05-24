@@ -163,11 +163,23 @@ def get_user_entries_count(username: str):
 
 def update_user_entries_count(username: str, new_count: int):
     try:
+        # First check if user exists
+        user_check = supabase.table("users").select("username").eq("username", username).execute()
+        
+        if not user_check.data or len(user_check.data) == 0:
+            print(f"Cannot update: User {username} does not exist")
+            return False
+        
         # Update the entry_count field for the specified user
         response = supabase.table("users").update({"entry_count": new_count}).eq("username", username).execute()
         
-        # Check if the update was successful
-        return len(response.data) > 0
+        # Check if the update affected any rows
+        # Note: response.data will contain the updated row(s)
+        if response.data and len(response.data) > 0:
+            return True
+        else:
+            print(f"Update query executed but no rows were affected for user {username}")
+            return False
         
     except Exception as e:
         print(f"Error updating user entry count: {e}")
