@@ -50,25 +50,3 @@ def update_streak(username: str):
     
     # update the user's streak in the database
     db.update_user_streak(username, new_streak)
-
-def increment_user_entries_count(username: str):
-    # get the user's current entry count from the database
-    user_current_entry_count = db.get_user_entries_count(username)
-    
-    # check if we successfully got the current count
-    if user_current_entry_count is None:
-        print(f"Cannot increment: Unable to get current entry count for {username}")
-        return False
-    
-    # increment the user's entry count by 1
-    new_entry_count = user_current_entry_count + 1
-    
-    # update the user's entry count in the database
-    success = db.update_user_entries_count(username, new_entry_count)
-    
-    if success:
-        print(f"Successfully incremented entry count for {username} to {new_entry_count}")
-    else:
-        print(f"Failed to increment entry count for {username}")
-    
-    return success
