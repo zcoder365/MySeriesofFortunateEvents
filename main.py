@@ -105,7 +105,7 @@ def add_entry():
         username = session["username"]
         
         # check if the user already made an entry today
-        today = datetime.today.strftime('%Y-%m-%d')
+        today = datetime.today().strftime('%Y-%m-%d')
         existing_entries_today = db.get_entries_by_date(username, date=today)
         
         # only update the streak if the user has not made an entry today
