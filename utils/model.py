@@ -52,15 +52,6 @@ def update_streak(username: str):
     db.update_user_streak(username, new_streak)
 
 def increment_user_entries_count(username: str):
-    """
-    Increments a user's entry count by 1 in the database.
-    
-    Args:
-        username (str): The username whose entry count should be incremented
-        
-    Returns:
-        bool: True if increment successful, False otherwise
-    """
     # Get the user's current entry count from the database
     user_current_entry_count = db.get_user_entries_count(username)
     
