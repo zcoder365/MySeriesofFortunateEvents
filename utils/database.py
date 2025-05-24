@@ -147,9 +147,10 @@ def update_user_streak(username: str, streak: int):
 
 def get_user_entries_count(username: str):
     try:
-        # get the user entry count from the database
+        # Query the users table to get the entry_count for the specified username
         response = supabase.table("users").select("entry_count").eq("username", username).execute()
         
+        # Return the entry count if user exists, otherwise return 0
         return response.data[0]["entry_count"] if response.data else 0
         
     except Exception as e:
