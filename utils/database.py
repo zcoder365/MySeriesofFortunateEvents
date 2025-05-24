@@ -147,34 +147,33 @@ def update_user_streak(username: str, streak: int):
 
 def increment_user_entries_count(username: str):
     """
-    Directly increment a user's entry count by 1 in the database
-    Handles everything internally - just call this function!
+    Ultra-simple version - just verify the count changed
     """
     try:
         # Get current count
-        response = supabase.table("users").select("entry_count").eq("username", username).execute()
+        before = supabase.table("users").select("entry_count").eq("username", username).execute()
         
-        if not response.data or len(response.data) == 0:
+        if not before.data:
             print(f"User {username} not found")
             return False
         
-        # Handle null entry_count (set to 0 if null)
-        current_count = response.data[0]["entry_count"] or 0
-        new_count = current_count + 1
+        old_count = before.data[0]["entry_count"] or 0
+        new_count = old_count + 1
         
-        print(f"Incrementing {username}: {current_count} -> {new_count}")
+        print(f"Updating {username} from {old_count} to {new_count}")
         
-        # Update with new count
-        update_response = supabase.table("users").update({
-            "entry_count": new_count
-        }).eq("username", username).execute()
+        # Do the update (don't worry about the response)
+        supabase.table("users").update({"entry_count": new_count}).eq("username", username).execute()
         
-        # Check if it worked
-        if update_response.data and len(update_response.data) > 0:
-            print(f"✅ Success! {username} now has {new_count} entries")
+        # Check if it actually changed
+        after = supabase.table("users").select("entry_count").eq("username", username).execute()
+        actual_count = after.data[0]["entry_count"]
+        
+        if actual_count == new_count:
+            print(f"✅ Success! Count is now {actual_count}")
             return True
         else:
-            print(f"❌ Failed to update {username}")
+            print(f"❌ Failed! Count is still {actual_count}")
             return False
             
     except Exception as e:
