@@ -4,4 +4,4 @@ A website that lets users write down something that happened to them every day, 
 ## Todo
 - [ ] Add a profile page
     - [ ] Frequency of ratings (graph)
-- [ ] Streak function!!
+- [x] ~~Streak function!!~~
