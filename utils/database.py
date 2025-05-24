@@ -145,46 +145,38 @@ def update_user_streak(username: str, streak: int):
         print(f"Error updating user streak: {e}")
         return None
 
-def get_user_entries_count(username: str):
+def increment_user_entries_count(username: str):
+    """
+    Directly increment a user's entry count by 1 in the database
+    Handles everything internally - just call this function!
+    """
     try:
-        # Query the users table for the specific username
+        # Get current count
         response = supabase.table("users").select("entry_count").eq("username", username).execute()
         
-        print(f"DEBUG - Get count response: {response.data}")  # Debug line
-        
-        # Check if user exists and return their entry count
-        if response.data and len(response.data) > 0:
-            current_count = response.data[0]["entry_count"]
-            print(f"DEBUG - Current count for {username}: {current_count}")  # Debug line
-            return current_count
-        else:
-            print(f"User {username} not found in database")
-            return None
-            
-    except Exception as e:
-        print(f"Error getting user entry count: {e}")
-        return None
-
-def update_user_entries_count(username: str, new_count: int):
-    try:
-        # first check if user exists
-        user_check = supabase.table("users").select("username").eq("username", username).execute()
-        
-        if not user_check.data or len(user_check.data) == 0:
-            print(f"Cannot update: User {username} does not exist")
+        if not response.data or len(response.data) == 0:
+            print(f"User {username} not found")
             return False
         
-        # update the entry_count field for the specified user
-        response = supabase.table("users").update({"entry_count": new_count}).eq("username", username).execute()
+        # Handle null entry_count (set to 0 if null)
+        current_count = response.data[0]["entry_count"] or 0
+        new_count = current_count + 1
         
-        # check if the update affected any rows
-        # note: response.data will contain the updated row(s)
-        if response.data and len(response.data) > 0:
+        print(f"Incrementing {username}: {current_count} -> {new_count}")
+        
+        # Update with new count
+        update_response = supabase.table("users").update({
+            "entry_count": new_count
+        }).eq("username", username).execute()
+        
+        # Check if it worked
+        if update_response.data and len(update_response.data) > 0:
+            print(f"✅ Success! {username} now has {new_count} entries")
             return True
         else:
-            print(f"Update query executed but no rows were affected for user {username}")
+            print(f"❌ Failed to update {username}")
             return False
-        
+            
     except Exception as e:
-        print(f"Error updating user entry count: {e}")
+        print(f"Error: {e}")
         return False
