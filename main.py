@@ -120,7 +120,7 @@ def add_entry():
             flash("Streak updated!", "success")
             
         # update the number of entries for the user
-        model.update_user_entries_count(username)
+        model.increment_user_entries_count(username)
 
         return redirect(url_for("home"))
 
