@@ -1,5 +1,8 @@
 # imports
 from flask import Flask, render_template, request, redirect, session, flash, url_for
+from datetime import datetime
+
+# import files from utils directory
 import utils.model as model
 import utils.database as db
 
@@ -97,9 +100,16 @@ def add_entry():
         # get info from the form
         entry = request.form["entry"]
         rating = request.form["rating"]
+        
+        # keep track of the user's username
+        username = session["username"]
+        
+        # check if the user already made an entry today
+        today = datetime.today.strftime('%Y-%m-%d')
+        existing_entries_today = db.get_entries_by_date(username, date=today)
 
         # add the entry to the database
-        db.add_entry(entry, rating, session["username"])
+        db.add_entry(entry, rating, username)
 
         return redirect(url_for("home"))
 
