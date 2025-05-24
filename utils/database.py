@@ -111,6 +111,17 @@ def get_entries(username: str):
         print(f"Error getting entries: {e}")
         return []
 
+def get_entries_by_date(username: str, date: str):
+    try:
+        # get all entries from the database
+        response = supabase.table("entries").select("*").eq("username", username).eq("created_at", date).execute()
+        
+        return response.data if response.data else []
+        
+    except Exception as e:
+        print(f"Error getting entries by date: {e}")
+        return []
+
 def get_user_streak(username: str):
     try:
         # get the user streak from the database
