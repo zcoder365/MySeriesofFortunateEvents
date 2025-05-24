@@ -150,11 +150,15 @@ def get_user_entries_count(username: str):
         # Query the users table for the specific username
         response = supabase.table("users").select("entry_count").eq("username", username).execute()
         
+        print(f"DEBUG - Get count response: {response.data}")  # Debug line
+        
         # Check if user exists and return their entry count
         if response.data and len(response.data) > 0:
-            return response.data[0]["entry_count"]
+            current_count = response.data[0]["entry_count"]
+            print(f"DEBUG - Current count for {username}: {current_count}")  # Debug line
+            return current_count
         else:
-            print(f"User {username} not found")
+            print(f"User {username} not found in database")
             return None
             
     except Exception as e:
