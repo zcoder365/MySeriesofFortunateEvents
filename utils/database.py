@@ -110,3 +110,26 @@ def get_entries(username: str):
     except Exception as e:
         print(f"Error getting entries: {e}")
         return []
+
+def get_user_streak(username: str):
+    try:
+        # get the user streak from the database
+        response = supabase.table("users").select("streak").eq("username", username).execute()
+        
+        return response.data[0]["streak"] if response.data else 0
+        
+    except Exception as e:
+        print(f"Error getting user streak: {e}")
+        return 0
+
+def update_user_streak(username: str, streak: int):
+    try:
+        # update the user streak in the database
+        response = supabase.table("users").update({"streak": streak}).eq("username", username).execute()
+        
+        print(f"Debug - update_user_streak response: {response.data}")
+        return response.data
+        
+    except Exception as e:
+        print(f"Error updating user streak: {e}")
+        return None
