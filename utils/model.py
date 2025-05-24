@@ -1,16 +1,6 @@
 import utils.database as db
 import bcrypt
 
-def update_streak(username: str):
-    # get the user's current streak from the database
-    user_current_streak = db.get_user_streak(username)
-    
-    # increment the user's streak by 1
-    new_streak = user_current_streak + 1
-    
-    # update the user's streak in the database
-    db.update_user_streak(username, new_streak)
-
 def find_user(username: str):
     # This now returns a single user object or None
     return db.get_user(username)
@@ -50,3 +40,13 @@ def login(username: str, password: str):
     except Exception as e:
         print(f"Debug - Error checking password: {e}")
         return False
+
+def update_streak(username: str):
+    # get the user's current streak from the database
+    user_current_streak = db.get_user_streak(username)
+    
+    # increment the user's streak by 1
+    new_streak = user_current_streak + 1
+    
+    # update the user's streak in the database
+    db.update_user_streak(username, new_streak)
