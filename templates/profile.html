@@ -13,16 +13,39 @@
         <p>Total Entries:</p>
         <p>{{ num_entries }}</p>
     </div>
+    <div class="profile-info-reset">
+        <form action="{{ url_for('reset_password') }}" method="get" style="margin-top: 16px;">
+            <button type="submit" class="btn btn-warning">Reset Password</button>
+        </form>
+    </div>
 </div>
 
 <div class="charts-container">
     <div class="chart-block">
         <h3 style="text-align:center;">This Week's Ratings</h3>
         <canvas id="ratingsChart" aria-label="Bar chart of entry ratings" role="img"></canvas>
+        <div class="stats-block">
+            <h4 style="margin-top:30px;">This Week's Stats</h4>
+            <ul>
+                <li>Average Rating: {{ week_avg_rating }}</li>
+                <li>Highest Rating: {{ week_max_rating }}</li>
+                <li>Lowest Rating: {{ week_min_rating }}</li>
+                <li>Total Entries: {{ week_total_entries }}</li>
+            </ul>
+        </div>
     </div>
     <div class="chart-block">
         <h3 style="text-align:center;">This Month's Ratings</h3>
         <canvas id="ratingsChartMonth" aria-label="Bar chart of entry ratings for the month" role="img"></canvas>
+        <div class="stats-block">
+            <h4 style="margin-top:30px;">This Month's Stats</h4>
+            <ul>
+                <li>Average Rating: {{ month_avg_rating }}</li>
+                <li>Highest Rating: {{ month_max_rating }}</li>
+                <li>Lowest Rating: {{ month_min_rating }}</li>
+                <li>Total Entries: {{ month_total_entries }}</li>
+            </ul>
+        </div>
     </div>
 </div>
 
