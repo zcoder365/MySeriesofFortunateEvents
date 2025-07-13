@@ -21,7 +21,6 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         
-        # Debug: Print what we're trying to log in with
         print(f"Debug - Login attempt with username: '{username}', password: '{password}'")
 
         # check if the user exists
@@ -41,10 +40,10 @@ def login():
             return redirect(url_for("login"))
         else:
             # if the password is correct, set the session
-            session["user_id"] = user["id"]
+            session["user_id"] = str(user["_id"])  # FIX: MongoDB uses _id, convert to string
             session["username"] = username
 
-            print(f"Debug - Login successful! Session set with user_id: {user['id']}")
+            print(f"Debug - Login successful! Session set with user_id: {user['_id']}")
 
             return redirect(url_for("home"))
 
@@ -76,50 +75,42 @@ def signup():
 
 @app.route("/home")
 def home():
-    # Add session check to prevent accessing home without login
     if "username" not in session:
         flash("Please log in first", "warning")
         return redirect(url_for("login"))
 
     # get all entries from the database
     entries = db.get_entries(session["username"])
-    
-    # Debug: Print the entries retrieved
     print(f"Debug - Entries retrieved: {entries}")
 
     return render_template("index.html", entries=entries)
 
 @app.route("/add-entry", methods=["GET", "POST"])
 def add_entry():
-    # Add session check to prevent accessing add-entry without login
     if "username" not in session:
         flash("Please log in first", "warning")
         return redirect(url_for("login"))
         
     if request.method == "POST":
-        # get info from the form
         entry = request.form["entry"]
         rating = request.form["rating"]
-        
-        # keep track of the user's username
         username = session["username"]
         
         # check if the user already made an entry today
         today = datetime.today().strftime('%Y-%m-%d')
-        existing_entries_today = db.get_entries_by_date(username, date=today)
-        
-        # only update the streak if the user has not made an entry today
-        is_first_entry_today = len(existing_entries_today) == 0
+        # FIX: get_entries_by_date should match entries for the day, not exact datetime string
+        entries_today = [
+            e for e in db.get_entries(username)
+            if e.get("created_at", "").startswith(today)
+        ]
+        is_first_entry_today = len(entries_today) == 0
 
-        # add the entry to the database
         db.add_entry(entry, rating, username)
         
-        # update the user's streak if this is their first entry today
         if is_first_entry_today:
             model.update_streak(username)
             flash("Streak updated!", "success")
             
-        # update the number of entries for the user
         db.increment_user_entries_count(username)
 
         return redirect(url_for("home"))
@@ -128,27 +119,25 @@ def add_entry():
 
 @app.route("/my-profile")
 def my_profile():
-    # add session check to prevent accessing my-profile without login
     if "username" not in session:
         flash("Please log in first", "warning")
         return redirect(url_for("login"))
 
-    # get the user from the database
     user = model.find_user(session["username"])
+    if not user:
+        flash("User not found", "danger")
+        return redirect(url_for("login"))
     
-    # set up the vars to pass into the template
     username = user["username"]
-    streak = user["streak"]
-    num_entries = user["num_entries"]
+    streak = user.get("streak", 0)
+    num_entries = user.get("num_entries", 0)
     
-    # debug: Print the user retrieved
     print(f"Debug - User retrieved: {user}")
 
     return render_template("profile.html", username=username, streak=streak, num_entries=num_entries)
 
 @app.route("/logout")
 def logout():
-    # Clear the session when logging out
     session.clear()
     flash("You have been logged out", "info")
     return redirect(url_for("login"))
