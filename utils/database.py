@@ -79,11 +79,6 @@ def add_entry(entry: str, rating: int, username: str):
         
         # add an entry to the database
         result = entries_col.insert_one(new_entry)
-        # increment entry_count and num_entries for the user
-        user_col.update_one(
-            {"username": username},
-            {"$inc": {"entry_count": 1, "num_entries": 1}}
-        )
         print(f"Debug - add_entry inserted_id: {result.inserted_id}")
         return str(result.inserted_id)
         
