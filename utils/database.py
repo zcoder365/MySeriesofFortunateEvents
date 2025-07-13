@@ -17,7 +17,7 @@ if not MONGODB_URI or not MONGODB_DBNAME:
 try:
     client = MongoClient(MONGODB_URI)
     db = client[MONGODB_DBNAME]
-    users_col = db["users"]
+    user_col = db["users"]
     entries_col = db["entries"]
     print("Debug - MongoDB client created successfully")
 except Exception as e:
@@ -41,7 +41,7 @@ def add_user(username: str, password: str):
         }
         
         # add a user to the database
-        result = users_col.insert_one(new_user_entry)
+        result = user_col.insert_one(new_user_entry)
         print(f"Debug - add_user inserted_id: {result.inserted_id}")
         return str(result.inserted_id)
         
@@ -53,7 +53,7 @@ def add_user(username: str, password: str):
 def get_user(username: str):
     try:
         # Execute the query - errors will be raised as exceptions
-        user = users_col.find_one({"username": username})
+        user = user_col.find_one({"username": username})
         
         # Debug: Print what we got back
         print(f"Debug - get_user result: {user}")
@@ -80,7 +80,7 @@ def add_entry(entry: str, rating: int, username: str):
         # add an entry to the database
         result = entries_col.insert_one(new_entry)
         # increment entry_count and num_entries for the user
-        users_col.update_one(
+        user_col.update_one(
             {"username": username},
             {"$inc": {"entry_count": 1, "num_entries": 1}}
         )
@@ -116,7 +116,7 @@ def get_entries_by_date(username: str, date: str):
 def get_user_streak(username: str):
     try:
         # get the user streak from the database
-        user = users_col.find_one({"username": username}, {"streak": 1})
+        user = user_col.find_one({"username": username}, {"streak": 1})
         return user.get("streak", 0) if user else 0
         
     except Exception as e:
@@ -126,7 +126,7 @@ def get_user_streak(username: str):
 def update_user_streak(username: str, streak: int):
     try:
         # update the user streak in the database
-        result = users_col.update_one({"username": username}, {"$set": {"streak": streak}})
+        result = user_col.update_one({"username": username}, {"$set": {"streak": streak}})
         print(f"Debug - update_user_streak matched: {result.matched_count}, modified: {result.modified_count}")
         return result.modified_count > 0
         
@@ -137,7 +137,7 @@ def update_user_streak(username: str, streak: int):
 def increment_user_entries_count(username: str):
     try:
         # Get current count
-        user = users_col.find_one({"username": username}, {"num_entries": 1})
+        user = user_col.find_one({"username": username}, {"num_entries": 1})
         
         if not user:
             print(f"User {username} not found")
@@ -149,10 +149,10 @@ def increment_user_entries_count(username: str):
         print(f"Updating {username} from {old_count} to {new_count}")
         
         # Do the update (don't worry about the response)
-        result = users_col.update_one({"username": username}, {"$set": {"num_entries": new_count}})
+        result = user_col.update_one({"username": username}, {"$set": {"num_entries": new_count}})
         
         # Check if it actually changed
-        after = users_col.find_one({"username": username}, {"num_entries": 1})
+        after = user_col.find_one({"username": username}, {"num_entries": 1})
         actual_count = after.get("num_entries", 0)
         
         if actual_count == new_count:
@@ -165,4 +165,4 @@ def increment_user_entries_count(username: str):
             
     except Exception as e:
         print(f"Error: {e}")
-        return False
+        return
