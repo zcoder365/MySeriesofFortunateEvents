@@ -2,7 +2,7 @@ import utils.database as db
 import bcrypt
 
 def find_user(username: str):
-    # This now returns a single user object or None
+    # Returns a single user object or None
     return db.get_user(username)
 
 def add_user(username: str, password: str):
@@ -10,9 +10,6 @@ def add_user(username: str, password: str):
 
 def get_events(username: str):
     return db.get_entries(username)
-
-def add_event(user_id, title, rating):
-    return db.add_entry(user_id, title, rating)
 
 def login(username: str, password: str):
     # get the user from the database
@@ -24,8 +21,7 @@ def login(username: str, password: str):
         print("Debug - No user found")
         return False
     
-    # user is now a single object, not a list
-    stored_password = user["password"]  # Remove [0] indexing
+    stored_password = user["password"]
     print(f"Debug - stored password: {stored_password}")
     print(f"Debug - entered password: {password}")
     
