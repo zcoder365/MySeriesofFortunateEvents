@@ -1,5 +1,5 @@
 # My Series of Fortunate Events
-A Flask-based web application that encourages daily reflection by allowing users to record daily events and rate their positivity on a scale of 1-10. Track your streak of consecutive days and build a habit of focusing on the positive moments in life.
+A Flask-based web application that encourages daily reflection by allowing users to record daily events and rate their positivity on a scale of 1-10 (1 = lowest rating; 10 = highest rating). Track your streak of consecutive days and build a habit of focusing on the positive moments in life.
 
 # Features
 - **User Authentication:** Secure signup and login system with bcrypt password hashing
