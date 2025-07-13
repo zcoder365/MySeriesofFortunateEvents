@@ -183,7 +183,9 @@ table td {
     background-color: #f9f9f9;
 }
 
-.profile-info-streak, .profile-info-entries, .profile-info-username {
+.profile-info-username,
+.profile-info-streak,
+.profile-info-entries {
     display: flex;
     justify-content: space-between;
     align-items: center;
