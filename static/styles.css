@@ -254,15 +254,51 @@ canvas#ratingsChartMonth {
     border-collapse: collapse;
     margin-top: 10px;
     background: #fff;
+    border-radius: 8px; /* Rounded corners from Option 1 */
+    overflow: hidden; /* Ensures border-radius works with table */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow like your forms */
 }
+
 .stats-table th, .stats-table td {
-    padding: 8px 12px;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 16px; /* More generous padding from Option 1 */
+    border-bottom: 1px solid #f0f0f0;
     text-align: left;
 }
+
 .stats-table th {
-    background: #f7f7f7;
+    background: var(--primary-color); /* Use your yellow theme color from Option 1 */
     font-weight: bold;
+    color: var(--text-dark);
+    border-bottom: 2px solid var(--text-dark); /* Thicker border for headers */
+}
+
+.stats-table tr:last-child td {
+    border-bottom: none; /* Remove border from last row */
+}
+
+.stats-table tr:nth-child(even) {
+    background-color: #fafafa; /* Zebra striping from Option 1 */
+}
+
+/* Badge style for stat values - from Option 5 */
+.stats-table .stat-badge {
+    background: var(--surface-color); /* Use your green surface color */
+    color: var(--text-dark);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 2px solid var(--text-dark);
+    display: inline-block;
+}
+
+/* Card-style container for stats sections - from Option 2 */
+.stats-section {
+    background: var(--surface-color);
+    border: 2px solid var(--text-dark);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Reset button styling - ensure no background color inheritance */
