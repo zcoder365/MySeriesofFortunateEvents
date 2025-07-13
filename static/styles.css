@@ -211,8 +211,21 @@ table td {
     width: 100%;
     margin: 0;
     background: transparent !important; /* Remove any background */
+    background-color: transparent !important; /* Extra specificity */
     box-shadow: none !important;
     padding: 0;
+}
+
+/* Also target any potential parent containers */
+.profile-info-reset * {
+    background: transparent !important;
+}
+
+/* Ensure the button container doesn't inherit background */
+.profile-info-reset > div,
+.profile-info-reset > span {
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 /* Make profile info labels bold */
