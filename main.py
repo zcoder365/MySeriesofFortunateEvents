@@ -150,20 +150,34 @@ def my_profile():
     streak = user.get("streak", 0)
     num_entries = user.get("num_entries", 0)
 
-    # Get last 7 entries for "Best this week" chart
     entries = db.get_entries(username)
-    # Count ratings from 1 to 10
-    rating_counts = {str(i): 0 for i in range(1, 11)}
-    for e in entries:
-        rating = str(e.get("rating"))
-        if rating in rating_counts:
-            rating_counts[rating] += 1
-
-    chart_labels = list(rating_counts.keys())  # ["1", "2", ..., "10"]
-    chart_data = list(rating_counts.values())  # [count for 1, count for 2, ..., count for 10]
-
-    # Filter entries from the last 30 days
     today = datetime.today()
+
+    # --- WEEK STATS ---
+    week_entries = []
+    for e in entries:
+        try:
+            entry_date = datetime.strptime(e["created_at"], "%m/%d/%Y")
+            if (today - entry_date).days < 7:
+                week_entries.append(e)
+        except Exception:
+            continue
+
+    week_ratings = [int(e.get("rating", 0)) for e in week_entries if e.get("rating")]
+    week_total_entries = len(week_ratings)
+    week_avg_rating = round(sum(week_ratings) / week_total_entries, 2) if week_total_entries else "N/A"
+    week_max_rating = max(week_ratings) if week_ratings else "N/A"
+    week_min_rating = min(week_ratings) if week_ratings else "N/A"
+
+    # Histogram for week
+    week_rating_counts = {str(i): 0 for i in range(1, 11)}
+    for r in week_ratings:
+        if str(r) in week_rating_counts:
+            week_rating_counts[str(r)] += 1
+    chart_labels = list(week_rating_counts.keys())
+    chart_data = list(week_rating_counts.values())
+
+    # --- MONTH STATS ---
     month_entries = []
     for e in entries:
         try:
@@ -173,15 +187,19 @@ def my_profile():
         except Exception:
             continue
 
-    # Count ratings from 1 to 10 for the last month
-    rating_counts_month = {str(i): 0 for i in range(1, 11)}
-    for e in month_entries:
-        rating = str(e.get("rating"))
-        if rating in rating_counts_month:
-            rating_counts_month[rating] += 1
+    month_ratings = [int(e.get("rating", 0)) for e in month_entries if e.get("rating")]
+    month_total_entries = len(month_ratings)
+    month_avg_rating = round(sum(month_ratings) / month_total_entries, 2) if month_total_entries else "N/A"
+    month_max_rating = max(month_ratings) if month_ratings else "N/A"
+    month_min_rating = min(month_ratings) if month_ratings else "N/A"
 
-    chart_labels_month = list(rating_counts_month.keys())
-    chart_data_month = list(rating_counts_month.values())
+    # Histogram for month
+    month_rating_counts = {str(i): 0 for i in range(1, 11)}
+    for r in month_ratings:
+        if str(r) in month_rating_counts:
+            month_rating_counts[str(r)] += 1
+    chart_labels_month = list(month_rating_counts.keys())
+    chart_data_month = list(month_rating_counts.values())
 
     return render_template(
         "profile.html", 
@@ -191,7 +209,15 @@ def my_profile():
         chart_labels=chart_labels,
         chart_data=chart_data,
         chart_labels_month=chart_labels_month,
-        chart_data_month=chart_data_month
+        chart_data_month=chart_data_month,
+        week_avg_rating=week_avg_rating,
+        week_max_rating=week_max_rating,
+        week_min_rating=week_min_rating,
+        week_total_entries=week_total_entries,
+        month_avg_rating=month_avg_rating,
+        month_max_rating=month_max_rating,
+        month_min_rating=month_min_rating,
+        month_total_entries=month_total_entries
     )
 
 @app.route("/logout")
