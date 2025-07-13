@@ -34,7 +34,7 @@ def add_user(username: str, password: str):
         # create a user entry
         new_user_entry = {
             "username": username,
-            "password": hashed_password.decode('utf-8'),  # Store as string
+            "password": hashed_password.decode('utf-8'), # Store as a string
             "entry_count": 0,
             "num_entries": 0,
             "streak": 0
