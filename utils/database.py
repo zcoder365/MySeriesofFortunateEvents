@@ -1,4 +1,4 @@
-from supabase import create_client, Client
+from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
 import bcrypt
@@ -6,25 +6,22 @@ from datetime import datetime
 
 # load the environment variables from the .env file
 load_dotenv()
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_ANON_KEY")
+MONGODB_URI = os.getenv("MONGODB_URI")
+MONGODB_DBNAME = os.getenv("MONGODB_DBNAME")
 
-# Debug: Print environment variables (be careful with this in production!)
-print(f"Debug - SUPABASE_URL: {SUPABASE_URL}")
-print(f"Debug - SUPABASE_KEY: {SUPABASE_KEY[:20]}..." if SUPABASE_KEY else "Debug - SUPABASE_KEY: None")
-
-# Check if environment variables are loaded
-if not SUPABASE_URL or not SUPABASE_KEY:
-    print("ERROR: Supabase environment variables not found!")
-    print("Make sure you have a .env file with SUPABASE_URL and SUPABASE_ANON_KEY")
+if not MONGODB_URI or not MONGODB_DBNAME:
+    print("ERROR: MongoDB environment variables not found!")
+    print("Make sure you have a .env file with MONGODB_URI and MONGODB_DBNAME")
     exit(1)
 
 try:
-    # create a client
-    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-    print("Debug - Supabase client created successfully")
+    client = MongoClient(MONGODB_URI)
+    db = client[MONGODB_DBNAME]
+    users_col = db["users"]
+    entries_col = db["entries"]
+    print("Debug - MongoDB client created successfully")
 except Exception as e:
-    print(f"ERROR creating Supabase client: {e}")
+    print(f"ERROR creating MongoDB client: {e}")
     exit(1)
 
 # USER FUNCTIONS
@@ -37,14 +34,16 @@ def add_user(username: str, password: str):
         # create a user entry
         new_user_entry = {
             "username": username,
-            "password": hashed_password.decode('utf-8')  # Store as string
+            "password": hashed_password.decode('utf-8'),  # Store as string
+            "entry_count": 0,
+            "num_entries": 0,
+            "streak": 0
         }
         
         # add a user to the database
-        response = supabase.table("users").insert(new_user_entry).execute()
-        
-        print(f"Debug - add_user response: {response.data}")
-        return response.data
+        result = users_col.insert_one(new_user_entry)
+        print(f"Debug - add_user inserted_id: {result.inserted_id}")
+        return str(result.inserted_id)
         
     except Exception as e:
         print(f"Error adding user: {e}")
@@ -54,21 +53,12 @@ def add_user(username: str, password: str):
 def get_user(username: str):
     try:
         # Execute the query - errors will be raised as exceptions
-        response = supabase.table("users").select("*").eq("username", username).execute()
+        user = users_col.find_one({"username": username})
         
         # Debug: Print what we got back
-        print(f"Debug - get_user response data: {response.data}")
-        print(f"Debug - Data length: {len(response.data) if response.data else 0}")
+        print(f"Debug - get_user result: {user}")
         
-        # Check if we got any data back
-        if response.data and len(response.data) > 0:
-            user = response.data[0]
-            print(f"Debug - Found user: {user}")
-            return user  # Return single user object
-        else:
-            # No user found with that username
-            print(f"Debug - No user found with username: {username}")
-            return None
+        return user  # Return single user object
             
     except Exception as e:
         # Handle any database errors that occur
@@ -88,13 +78,14 @@ def add_entry(entry: str, rating: int, username: str):
         }
         
         # add an entry to the database
-        response = supabase.table("entries").insert(new_entry).execute()
-        
-        # increase the entry count for the user
-        supabase.table("users").update({"entry_count": supabase.table("users").select("entry_count").eq("username", username).execute().data[0]["entry_count"] + 1}).eq("username", username).execute()
-        
-        print(f"Debug - add_entry response: {response.data}")
-        return response.data
+        result = entries_col.insert_one(new_entry)
+        # increment entry_count and num_entries for the user
+        users_col.update_one(
+            {"username": username},
+            {"$inc": {"entry_count": 1, "num_entries": 1}}
+        )
+        print(f"Debug - add_entry inserted_id: {result.inserted_id}")
+        return str(result.inserted_id)
         
     except Exception as e:
         print(f"Error adding entry: {e}")
@@ -103,9 +94,9 @@ def add_entry(entry: str, rating: int, username: str):
 def get_entries(username: str):
     try:
         # get all entries from the database
-        response = supabase.table("entries").select("*").eq("username", username).execute()
+        entries = list(entries_col.find({"username": username}))
         
-        return response.data if response.data else []
+        return entries
         
     except Exception as e:
         print(f"Error getting entries: {e}")
@@ -114,9 +105,9 @@ def get_entries(username: str):
 def get_entries_by_date(username: str, date: str):
     try:
         # get all entries from the database
-        response = supabase.table("entries").select("*").eq("username", username).eq("created_at", date).execute()
+        entries = list(entries_col.find({"username": username, "created_at": date}))
         
-        return response.data if response.data else []
+        return entries
         
     except Exception as e:
         print(f"Error getting entries by date: {e}")
@@ -125,9 +116,8 @@ def get_entries_by_date(username: str, date: str):
 def get_user_streak(username: str):
     try:
         # get the user streak from the database
-        response = supabase.table("users").select("streak").eq("username", username).execute()
-        
-        return response.data[0]["streak"] if response.data else 0
+        user = users_col.find_one({"username": username}, {"streak": 1})
+        return user.get("streak", 0) if user else 0
         
     except Exception as e:
         print(f"Error getting user streak: {e}")
@@ -136,10 +126,9 @@ def get_user_streak(username: str):
 def update_user_streak(username: str, streak: int):
     try:
         # update the user streak in the database
-        response = supabase.table("users").update({"streak": streak}).eq("username", username).execute()
-        
-        print(f"Debug - update_user_streak response: {response.data}")
-        return response.data
+        result = users_col.update_one({"username": username}, {"$set": {"streak": streak}})
+        print(f"Debug - update_user_streak matched: {result.matched_count}, modified: {result.modified_count}")
+        return result.modified_count > 0
         
     except Exception as e:
         print(f"Error updating user streak: {e}")
@@ -148,23 +137,23 @@ def update_user_streak(username: str, streak: int):
 def increment_user_entries_count(username: str):
     try:
         # Get current count
-        before = supabase.table("users").select("num_entries").eq("username", username).execute()
+        user = users_col.find_one({"username": username}, {"num_entries": 1})
         
-        if not before.data:
+        if not user:
             print(f"User {username} not found")
             return False
         
-        old_count = before.data[0]["num_entries"] or 0
+        old_count = user.get("num_entries", 0)
         new_count = old_count + 1
         
         print(f"Updating {username} from {old_count} to {new_count}")
         
         # Do the update (don't worry about the response)
-        supabase.table("users").update({"num_entries": new_count}).eq("username", username).execute()
+        result = users_col.update_one({"username": username}, {"$set": {"num_entries": new_count}})
         
         # Check if it actually changed
-        after = supabase.table("users").select("num_entries").eq("username", username).execute()
-        actual_count = after.data[0]["num_entries"]
+        after = users_col.find_one({"username": username}, {"num_entries": 1})
+        actual_count = after.get("num_entries", 0)
         
         if actual_count == new_count:
             print(f"✅ Success! Count is now {actual_count}")
