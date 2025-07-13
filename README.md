@@ -33,9 +33,8 @@ MySeriesofFortunateEvents/
 │   └── profile.html       # User profile with statistics
 ├── static/
 │   ├── styles.css         # Main stylesheet with CSS custom properties
-│   └── assets/
-│       └── logo.png       # Application logo
-└── .env                   # Environment variables (not tracked)
+    └── assets/
+        └── logo.png       # Application logo
 ```
 
 # Key Functions
