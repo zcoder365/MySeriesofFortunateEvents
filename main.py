@@ -134,15 +134,15 @@ def my_profile():
 
     # Get last 7 entries for "Best this week" chart
     entries = db.get_entries(username)
-    # Sort by date descending (assuming MM/DD/YYYY format)
-    entries_sorted = sorted(
-        entries, 
-        key=lambda e: datetime.strptime(e["created_at"], "%m/%d/%Y"), 
-        reverse=True
-    )
-    week_entries = entries_sorted[:7]
-    chart_labels = [e["created_at"] for e in week_entries][::-1]  # oldest first
-    chart_data = [int(e["rating"]) for e in week_entries][::-1]
+    # Count ratings from 1 to 10
+    rating_counts = {str(i): 0 for i in range(1, 11)}
+    for e in entries:
+        rating = str(e.get("rating"))
+        if rating in rating_counts:
+            rating_counts[rating] += 1
+
+    chart_labels = list(rating_counts.keys())  # ["1", "2", ..., "10"]
+    chart_data = list(rating_counts.values())  # [count for 1, count for 2, ..., count for 10]
 
     return render_template(
         "profile.html", 
