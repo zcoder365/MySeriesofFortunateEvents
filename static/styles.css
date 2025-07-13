@@ -180,7 +180,7 @@ table td {
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
-    gap: 20px; /* Even vertical spacing between rows and button */
+    gap: 15px; /* Consistent spacing between all elements */
 }
 
 /* Profile info rows: label left, value right */
@@ -191,7 +191,7 @@ table td {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 12px;
+    padding: 15px 12px; /* Increased padding for better visual balance */
     border-bottom: 1px solid #e0e0e0;
     width: 100%;
     box-sizing: border-box;
@@ -203,14 +203,14 @@ table td {
     border-bottom: none;
 }
 
-/* Center only the reset button */
+/* Center only the reset button - remove background color */
 .profile-info-reset {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 0; /* Remove extra margin, spacing handled by .profile-info gap */
-    background: transparent !important;
+    margin: 0;
+    background: transparent !important; /* Remove any background */
     box-shadow: none !important;
     padding: 0;
 }
@@ -265,6 +265,7 @@ canvas#ratingsChartMonth {
     font-weight: bold;
 }
 
+/* Reset button styling - ensure no background color inheritance */
 .reset-btn {
     background: var(--primary-color) !important;
     color: var(--text-dark) !important;
@@ -273,4 +274,5 @@ canvas#ratingsChartMonth {
     font-family: inherit;
     font-size: 16px;
     cursor: pointer;
+    padding: 10px 20px; /* Explicit padding for consistency */
 }
