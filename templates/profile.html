@@ -27,4 +27,15 @@
     window.chartData = {{ chart_data|tojson | safe }};
 </script>
 <script src="{{ url_for('static', filename='ratingsChart.js') }}"></script>
+
+<h3 style="text-align:center; margin-top:40px;">Best This Month</h3>
+<div style="width:100%; max-width:600px; margin:0 auto;">
+    <canvas id="ratingsChartMonth" aria-label="Bar chart of entry ratings for the month" role="img"></canvas>
+</div>
+
+<script>
+    window.chartLabelsMonth = {{ chart_labels_month|tojson | safe }};
+    window.chartDataMonth = {{ chart_data_month|tojson | safe }};
+</script>
+<script src="{{ url_for('static', filename='ratingsChartMonth.js') }}"></script>
 {% endblock %}

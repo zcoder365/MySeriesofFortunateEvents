@@ -1,6 +1,6 @@
 # imports
 from flask import Flask, render_template, request, redirect, session, flash, url_for
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # import files from utils directory
 import utils.model as model
@@ -144,13 +144,36 @@ def my_profile():
     chart_labels = list(rating_counts.keys())  # ["1", "2", ..., "10"]
     chart_data = list(rating_counts.values())  # [count for 1, count for 2, ..., count for 10]
 
+    # Filter entries from the last 30 days
+    today = datetime.today()
+    month_entries = []
+    for e in entries:
+        try:
+            entry_date = datetime.strptime(e["created_at"], "%m/%d/%Y")
+            if (today - entry_date).days < 30:
+                month_entries.append(e)
+        except Exception:
+            continue
+
+    # Count ratings from 1 to 10 for the last month
+    rating_counts_month = {str(i): 0 for i in range(1, 11)}
+    for e in month_entries:
+        rating = str(e.get("rating"))
+        if rating in rating_counts_month:
+            rating_counts_month[rating] += 1
+
+    chart_labels_month = list(rating_counts_month.keys())
+    chart_data_month = list(rating_counts_month.values())
+
     return render_template(
         "profile.html", 
         username=username, 
         streak=streak, 
         num_entries=num_entries,
         chart_labels=chart_labels,
-        chart_data=chart_data
+        chart_data=chart_data,
+        chart_labels_month=chart_labels_month,
+        chart_data_month=chart_data_month
     )
 
 @app.route("/logout")
