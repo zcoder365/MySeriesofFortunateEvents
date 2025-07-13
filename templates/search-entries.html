@@ -1,0 +1,18 @@
+{% extends base.html %}
+{% block content %}
+
+<form method="post">
+    <input type="text" name="query" placeholder="Search entries..." value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+{% if results %}
+    <ul>
+    {% for entry in results %}
+        <li>{{ entry.created_at }}: {{ entry.entry }}</li>
+    {% endfor %}
+    </ul>
+{% elif query %}
+    <p>No results found.</p>
+{% endif %}
+
+{% endblock %}
