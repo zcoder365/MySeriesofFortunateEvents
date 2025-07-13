@@ -253,3 +253,13 @@ canvas#ratingsChartMonth {
     background: #f7f7f7;
     font-weight: bold;
 }
+
+.reset-btn {
+    background: #fff !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--text-dark);
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
