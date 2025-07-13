@@ -255,11 +255,19 @@ canvas#ratingsChartMonth {
 }
 
 .reset-btn {
-    background: #fff !important;
+    background: var(--primary-color) !important;
     color: var(--text-dark) !important;
     border: 2px solid var(--text-dark);
     border-radius: 5px;
     font-family: inherit;
     font-size: 16px;
     cursor: pointer;
+}
+
+.profile-info-reset,
+.profile-info-reset form {
+    background: transparent !important;
+    box-shadow: none !important;
+    margin: 0;
+    padding: 0;
 }
