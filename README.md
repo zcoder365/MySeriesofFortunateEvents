@@ -45,16 +45,14 @@ MySeriesofFortunateEvents/
 Session management prevents unauthorized access to protected routes
 
 ## Entry Management
-
-`add_entry()`: Creates new daily entries and updates user statistics
-`get_entries()`: Retrieves all entries for the logged-in user
-Streak logic: Only increments streak on the first entry of each day
+- `add_entry()`: Creates new daily entries and updates user statistics
+- `get_entries()`: Retrieves all entries for the logged-in user
+- Streak logic: Only increments streak on the first entry of each day
 
 ## Database Operations
-
-Secure password hashing with bcrypt
-Error handling for database operations
-Automatic user statistics updates (entry count, streak tracking)
+- Secure password hashing with bcrypt
+- Error handling for database operations
+- Automatic user statistics updates (entry count, streak tracking)
 
 ## Todo
 - [ ] Add a bar chart to profile page for visualizing entry ratings over time (e.g. "Best this week" or "Best this month")
