@@ -58,6 +58,6 @@ Error handling for database operations
 Automatic user statistics updates (entry count, streak tracking)
 
 ## Todo
-- [ ] Add a bar chart to profile page for visualizing entry ratings over time
-- [ ] Implement entry search and filtering
+- [ ] Add a bar chart to profile page for visualizing entry ratings over time (e.g. "Best this week" or "Best this month")
+- [x] ~~Implement entry search and filtering~~
 - [x] ~~Fix login screen~~
