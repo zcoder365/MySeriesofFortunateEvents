@@ -237,3 +237,19 @@ canvas#ratingsChartMonth {
     margin-top: 20px;
     margin-bottom: 40px;
 }
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff;
+}
+.stats-table th, .stats-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+.stats-table th {
+    background: #f7f7f7;
+    font-weight: bold;
+}
