@@ -2,7 +2,6 @@
 A Flask-based web application that encourages daily reflection by allowing users to record daily events and rate their positivity on a scale of 1-10. Track your streak of consecutive days and build a habit of focusing on the positive moments in life.
 
 # Features
-
 - **User Authentication:** Secure signup and login system with bcrypt password hashing
 - **Daily Entries:** Record what happened each day with a text description and positivity rating (1-10)
 - **Streak Tracking:** Maintain a streak counter for consecutive days of entries
@@ -11,7 +10,6 @@ A Flask-based web application that encourages daily reflection by allowing users
 - **Session Management:** Secure session handling with logout functionality
 
 # Tech Stack
-
 - **Backend:** Python Flask
 - **Database:** Supabase (PostgreSQL)
 - **Frontend:** HTML5, CSS3, Jinja2 templating
