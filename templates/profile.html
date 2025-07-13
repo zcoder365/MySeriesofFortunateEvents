@@ -1,23 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h1>Your Profile</h1>
-
 <div class="profile-info">
     <div class="profile-info-username">
         <p>Username:</p>
         <p>{{ username }}</p>
     </div>
-
     <div class="profile-info-streak">
-        <p>Streak:</p>
+        <p>Current Streak:</p>
         <p>{{ streak }}</p>
     </div>
-
     <div class="profile-info-entries">
-        <p>Number of Entries:</p>
+        <p>Total Entries:</p>
         <p>{{ num_entries }}</p>
     </div>
 </div>
 
+<h3 style="text-align:center; margin-top:40px;">Best This Week</h3>
+<div style="width:100%; max-width:600px; margin:0 auto;">
+    <canvas id="ratingsChart" aria-label="Bar chart of entry ratings" role="img"></canvas>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Pass data to JS file via global variables
+    window.chartLabels = {{ chart_labels|tojson }};
+    window.chartData = {{ chart_data|tojson }};
+</script>
+<script src="{{ url_for('static', filename='ratingsChart.js') }}"></script>
 {% endblock %}
