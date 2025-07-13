@@ -215,6 +215,13 @@ table td {
     padding: 0;
 }
 
+/* Make profile info labels bold */
+.profile-info-username p:first-child,
+.profile-info-streak p:first-child,
+.profile-info-entries p:first-child {
+    font-weight: bold;
+}
+
 .charts-container {
     display: flex;
     justify-content: center;
