@@ -253,7 +253,7 @@ def reset_password():
         # Implement your password reset logic here
         flash("Password reset functionality coming soon!", "info")
         return redirect(url_for("my_profile"))
-    return render_template("reset_password.html")
+    return render_template("reset-password.html")
 
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
