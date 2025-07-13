@@ -3,9 +3,9 @@ A Flask-based web application that encourages daily reflection by allowing users
 
 # Features
 - **User Authentication:** Secure signup and login system with bcrypt password hashing
-- **Daily Entries:** Record what happened each day with a text description and positivity rating (1-10)
+- **Daily Entries:** Record what happened each day with a text description and positivity rating (1-10, where 1 is the lowest positivity rating and 10 is the highest)
 - **Streak Tracking:** Maintain a streak counter for consecutive days of entries
-- **User Profile:** View personal statistics including username, current streak, and total entries
+- **User Profile:** View personal statistics including username, current streak, and total number of entries
 - **Responsive Design:** Clean, colorful UI with a friendly Comic Sans font and warm color palette
 - **Session Management:** Secure session handling with logout functionality
 
