@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="profile-info" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<div class="profile-info">
     <div class="profile-info-username">
         <p>Username:</p>
         <p>{{ username }}</p>
@@ -13,8 +13,8 @@
         <p>Total Entries:</p>
         <p>{{ num_entries }}</p>
     </div>
-    <div class="profile-info-reset" style="width: 100%; display: flex; justify-content: center;">
-        <form action="{{ url_for('reset_password') }}" method="get" style="margin-top: 16px;">
+    <div class="profile-info-reset">
+        <form action="{{ url_for('reset_password') }}" method="get">
             <button type="submit" class="reset-btn">Reset Password</button>
         </form>
     </div>
