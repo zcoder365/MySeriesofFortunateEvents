@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: window.chartLabels,
+            labels: window.chartLabels, // ["1", "2", ..., "10"]
             datasets: [{
-                label: 'Entry Rating',
-                data: window.chartData,
+                label: 'Number of Entries per Rating',
+                data: window.chartData,   // [count for 1, ..., count for 10]
                 backgroundColor: 'rgba(74, 144, 226, 0.6)',
                 borderColor: 'rgba(74, 144, 226, 1)',
                 borderWidth: 1
@@ -17,9 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         options: {
             scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Rating'
+                    }
+                },
                 y: {
                     beginAtZero: true,
-                    max: 10,
+                    title: {
+                        display: true,
+                        text: 'Number of Entries'
+                    },
                     ticks: {
                         stepSize: 1
                     }
