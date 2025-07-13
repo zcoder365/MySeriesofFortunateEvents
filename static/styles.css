@@ -240,11 +240,39 @@ table td {
     font-weight: bold;
 }
 
-/* Remove shadow from reset button specifically */
+/* Remove shadow from reset button specifically - aggressive approach */
 .reset-button {
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Target all possible button variations in profile area */
+.profile-info button,
+.profile-info-reset button,
+button.reset-button,
+input[type="button"].reset-button,
+input[type="submit"].reset-button {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    text-shadow: none !important;
+    outline: none !important;
+}
+
+/* Remove any potential focus shadows */
+.reset-button:focus,
+.reset-button:hover,
+.reset-button:active {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    filter: none !important;
+    outline: none !important;
 }
 
 .charts-container {
