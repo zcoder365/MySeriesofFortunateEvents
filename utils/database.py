@@ -74,7 +74,7 @@ def add_entry(entry: str, rating: int, username: str):
             "entry": entry,
             "rating": rating,
             "username": username,
-            "created_at": datetime.today().strftime('%Y-%m-%d %H:%M:%S') # Store as string
+            "created_at": datetime.today().strftime('%m/%d/%Y')  # MM/DD/YYYY format, no time
         }
         
         # add an entry to the database
