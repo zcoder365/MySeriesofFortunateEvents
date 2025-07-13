@@ -161,3 +161,20 @@ def increment_user_entries_count(username: str):
     except Exception as e:
         print(f"Error: {e}")
         return
+
+def get_all_user_entries(username: str):
+    """Return all entries for a user."""
+    return get_entries(username)
+
+def search_user_entries(username: str, query: str):
+    """Return all entries for a user where the entry text contains the query (case-insensitive)."""
+    try:
+        # Use MongoDB regex for case-insensitive search
+        results = list(entries_col.find({
+            "username": username,
+            "entry": {"$regex": query, "$options": "i"}
+        }))
+        return results
+    except Exception as e:
+        print(f"Error searching user entries: {e}")
+        return []
