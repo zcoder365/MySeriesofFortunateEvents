@@ -32,7 +32,7 @@ MySeriesofFortunateEvents/
 │   ├── add_entry.html     # Form for adding new daily entries
 │   └── profile.html       # User profile with statistics
 ├── static/
-│   ├── styles.css         # Main stylesheet with CSS custom properties
+    ├── styles.css         # Main stylesheet with CSS custom properties
     └── assets/
         └── logo.png       # Application logo
 ```
