@@ -170,7 +170,7 @@ table td {
     color: var(--text-dark);
 }
 
-/* Profile info container */
+/* Profile info container - completely remove shadow */
 .profile-info {
     display: flex;
     flex-direction: column;
@@ -181,7 +181,9 @@ table td {
     border-radius: 8px;
     background-color: #f9f9f9;
     gap: 15px; /* Consistent spacing between all elements */
-    box-shadow: none; /* Remove shadow from profile container */
+    box-shadow: none !important; /* Force remove shadow with !important */
+    -webkit-box-shadow: none !important; /* Remove webkit shadow */
+    -moz-box-shadow: none !important; /* Remove mozilla shadow */
 }
 
 /* Profile info rows: label left, value right */
@@ -214,6 +216,8 @@ table td {
     background: transparent !important; /* Remove any background */
     background-color: transparent !important; /* Extra specificity */
     box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
     padding: 0;
 }
 
@@ -234,6 +238,13 @@ table td {
 .profile-info-streak p:first-child,
 .profile-info-entries p:first-child {
     font-weight: bold;
+}
+
+/* Remove shadow from reset button specifically */
+.reset-button {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
 }
 
 .charts-container {
