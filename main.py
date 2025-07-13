@@ -153,15 +153,12 @@ def search_entries():
     if request.method == "POST":
         query = request.form.get("query", "").strip()
         if query:
-            # Use a case-insensitive regex search on the entry field
-            results = [
-                e for e in db.get_entries(session["username"])
-                if query.lower() in e.get("entry", "").lower()
-            ]
+            # Use the new search_user_entries function from database.py
+            results = db.search_user_entries(session["username"], query)
         else:
             flash("Please enter a search term.", "warning")
 
-    return render_template("search_entries.html", results=results, query=query)
+    return render_template("search-entries.html", results=results, query=query)
 
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
