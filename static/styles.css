@@ -216,3 +216,10 @@ canvas#ratingsChart {
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     margin-top: 20px;
 }
+
+canvas#ratingsChartMonth {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin-top: 20px;
+}
