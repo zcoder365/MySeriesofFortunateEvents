@@ -180,6 +180,7 @@ table td {
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
+    gap: 20px; /* Even vertical spacing between rows and button */
 }
 
 /* Profile info rows: label left, value right */
@@ -194,33 +195,12 @@ table td {
     border-bottom: 1px solid #e0e0e0;
     width: 100%;
     box-sizing: border-box;
-}
-
-/* Remove extra padding between rows */
-.profile-info-streak, .profile-info-username,
-.profile-info-streak, .profile-info-entries {
-    padding-top: 0;
-    padding-bottom: 0;
+    margin: 0;
 }
 
 /* Remove border from last row */
 .profile-info-entries {
     border-bottom: none;
-}
-
-/* Label styling */
-.profile-info p:first-child {
-    font-weight: bold;
-    margin: 0;
-    color: #333;
-}
-
-/* Value styling */
-.profile-info p:last-child {
-    margin: 0;
-    color: #666;
-    font-size: 1.1em;
-    text-align: right;
 }
 
 /* Center only the reset button */
@@ -229,17 +209,10 @@ table td {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 16px;
+    margin: 0; /* Remove extra margin, spacing handled by .profile-info gap */
     background: transparent !important;
     box-shadow: none !important;
     padding: 0;
-}
-
-.profile-info-reset form {
-    margin: 0;
-    padding: 0;
-    background: transparent !important;
-    box-shadow: none !important;
 }
 
 .charts-container {
