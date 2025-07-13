@@ -23,4 +23,10 @@
     </table>
 </div>
 
+{% if show_more %}
+    <div style="text-align:center; margin-top:20px;">
+        <a href="{{ url_for('home', limit=next_limit) }}" class="btn btn-secondary">Load More</a>
+    </div>
+{% endif %}
+
 {% endblock %}
