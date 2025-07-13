@@ -55,4 +55,4 @@ Session management prevents unauthorized access to protected routes
 - Automatic user statistics updates (entry count, streak tracking)
 
 ## Todo
-- [ ] Add a bar chart to profile page for visualizing entry ratings over time (e.g. "Best this week" or "Best this month")
+- [x] ~~Add a bar chart to profile page for visualizing entry ratings over time (e.g. "Best this week" or "Best this month")~~
