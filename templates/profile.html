@@ -15,9 +15,15 @@
     </div>
 </div>
 
-<h3 style="text-align:center; margin-top:40px;">Best This Week</h3>
-<div style="width:100%; max-width:600px; margin:0 auto;">
-    <canvas id="ratingsChart" aria-label="Bar chart of entry ratings" role="img"></canvas>
+<div class="charts-container">
+    <div class="chart-block">
+        <h3 style="text-align:center;">Best This Week</h3>
+        <canvas id="ratingsChart" aria-label="Bar chart of entry ratings" role="img"></canvas>
+    </div>
+    <div class="chart-block">
+        <h3 style="text-align:center;">Best This Month</h3>
+        <canvas id="ratingsChartMonth" aria-label="Bar chart of entry ratings for the month" role="img"></canvas>
+    </div>
 </div>
 
 <!-- Chart.js CDN -->
@@ -25,17 +31,9 @@
 <script>
     window.chartLabels = {{ chart_labels|tojson | safe }};
     window.chartData = {{ chart_data|tojson | safe }};
-</script>
-<script src="{{ url_for('static', filename='ratingsChart.js') }}"></script>
-
-<h3 style="text-align:center; margin-top:40px;">Best This Month</h3>
-<div style="width:100%; max-width:600px; margin:0 auto;">
-    <canvas id="ratingsChartMonth" aria-label="Bar chart of entry ratings for the month" role="img"></canvas>
-</div>
-
-<script>
     window.chartLabelsMonth = {{ chart_labels_month|tojson | safe }};
     window.chartDataMonth = {{ chart_data_month|tojson | safe }};
 </script>
+<script src="{{ url_for('static', filename='ratingsChart.js') }}"></script>
 <script src="{{ url_for('static', filename='ratingsChartMonth.js') }}"></script>
 {% endblock %}
