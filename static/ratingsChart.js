@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById('ratingsChart').getContext('2d');
+    const chartCanvas = document.getElementById('ratingsChart');
+    if (!chartCanvas) return; // Prevent errors if canvas is missing
+
+    const ctx = chartCanvas.getContext('2d');
     new Chart(ctx, {
         type: 'bar',
         data: {
@@ -22,3 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             }
+        }
+    });
+});
