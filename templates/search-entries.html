@@ -6,11 +6,31 @@
     <button type="submit">Search</button>
 </form>
 {% if results %}
-    <ul>
-    {% for entry in results %}
-        <li>{{ entry.created_at }}: {{ entry.entry }}</li>
-    {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Entry</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entry in results %}
+            <tr>
+                <td>
+                    {# Format date as MM-DD-YYYY #}
+                    {% if entry.created_at %}
+                        {{ entry.created_at[:10].split('-')[1] }}-{{ entry.created_at[:10].split('-')[2] }}-{{ entry.created_at[:10].split('-')[0] }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>{{ entry.entry }}</td>
+                <td>{{ entry.rating }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% elif query %}
     <p>No results found.</p>
 {% endif %}
