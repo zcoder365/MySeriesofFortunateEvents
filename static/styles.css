@@ -181,6 +181,7 @@ table td {
     border-radius: 8px;
     background-color: #f9f9f9;
     gap: 15px; /* Consistent spacing between all elements */
+    box-shadow: none; /* Remove shadow from profile container */
 }
 
 /* Profile info rows: label left, value right */
@@ -324,4 +325,5 @@ canvas#ratingsChartMonth {
     font-size: 16px;
     cursor: pointer;
     padding: 10px 20px; /* Explicit padding for consistency */
+    box-shadow: none !important; /* Remove shadow */
 }
