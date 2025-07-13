@@ -81,9 +81,27 @@ def home():
 
     # get all entries from the database
     entries = db.get_entries(session["username"])
-    print(f"Debug - Entries retrieved: {entries}")
+    # Sort by date (assuming MM/DD/YYYY format)
+    try:
+        entries_sorted = sorted(
+            entries,
+            key=lambda e: datetime.strptime(e["created_at"], "%m/%d/%Y"),
+            reverse=True
+        )
+    except Exception:
+        entries_sorted = entries[::-1]  # fallback: reverse order
 
-    return render_template("index.html", entries=entries)
+    # Pagination
+    limit = int(request.args.get("limit", 50))
+    show_more = len(entries_sorted) > limit
+    entries_display = entries_sorted[:limit]
+
+    return render_template(
+        "index.html",
+        entries=entries_display,
+        show_more=show_more,
+        next_limit=limit + 50
+    )
 
 @app.route("/add-entry", methods=["GET", "POST"])
 def add_entry():
