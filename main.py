@@ -244,5 +244,16 @@ def search_entries():
 
     return render_template("search-entries.html", results=results, query=query)
 
+@app.route("/reset-password", methods=["GET", "POST"])
+def reset_password():
+    if "username" not in session:
+        flash("Please log in first", "warning")
+        return redirect(url_for("login"))
+    if request.method == "POST":
+        # Implement your password reset logic here
+        flash("Password reset functionality coming soon!", "info")
+        return redirect(url_for("my_profile"))
+    return render_template("reset_password.html")
+
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
