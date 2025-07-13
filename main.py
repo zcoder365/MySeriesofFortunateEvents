@@ -131,10 +131,27 @@ def my_profile():
     username = user["username"]
     streak = user.get("streak", 0)
     num_entries = user.get("num_entries", 0)
-    
-    print(f"Debug - User retrieved: {user}")
 
-    return render_template("profile.html", username=username, streak=streak, num_entries=num_entries)
+    # Get last 7 entries for "Best this week" chart
+    entries = db.get_entries(username)
+    # Sort by date descending (assuming MM/DD/YYYY format)
+    entries_sorted = sorted(
+        entries, 
+        key=lambda e: datetime.strptime(e["created_at"], "%m/%d/%Y"), 
+        reverse=True
+    )
+    week_entries = entries_sorted[:7]
+    chart_labels = [e["created_at"] for e in week_entries][::-1]  # oldest first
+    chart_data = [int(e["rating"]) for e in week_entries][::-1]
+
+    return render_template(
+        "profile.html", 
+        username=username, 
+        streak=streak, 
+        num_entries=num_entries,
+        chart_labels=chart_labels,
+        chart_data=chart_data
+    )
 
 @app.route("/logout")
 def logout():
