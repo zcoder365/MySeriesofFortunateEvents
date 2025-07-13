@@ -268,10 +268,21 @@ canvas#ratingsChartMonth {
     cursor: pointer;
 }
 
-.profile-info-reset,
-.profile-info-reset form {
+/* Center only the reset button inside profile-info */
+.profile-info-reset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
     background: transparent !important;
     box-shadow: none !important;
+    padding: 0;
+}
+
+.profile-info-reset form {
     margin: 0;
     padding: 0;
+    background: transparent !important;
+    box-shadow: none !important;
 }
