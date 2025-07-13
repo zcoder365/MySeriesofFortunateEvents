@@ -23,9 +23,8 @@
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Pass data to JS file via global variables
-    window.chartLabels = {{ chart_labels|tojson }};
-    window.chartData = {{ chart_data|tojson }};
+    window.chartLabels = "{{ chart_labels|tojson | safe }}";
+    window.chartData = "{{ chart_data|tojson | safe }}";
 </script>
 <script src="{{ url_for('static', filename='ratingsChart.js') }}"></script>
 {% endblock %}
