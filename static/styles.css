@@ -488,6 +488,258 @@ canvas#ratingsChartYearly:hover {
     background: linear-gradient(135deg, #ffd93d, var(--primary-color)) !important;
 }
 
+/* ENHANCED ADD ENTRY PAGE STYLES */
+
+/* Add Entry page title */
+h2.form-text {
+    text-align: center;
+    margin: 30px auto;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--primary-color), #ffd93d);
+    border: 2px solid var(--text-dark);
+    border-radius: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-medium);
+    max-width: 400px;
+    position: relative;
+}
+
+h2.form-text::before {
+    content: "✏️ ";
+    font-size: 28px;
+}
+
+/* Enhanced form styling for add entry page */
+form[action="/add-entry"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, var(--surface-color), #d4f2df);
+    padding: 40px;
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: var(--shadow-medium);
+    border: 2px solid var(--text-dark);
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add colorful top border */
+form[action="/add-entry"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #FF6B6B, #FFB84D, #4BC0C8, #4CAF50);
+}
+
+/* Form blocks styling */
+.form-block1 {
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Enhanced labels */
+.form-block1 label {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    background: var(--accent-color);
+    border: 2px solid var(--text-dark);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    position: relative;
+}
+
+/* Add icons to labels */
+label[for="entry"]::before {
+    content: "💭 ";
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+label[for="rating"]::before {
+    content: "⭐ ";
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+/* Enhanced textarea for add entry */
+form[action="/add-entry"] textarea.form-input {
+    width: 100%;
+    min-height: 150px;
+    padding: 20px;
+    border: 3px solid var(--primary-color);
+    border-radius: 15px;
+    font-family: inherit;
+    font-size: 16px;
+    background: var(--chart-bg);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-light);
+    transition: all 0.2s ease;
+    resize: vertical;
+    text-align: left;
+}
+
+form[action="/add-entry"] textarea.form-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+form[action="/add-entry"] textarea.form-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Enhanced number input for rating */
+form[action="/add-entry"] input[type="number"] {
+    width: 100%;
+    max-width: 200px;
+    padding: 15px 20px;
+    border: 3px solid var(--primary-color);
+    border-radius: 15px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background: var(--chart-bg);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-light);
+    transition: all 0.2s ease;
+    margin: 0 auto;
+}
+
+form[action="/add-entry"] input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+/* Enhanced submit button for add entry */
+form[action="/add-entry"] input[type="submit"] {
+    background: linear-gradient(135deg, var(--primary-color), #ffd93d);
+    color: var(--text-dark);
+    border: 3px solid var(--text-dark);
+    border-radius: 25px;
+    padding: 15px 40px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow-medium);
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+form[action="/add-entry"] input[type="submit"]::before {
+    content: "📝 ";
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+form[action="/add-entry"] input[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    background: linear-gradient(135deg, #ffd93d, var(--primary-color));
+}
+
+form[action="/add-entry"] input[type="submit"]:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-light);
+}
+
+/* Rating input container for better styling */
+.form-block1:has(input[type="number"]) {
+    align-items: center;
+    text-align: center;
+}
+
+/* Add some visual feedback for rating */
+form[action="/add-entry"] input[type="number"]:valid {
+    border-color: var(--surface-color);
+}
+
+/* Remove default br tags styling and add proper spacing */
+form[action="/add-entry"] br {
+    display: none;
+}
+
+/* Responsive design for add entry form */
+@media (max-width: 768px) {
+    h2.form-text {
+        font-size: 20px;
+        padding: 12px 20px;
+        margin: 20px auto;
+    }
+    
+    form[action="/add-entry"] {
+        padding: 30px 25px;
+        margin: 20px auto;
+        width: 95%;
+    }
+    
+    .form-block1 label {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+    
+    form[action="/add-entry"] textarea.form-input {
+        min-height: 120px;
+        padding: 15px;
+        font-size: 15px;
+    }
+    
+    form[action="/add-entry"] input[type="number"] {
+        font-size: 18px;
+        padding: 12px 15px;
+    }
+    
+    form[action="/add-entry"] input[type="submit"] {
+        font-size: 18px;
+        padding: 12px 30px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2.form-text {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+    
+    form[action="/add-entry"] {
+        padding: 25px 20px;
+    }
+    
+    .form-block1 label {
+        font-size: 15px;
+    }
+    
+    form[action="/add-entry"] input[type="submit"] {
+        font-size: 16px;
+        padding: 10px 25px;
+    }
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 1400px) {
     .charts-container {
