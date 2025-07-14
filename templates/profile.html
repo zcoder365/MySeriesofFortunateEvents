@@ -19,14 +19,14 @@
     </div>
 </div>
 
-<!-- Yearly Review Chart - Should be OUTSIDE and ABOVE the charts-container -->
-<div class="yearly-review-container">
-    <div class="yearly-chart-block">
+<div class="charts-container">
+    <!-- Yearly Review Chart - Now WITH the other charts -->
+    <div class="chart-block">
         <h3 style="text-align:center;">📊 {{ current_year }} Yearly Review</h3>
         <canvas id="ratingsChartYearly" aria-label="Bar chart showing average ratings by month for the year" role="img"></canvas>
-        <div class="yearly-stats-block">
+        <div class="stats-block">
             <h4 style="margin-top:30px;">{{ current_year }} Annual Statistics</h4>
-            <table class="yearly-stats-table">
+            <table class="stats-table">
                 <tr>
                     <th>📈 Average Rating</th>
                     <td>{{ yearly_avg_rating }}</td>
@@ -46,9 +46,7 @@
             </table>
         </div>
     </div>
-</div>
 
-<div class="charts-container">
     <!-- All Time Chart -->
     <div class="chart-block">
         <h3 style="text-align:center;">All Time Rating Distribution</h3>
