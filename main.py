@@ -153,7 +153,7 @@ def my_profile():
     entries = db.get_entries(username)
     today = datetime.today()
 
-    # --- WEEK STATS ---
+    # --- WEEK STATS --- (your existing code)
     week_entries = []
     for e in entries:
         try:
@@ -169,7 +169,6 @@ def my_profile():
     week_max_rating = max(week_ratings) if week_ratings else "N/A"
     week_min_rating = min(week_ratings) if week_ratings else "N/A"
 
-    # Histogram for week
     week_rating_counts = {str(i): 0 for i in range(1, 11)}
     for r in week_ratings:
         if str(r) in week_rating_counts:
@@ -177,7 +176,7 @@ def my_profile():
     chart_labels = list(week_rating_counts.keys())
     chart_data = list(week_rating_counts.values())
 
-    # --- MONTH STATS ---
+    # --- MONTH STATS --- (your existing code)
     month_entries = []
     for e in entries:
         try:
@@ -193,7 +192,6 @@ def my_profile():
     month_max_rating = max(month_ratings) if month_ratings else "N/A"
     month_min_rating = min(month_ratings) if month_ratings else "N/A"
 
-    # Histogram for month
     month_rating_counts = {str(i): 0 for i in range(1, 11)}
     for r in month_ratings:
         if str(r) in month_rating_counts:
@@ -201,23 +199,49 @@ def my_profile():
     chart_labels_month = list(month_rating_counts.keys())
     chart_data_month = list(month_rating_counts.values())
 
+    # --- ADD THIS: ALL TIME STATS ---
+    # Get all ratings from all entries
+    all_ratings = [int(e.get("rating", 0)) for e in entries if e.get("rating")]
+    all_total_entries = len(all_ratings)
+    all_avg_rating = round(sum(all_ratings) / all_total_entries, 2) if all_total_entries else "N/A"
+    all_max_rating = max(all_ratings) if all_ratings else "N/A"
+    all_min_rating = min(all_ratings) if all_ratings else "N/A"
+
+    # Histogram for all time - count how many entries have each rating (1-10)
+    all_rating_counts = {str(i): 0 for i in range(1, 11)}
+    for r in all_ratings:
+        if str(r) in all_rating_counts:
+            all_rating_counts[str(r)] += 1
+    chart_labels_all = list(all_rating_counts.keys())
+    chart_data_all = list(all_rating_counts.values())
+
+    # Update your return statement to include ALL the variables
     return render_template(
         "profile.html", 
         username=username, 
         streak=streak, 
         num_entries=num_entries,
+        # Week data
         chart_labels=chart_labels,
         chart_data=chart_data,
-        chart_labels_month=chart_labels_month,
-        chart_data_month=chart_data_month,
         week_avg_rating=week_avg_rating,
         week_max_rating=week_max_rating,
         week_min_rating=week_min_rating,
         week_total_entries=week_total_entries,
+        # Month data
+        chart_labels_month=chart_labels_month,
+        chart_data_month=chart_data_month,
         month_avg_rating=month_avg_rating,
         month_max_rating=month_max_rating,
         month_min_rating=month_min_rating,
-        month_total_entries=month_total_entries
+        month_total_entries=month_total_entries,
+        # ALL TIME data - ADD THESE
+        chart_labels_all=chart_labels_all,
+        chart_data_all=chart_data_all,
+        all_avg_rating=all_avg_rating,
+        all_max_rating=all_max_rating,
+        all_min_rating=all_min_rating,
+        all_total_entries=all_total_entries
     )
 
 @app.route("/logout")
