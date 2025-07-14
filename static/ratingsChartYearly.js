@@ -1,4 +1,4 @@
-// JavaScript for rendering the yearly review chart with proper text sizing
+// JavaScript for rendering the yearly review bar chart with proper text sizing
 document.addEventListener('DOMContentLoaded', function() {
     // Get the canvas element for the yearly chart
     const ctx = document.getElementById('ratingsChartYearly').getContext('2d');
@@ -15,32 +15,34 @@ document.addEventListener('DOMContentLoaded', function() {
     canvas.height = 400 * dpr;
     ctx.scale(dpr, dpr);
     
-    // Create the line chart showing yearly trend
+    // Create the bar chart showing yearly monthly averages
     const ratingsChartYearly = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: window.chartLabelsYearly, // Month names
             datasets: [{
                 label: 'Average Rating by Month',
                 data: window.chartDataYearly, // Monthly averages
-                borderColor: '#4CAF50',
-                backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                borderWidth: 4,
-                pointBackgroundColor: '#4CAF50',
-                pointBorderColor: '#2E7D32',
-                pointBorderWidth: 3,
-                pointRadius: 8,
-                pointHoverRadius: 12,
-                fill: true,
-                tension: 0.4 // Smooth curves
-            }, {
-                label: 'Entry Count by Month',
-                data: window.chartCountsYearly, // Monthly entry counts
-                type: 'bar',
-                backgroundColor: 'rgba(255, 193, 7, 0.6)',
-                borderColor: '#FFC107',
-                borderWidth: 2,
-                yAxisID: 'y1' // Use secondary y-axis
+                backgroundColor: [
+                    '#FF6B6B', // January - Red
+                    '#FF8E53', // February - Orange-red  
+                    '#FF9F40', // March - Orange
+                    '#FFB84D', // April - Yellow-orange
+                    '#FFCD56', // May - Yellow
+                    '#9FE2BF', // June - Light green
+                    '#4BC0C8', // July - Teal
+                    '#36A2EB', // August - Blue
+                    '#9966FF', // September - Purple
+                    '#4CAF50', // October - Green
+                    '#FF7043', // November - Deep orange
+                    '#795548'  // December - Brown
+                ],
+                borderColor: [
+                    '#FF5252', '#FF7043', '#FF9800', '#FFB300', '#FFEB3B',
+                    '#81C784', '#26C6DA', '#2196F3', '#7B1FA2', '#388E3C',
+                    '#FF5722', '#5D4037'
+                ],
+                borderWidth: 2
             }]
         },
         options: {
@@ -65,9 +67,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             size: 16,
                             family: '"Comic Sans MS", cursive, sans-serif'
                         },
-                        usePointStyle: true,
-                        boxWidth: 15,
-                        boxHeight: 15
+                        usePointStyle: false,
+                        boxWidth: 20,
+                        boxHeight: 12
                     }
                 },
                 tooltip: {
@@ -82,18 +84,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     callbacks: {
                         label: function(context) {
-                            if (context.datasetIndex === 0) {
-                                return `Average Rating: ${context.raw.toFixed(2)}`;
-                            } else {
-                                return `Entries: ${context.raw}`;
+                            const month = context.label;
+                            const avgRating = context.raw;
+                            const entryCount = window.chartCountsYearly[context.dataIndex];
+                            
+                            if (avgRating === 0) {
+                                return `${month}: No entries`;
                             }
-                        },
-                        afterLabel: function(context) {
-                            if (context.datasetIndex === 0 && context.raw > 0) {
-                                const count = window.chartCountsYearly[context.dataIndex];
-                                return `Based on ${count} entries`;
-                            }
-                            return '';
+                            return `${month}: ${avgRating.toFixed(2)} avg (${entryCount} entries)`;
                         }
                     }
                 }
@@ -110,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             weight: 'bold',
                             family: '"Comic Sans MS", cursive, sans-serif'
                         },
-                        color: '#4CAF50',
                         padding: {
                             bottom: 15
                         }
@@ -122,42 +119,15 @@ document.addEventListener('DOMContentLoaded', function() {
                             family: '"Comic Sans MS", cursive, sans-serif'
                         },
                         padding: 10,
-                        color: '#333'
+                        color: '#333',
+                        callback: function(value) {
+                            return value.toFixed(1);
+                        }
                     },
                     grid: {
                         drawBorder: true,
                         lineWidth: 1,
                         color: '#e0e0e0'
-                    }
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Number of Entries',
-                        font: {
-                            size: 16,
-                            weight: 'bold',
-                            family: '"Comic Sans MS", cursive, sans-serif'
-                        },
-                        color: '#FFC107',
-                        padding: {
-                            bottom: 15
-                        }
-                    },
-                    ticks: {
-                        font: {
-                            size: 14,
-                            family: '"Comic Sans MS", cursive, sans-serif'
-                        },
-                        padding: 10,
-                        color: '#333'
-                    },
-                    grid: {
-                        drawOnChartArea: false, // Don't draw grid lines for secondary axis
                     }
                 },
                 x: {
@@ -179,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             family: '"Comic Sans MS", cursive, sans-serif'
                         },
                         padding: 10,
-                        maxRotation: 45,
+                        maxRotation: 0, // Keep month names horizontal
                         minRotation: 0,
                         color: '#333'
                     },
@@ -191,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             },
             animation: {
-                duration: 1500,
+                duration: 1200,
                 easing: 'easeOutQuart'
             }
         }
