@@ -56,4 +56,5 @@ Session management prevents unauthorized access to protected routes
 
 ## Todo
 - [x] ~~Add a bar chart to profile page for visualizing entry ratings over time (e.g. "Best this week" or "Best this month")~~
-- [ ] Add a bar chart to profile page to visualize the # of entries per year
+- [x] ~~Add a bar chart to profile page to visualize the # of entries per year~~
+- [ ] Rank by date/low ratings/high ratings
