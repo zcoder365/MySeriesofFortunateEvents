@@ -100,6 +100,35 @@
             </table>
         </div>
     </div>
+
+    <!-- Add this section to your profile.html before the existing charts-container -->
+    <div class="yearly-review-container">
+        <div class="yearly-chart-block">
+            <h2 class="yearly-title">📊 {{ current_year }} Yearly Review</h2>
+            <canvas id="ratingsChartYearly" aria-label="Line chart showing average ratings by month for the year" role="img"></canvas>
+            <div class="yearly-stats-block">
+                <h4>{{ current_year }} Annual Statistics</h4>
+                <div class="yearly-stats-grid">
+                    <div class="yearly-stat-item">
+                        <span class="stat-label">📈 Average Rating</span>
+                        <span class="stat-value">{{ yearly_avg_rating }}</span>
+                    </div>
+                    <div class="yearly-stat-item">
+                        <span class="stat-label">🏆 Highest Month</span>
+                        <span class="stat-value">{{ yearly_max_rating }}</span>
+                    </div>
+                    <div class="yearly-stat-item">
+                        <span class="stat-label">📉 Lowest Month</span>
+                        <span class="stat-value">{{ yearly_min_rating }}</span>
+                    </div>
+                    <div class="yearly-stat-item">
+                        <span class="stat-label">📝 Total Entries</span>
+                        <span class="stat-value">{{ yearly_total_entries }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Chart.js CDN -->
@@ -110,9 +139,15 @@
     window.chartData = {{ chart_data | tojson | safe }};
     window.chartLabelsMonth = {{ chart_labels_month | tojson | safe }};
     window.chartDataMonth = {{ chart_data_month | tojson | safe }};
+    
     // New all-time chart data
     window.chartLabelsAll = {{ chart_labels_all | tojson | safe }};
     window.chartDataAll = {{ chart_data_all | tojson | safe }};
+
+    // Add yearly chart data
+    window.chartLabelsYearly = {{ chart_labels_yearly | tojson | safe }};
+    window.chartDataYearly = {{ chart_data_yearly | tojson | safe }};
+    window.chartCountsYearly = {{ chart_counts_yearly | tojson | safe }};
 </script>
 <script src="{{ url_for('static', filename='ratingsChart.js') }}"></script>
 <script src="{{ url_for('static', filename='ratingsChartMonth.js') }}"></script>

@@ -214,6 +214,53 @@ def my_profile():
             all_rating_counts[str(r)] += 1
     chart_labels_all = list(all_rating_counts.keys())
     chart_data_all = list(all_rating_counts.values())
+    
+    # --- YEARLY REVIEW STATS ---
+    # Get current year
+    current_year = datetime.today().year
+
+    # Initialize monthly data for the year
+    monthly_averages = {}
+    monthly_counts = {}
+    for month in range(1, 13):
+        monthly_averages[month] = 0
+        monthly_counts[month] = 0
+
+    # Process entries for yearly review
+    for e in entries:
+        try:
+            # Parse the date (assuming MM/DD/YYYY format)
+            entry_date = datetime.strptime(e["created_at"], "%m/%d/%Y")
+            if entry_date.year == current_year and e.get("rating"):
+                month = entry_date.month
+                rating = int(e.get("rating", 0))
+                if monthly_counts[month] == 0:
+                    monthly_averages[month] = rating
+                    monthly_counts[month] = 1
+                else:
+                    # Calculate running average
+                    total = monthly_averages[month] * monthly_counts[month] + rating
+                    monthly_counts[month] += 1
+                    monthly_averages[month] = total / monthly_counts[month]
+        except Exception:
+            continue
+
+    # Prepare data for chart (month names and averages)
+    month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    yearly_labels = month_names
+    yearly_data = [round(monthly_averages[i], 2) if monthly_counts[i] > 0 else 0 
+                for i in range(1, 13)]
+    yearly_counts = [monthly_counts[i] for i in range(1, 13)]
+
+    # Calculate yearly stats
+    year_entries_with_ratings = [monthly_counts[i] for i in range(1, 13) if monthly_counts[i] > 0]
+    year_ratings_list = [monthly_averages[i] for i in range(1, 13) if monthly_counts[i] > 0]
+
+    yearly_total_entries = sum(yearly_counts)
+    yearly_avg_rating = round(sum(year_ratings_list) / len(year_ratings_list), 2) if year_ratings_list else "N/A"
+    yearly_max_rating = round(max(year_ratings_list), 2) if year_ratings_list else "N/A"
+    yearly_min_rating = round(min(year_ratings_list), 2) if year_ratings_list else "N/A"
 
     # Update your return statement to include ALL the variables
     return render_template(
@@ -241,7 +288,17 @@ def my_profile():
         all_avg_rating=all_avg_rating,
         all_max_rating=all_max_rating,
         all_min_rating=all_min_rating,
-        all_total_entries=all_total_entries
+        all_total_entries=all_total_entries,
+        
+        # Add these new variables for yearly chart
+        chart_labels_yearly=yearly_labels,
+        chart_data_yearly=yearly_data,
+        chart_counts_yearly=yearly_counts,
+        current_year=current_year,
+        yearly_avg_rating=yearly_avg_rating,
+        yearly_max_rating=yearly_max_rating,
+        yearly_min_rating=yearly_min_rating,
+        yearly_total_entries=yearly_total_entries
     )
 
 @app.route("/logout")
