@@ -1,27 +1,31 @@
-// JavaScript for rendering the all-time ratings distribution chart
+// JavaScript for rendering the all-time ratings distribution chart with proper text sizing
 document.addEventListener('DOMContentLoaded', function() {
     // Get the canvas element for the all-time chart
     const ctx = document.getElementById('ratingsChartAll').getContext('2d');
     
+    // Force canvas to specific pixel dimensions to prevent text compression
+    const canvas = ctx.canvas;
+    canvas.style.width = '100%';
+    canvas.style.height = '500px';
+    
+    // Set actual canvas resolution higher for crisp text
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = 500 * dpr;
+    ctx.scale(dpr, dpr);
+    
     // Create the bar chart showing rating distribution
     const ratingsChartAll = new Chart(ctx, {
-        type: 'bar', // Bar chart type
+        type: 'bar',
         data: {
-            labels: window.chartLabelsAll, // Rating numbers 1-10
+            labels: window.chartLabelsAll,
             datasets: [{
-                label: 'Number of Entries', // Legend label
-                data: window.chartDataAll, // Count of entries for each rating
+                label: 'Number of Entries',
+                data: window.chartDataAll,
                 backgroundColor: [
-                    '#FF6B6B', // Rating 1 - Red (poor)
-                    '#FF8E53', // Rating 2 - Orange-red
-                    '#FF9F40', // Rating 3 - Orange
-                    '#FFB84D', // Rating 4 - Yellow-orange
-                    '#FFCD56', // Rating 5 - Yellow
-                    '#9FE2BF', // Rating 6 - Light green
-                    '#4BC0C8', // Rating 7 - Teal
-                    '#36A2EB', // Rating 8 - Blue
-                    '#9966FF', // Rating 9 - Purple
-                    '#4CAF50'  // Rating 10 - Green (excellent)
+                    '#FF6B6B', '#FF8E53', '#FF9F40', '#FFB84D', '#FFCD56',
+                    '#9FE2BF', '#4BC0C8', '#36A2EB', '#9966FF', '#4CAF50'
                 ],
                 borderColor: [
                     '#FF5252', '#FF7043', '#FF9800', '#FFB300', '#FFEB3B',
@@ -31,14 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }]
         },
         options: {
-            responsive: true, // Make chart responsive
-            maintainAspectRatio: false, // Allow flexible aspect ratio - this is key!
+            responsive: false, // Disable responsive to prevent text scaling
+            maintainAspectRatio: false,
+            devicePixelRatio: dpr, // Use device pixel ratio for crisp text
             layout: {
                 padding: {
-                    top: 30,    // More top padding
-                    bottom: 40, // More bottom padding
-                    left: 20,   // More left padding
-                    right: 20   // More right padding
+                    top: 40,
+                    bottom: 50,
+                    left: 30,
+                    right: 30
                 }
             },
             plugins: {
@@ -46,53 +51,63 @@ document.addEventListener('DOMContentLoaded', function() {
                     display: true,
                     position: 'top',
                     labels: {
-                        padding: 25, // Even more space around legend
+                        padding: 30,
                         font: {
-                            size: 16 // Larger font size
-                        }
+                            size: 18,
+                            family: '"Comic Sans MS", cursive, sans-serif'
+                        },
+                        usePointStyle: false,
+                        boxWidth: 20,
+                        boxHeight: 12
                     }
                 },
                 tooltip: {
+                    enabled: true,
+                    titleFont: {
+                        size: 16,
+                        family: '"Comic Sans MS", cursive, sans-serif'
+                    },
+                    bodyFont: {
+                        size: 15,
+                        family: '"Comic Sans MS", cursive, sans-serif'
+                    },
                     callbacks: {
-                        // Custom tooltip to show meaningful information
                         label: function(context) {
                             const rating = context.label;
                             const count = context.raw;
                             return `Rating ${rating}: ${count} entries`;
                         }
-                    },
-                    titleFont: {
-                        size: 16
-                    },
-                    bodyFont: {
-                        size: 14
                     }
                 }
             },
             scales: {
                 y: {
-                    beginAtZero: true, // Start y-axis from 0
+                    beginAtZero: true,
                     title: {
                         display: true,
                         text: 'Number of Entries',
                         font: {
-                            size: 16,  // Larger font
-                            weight: 'bold'
+                            size: 18,
+                            weight: 'bold',
+                            family: '"Comic Sans MS", cursive, sans-serif'
                         },
                         padding: {
-                            bottom: 15 // More padding
+                            bottom: 20
                         }
                     },
                     ticks: {
-                        stepSize: 1, // Show whole numbers only
+                        stepSize: 1,
                         font: {
-                            size: 14   // Larger tick font
+                            size: 16,
+                            family: '"Comic Sans MS", cursive, sans-serif'
                         },
-                        padding: 12    // More padding
+                        padding: 15,
+                        color: '#333'
                     },
                     grid: {
                         drawBorder: true,
-                        lineWidth: 1
+                        lineWidth: 1,
+                        color: '#e0e0e0'
                     }
                 },
                 x: {
@@ -100,27 +115,44 @@ document.addEventListener('DOMContentLoaded', function() {
                         display: true,
                         text: 'Rating (1-10)',
                         font: {
-                            size: 16,  // Larger font
-                            weight: 'bold'
+                            size: 18,
+                            weight: 'bold',
+                            family: '"Comic Sans MS", cursive, sans-serif'
                         },
                         padding: {
-                            top: 15    // More padding
+                            top: 20
                         }
                     },
                     ticks: {
                         font: {
-                            size: 14   // Larger tick font
+                            size: 16,
+                            family: '"Comic Sans MS", cursive, sans-serif'
                         },
-                        padding: 12,   // More padding
-                        maxRotation: 0, // Keep labels horizontal
-                        minRotation: 0
+                        padding: 15,
+                        maxRotation: 0,
+                        minRotation: 0,
+                        color: '#333'
                     },
                     grid: {
                         drawBorder: true,
-                        lineWidth: 1
+                        lineWidth: 1,
+                        color: '#e0e0e0'
                     }
                 }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
             }
         }
+    });
+    
+    // Handle window resize to maintain proper dimensions
+    window.addEventListener('resize', function() {
+        const newRect = canvas.getBoundingClientRect();
+        canvas.width = newRect.width * dpr;
+        canvas.height = 500 * dpr;
+        ctx.scale(dpr, dpr);
+        ratingsChartAll.resize();
     });
 });
