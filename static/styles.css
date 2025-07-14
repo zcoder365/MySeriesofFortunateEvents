@@ -277,11 +277,13 @@ table td {
 .charts-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    width: 100%;
-    max-width: 1300px;
+    gap: 40px; /* Increased gap for better spacing */
+    width: 90%; /* Set to 90% of page width */
+    max-width: none; /* Remove max-width constraint */
     margin: 50px auto 0 auto;
     padding: 0 20px;
+    justify-items: center; /* Center the grid items */
+    place-items: center; /* Center both horizontally and vertically */
 }
 
 /* ENHANCED CHART BLOCKS */
@@ -297,6 +299,10 @@ table td {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: 450px; /* Increased max-width for better proportion */
+    min-width: 320px; /* Ensure minimum width */
+    justify-self: center; /* Center within grid cell */
 }
 
 .chart-block:hover {
@@ -478,15 +484,35 @@ canvas#ratingsChartAll:hover {
 }
 
 /* RESPONSIVE DESIGN */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .charts-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        max-width: 600px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 35px;
+        width: 95%; /* Slightly wider on medium screens */
     }
     
     .chart-block {
         width: 100%;
+        max-width: 500px; /* Allow wider charts when fewer columns */
+    }
+    
+    canvas#ratingsChart,
+    canvas#ratingsChartMonth,
+    canvas#ratingsChartAll {
+        height: 350px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+        gap: 50px; /* More space when stacked vertically */
+        width: 90%;
+    }
+    
+    .chart-block {
+        width: 100%;
+        max-width: 600px; /* Wider when single column */
     }
     
     canvas#ratingsChart,
