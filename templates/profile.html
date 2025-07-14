@@ -19,8 +19,37 @@
     </div>
 </div>
 
+<!-- Yearly Review Chart - Should be OUTSIDE and ABOVE the charts-container -->
+<div class="yearly-review-container">
+    <div class="yearly-chart-block">
+        <h3 style="text-align:center;">📊 {{ current_year }} Yearly Review</h3>
+        <canvas id="ratingsChartYearly" aria-label="Bar chart showing average ratings by month for the year" role="img"></canvas>
+        <div class="yearly-stats-block">
+            <h4 style="margin-top:30px;">{{ current_year }} Annual Statistics</h4>
+            <table class="yearly-stats-table">
+                <tr>
+                    <th>📈 Average Rating</th>
+                    <td>{{ yearly_avg_rating }}</td>
+                </tr>
+                <tr>
+                    <th>🏆 Highest Month</th>
+                    <td>{{ yearly_max_rating }}</td>
+                </tr>
+                <tr>
+                    <th>📉 Lowest Month</th>
+                    <td>{{ yearly_min_rating }}</td>
+                </tr>
+                <tr>
+                    <th>📝 Total Entries</th>
+                    <td>{{ yearly_total_entries }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
 <div class="charts-container">
-    <!-- All Time Chart - New addition -->
+    <!-- All Time Chart -->
     <div class="chart-block">
         <h3 style="text-align:center;">All Time Rating Distribution</h3>
         <canvas id="ratingsChartAll" aria-label="Bar chart of all entry ratings distribution" role="img"></canvas>
@@ -47,7 +76,7 @@
         </div>
     </div>
     
-    <!-- Existing Week Chart -->
+    <!-- Week Chart -->
     <div class="chart-block">
         <h3 style="text-align:center;">This Week's Ratings</h3>
         <canvas id="ratingsChart" aria-label="Bar chart of entry ratings" role="img"></canvas>
@@ -74,7 +103,7 @@
         </div>
     </div>
     
-    <!-- Existing Month Chart -->
+    <!-- Month Chart -->
     <div class="chart-block">
         <h3 style="text-align:center;">This Month's Ratings</h3>
         <canvas id="ratingsChartMonth" aria-label="Bar chart of entry ratings for the month" role="img"></canvas>
@@ -100,58 +129,24 @@
             </table>
         </div>
     </div>
-
-    <!-- Add this section to your profile.html before the existing charts-container -->
-    <div class="yearly-review-container">
-        <div class="yearly-chart-block">
-            <h3 style="text-align:center;">📊 {{ current_year }} Yearly Review</h3>
-            <canvas id="ratingsChartYearly" aria-label="Bar chart showing average ratings by month for the year" role="img"></canvas>
-            <div class="yearly-stats-block">
-                <h4 style="margin-top:30px;">{{ current_year }} Annual Statistics</h4>
-                <table class="yearly-stats-grid">
-                    <tr class="yearly-stat-item">
-                        <th class="stat-label">📈 Average Rating</th>
-                        <td class="stat-value">{{ yearly_avg_rating }}</td>
-                    </tr>
-                    <tr class="yearly-stat-item">
-                        <th class="stat-label">🏆 Highest Month</th>
-                        <td class="stat-value">{{ yearly_max_rating }}</td>
-                    </tr>
-                    <tr class="yearly-stat-item">
-                        <th class="stat-label">📉 Lowest Month</th>
-                        <td class="stat-value">{{ yearly_min_rating }}</td>
-                    </tr>
-                    <tr class="yearly-stat-item">
-                        <th class="stat-label">📝 Total Entries</th>
-                        <td class="stat-value">{{ yearly_total_entries }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
 </div>
 
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Pass data to JavaScript for all three charts
+    // Pass data to JavaScript for all charts
     window.chartLabels = {{ chart_labels | tojson | safe }};
     window.chartData = {{ chart_data | tojson | safe }};
     window.chartLabelsMonth = {{ chart_labels_month | tojson | safe }};
     window.chartDataMonth = {{ chart_data_month | tojson | safe }};
-    
-    // New all-time chart data
     window.chartLabelsAll = {{ chart_labels_all | tojson | safe }};
     window.chartDataAll = {{ chart_data_all | tojson | safe }};
-
-    // Add yearly chart data
     window.chartLabelsYearly = {{ chart_labels_yearly | tojson | safe }};
     window.chartDataYearly = {{ chart_data_yearly | tojson | safe }};
     window.chartCountsYearly = {{ chart_counts_yearly | tojson | safe }};
 </script>
 <script src="{{ url_for('static', filename='ratingsChart.js') }}"></script>
 <script src="{{ url_for('static', filename='ratingsChartMonth.js') }}"></script>
-<!-- New script for all-time chart -->
 <script src="{{ url_for('static', filename='ratingsChartAll.js') }}"></script>
 <script src="{{ url_for('static', filename='ratingsChartYearly.js') }}"></script>
 
