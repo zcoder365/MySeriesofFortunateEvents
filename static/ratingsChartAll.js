@@ -32,11 +32,25 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             responsive: true, // Make chart responsive
-            maintainAspectRatio: false, // Allow flexible aspect ratio
+            maintainAspectRatio: false, // Allow flexible aspect ratio - this is key!
+            layout: {
+                padding: {
+                    top: 20,
+                    bottom: 20,
+                    left: 10,
+                    right: 10
+                }
+            },
             plugins: {
                 legend: {
                     display: true,
-                    position: 'top'
+                    position: 'top',
+                    labels: {
+                        padding: 20, // More space around legend
+                        font: {
+                            size: 14 // Ensure readable font size
+                        }
+                    }
                 },
                 tooltip: {
                     callbacks: {
@@ -46,6 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             const count = context.raw;
                             return `Rating ${rating}: ${count} entries`;
                         }
+                    },
+                    titleFont: {
+                        size: 14
+                    },
+                    bodyFont: {
+                        size: 13
                     }
                 }
             },
@@ -54,16 +74,50 @@ document.addEventListener('DOMContentLoaded', function() {
                     beginAtZero: true, // Start y-axis from 0
                     title: {
                         display: true,
-                        text: 'Number of Entries'
+                        text: 'Number of Entries',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        padding: {
+                            bottom: 10
+                        }
                     },
                     ticks: {
-                        stepSize: 1 // Show whole numbers only
+                        stepSize: 1, // Show whole numbers only
+                        font: {
+                            size: 12
+                        },
+                        padding: 8
+                    },
+                    grid: {
+                        drawBorder: true,
+                        lineWidth: 1
                     }
                 },
                 x: {
                     title: {
                         display: true,
-                        text: 'Rating (1-10)'
+                        text: 'Rating (1-10)',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        padding: {
+                            top: 10
+                        }
+                    },
+                    ticks: {
+                        font: {
+                            size: 12
+                        },
+                        padding: 8,
+                        maxRotation: 0, // Keep labels horizontal
+                        minRotation: 0
+                    },
+                    grid: {
+                        drawBorder: true,
+                        lineWidth: 1
                     }
                 }
             }
