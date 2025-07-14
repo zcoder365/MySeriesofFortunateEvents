@@ -277,7 +277,7 @@ table td {
 .charts-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 50px; /* Increased gap for more space between cards */
+    gap: 80px; /* Significantly increased gap for much more space between cards */
     width: 90%; /* Set to 90% of page width */
     max-width: none; /* Remove max-width constraint */
     margin: 50px auto 0 auto;
@@ -487,7 +487,7 @@ canvas#ratingsChartAll:hover {
 @media (max-width: 1200px) {
     .charts-container {
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 45px; /* Adjusted for medium screens */
+        gap: 70px; /* Adjusted for medium screens with more space */
         width: 95%; /* Slightly wider on medium screens */
     }
     
@@ -506,7 +506,7 @@ canvas#ratingsChartAll:hover {
 @media (max-width: 1024px) {
     .charts-container {
         grid-template-columns: 1fr;
-        gap: 60px; /* Even more space when stacked vertically */
+        gap: 80px; /* More space when stacked vertically */
         width: 90%;
     }
     
