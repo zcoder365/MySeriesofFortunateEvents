@@ -591,6 +591,7 @@ form[action="/add-entry"] textarea.form-input {
     transition: all 0.2s ease;
     resize: vertical;
     text-align: left;
+    box-sizing: border-box; /* This ensures padding is included in the width */
 }
 
 form[action="/add-entry"] textarea.form-input:focus {
