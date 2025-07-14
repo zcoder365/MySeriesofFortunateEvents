@@ -74,10 +74,10 @@
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    window.chartLabels = {{ chart_labels|tojson | safe }};
-    window.chartData = {{ chart_data|tojson | safe }};
-    window.chartLabelsMonth = {{ chart_labels_month|tojson | safe }};
-    window.chartDataMonth = {{ chart_data_month|tojson | safe }};
+    window.chartLabels = {{ chart_labels | tojson | safe }};
+    window.chartData = {{ chart_data | tojson | safe }};
+    window.chartLabelsMonth = {{ chart_labels_month | tojson | safe }};
+    window.chartDataMonth = {{ chart_data_month | tojson | safe }};
 </script>
 <script src="{{ url_for('static', filename='ratingsChart.js') }}"></script>
 <script src="{{ url_for('static', filename='ratingsChartMonth.js') }}"></script>
