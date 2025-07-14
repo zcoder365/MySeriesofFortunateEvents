@@ -276,7 +276,7 @@ table td {
 /* ENHANCED CHARTS CONTAINER */
 .charts-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Slightly larger minimum for better proportions */
     gap: 80px; /* Significantly increased gap for much more space between cards */
     width: 90%; /* Set to 90% of page width */
     max-width: none; /* Remove max-width constraint */
@@ -300,8 +300,8 @@ table td {
     position: relative;
     overflow: hidden;
     width: 100%;
-    max-width: 450px; /* Increased max-width for better proportion */
-    min-width: 320px; /* Ensure minimum width */
+    max-width: 480px; /* Increased max-width for better chart proportions */
+    min-width: 350px; /* Ensure minimum width */
     justify-self: center; /* Center within grid cell */
 }
 
@@ -356,7 +356,7 @@ table td {
     z-index: 1;
 }
 
-/* ALL CHART CANVASES - Enhanced styling */
+/* ALL CHART CANVASES - Enhanced styling with better proportions */
 canvas#ratingsChart,
 canvas#ratingsChartMonth,
 canvas#ratingsChartAll {
@@ -367,7 +367,7 @@ canvas#ratingsChartAll {
     margin: 20px 0;
     width: 100% !important;
     max-width: 100%;
-    height: 320px !important;
+    height: 400px !important; /* Increased height for better proportions */
     transition: box-shadow 0.2s ease;
 }
 
@@ -486,7 +486,7 @@ canvas#ratingsChartAll:hover {
 /* RESPONSIVE DESIGN */
 @media (max-width: 1200px) {
     .charts-container {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 70px; /* Adjusted for medium screens with more space */
         width: 95%; /* Slightly wider on medium screens */
     }
@@ -499,7 +499,7 @@ canvas#ratingsChartAll:hover {
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
     canvas#ratingsChartAll {
-        height: 350px !important;
+        height: 380px !important; /* Maintain good proportions */
     }
 }
 
@@ -518,7 +518,7 @@ canvas#ratingsChartAll:hover {
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
     canvas#ratingsChartAll {
-        height: 350px !important;
+        height: 400px !important; /* Good proportions for single column */
     }
 }
 
