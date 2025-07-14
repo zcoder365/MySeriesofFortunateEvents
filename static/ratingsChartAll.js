@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
             maintainAspectRatio: false, // Allow flexible aspect ratio - this is key!
             layout: {
                 padding: {
-                    top: 20,
-                    bottom: 20,
-                    left: 10,
-                    right: 10
+                    top: 30,    // More top padding
+                    bottom: 40, // More bottom padding
+                    left: 20,   // More left padding
+                    right: 20   // More right padding
                 }
             },
             plugins: {
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     display: true,
                     position: 'top',
                     labels: {
-                        padding: 20, // More space around legend
+                        padding: 25, // Even more space around legend
                         font: {
-                            size: 14 // Ensure readable font size
+                            size: 16 // Larger font size
                         }
                     }
                 },
@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     },
                     titleFont: {
-                        size: 14
+                        size: 16
                     },
                     bodyFont: {
-                        size: 13
+                        size: 14
                     }
                 }
             },
@@ -76,19 +76,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         display: true,
                         text: 'Number of Entries',
                         font: {
-                            size: 14,
+                            size: 16,  // Larger font
                             weight: 'bold'
                         },
                         padding: {
-                            bottom: 10
+                            bottom: 15 // More padding
                         }
                     },
                     ticks: {
                         stepSize: 1, // Show whole numbers only
                         font: {
-                            size: 12
+                            size: 14   // Larger tick font
                         },
-                        padding: 8
+                        padding: 12    // More padding
                     },
                     grid: {
                         drawBorder: true,
@@ -100,18 +100,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         display: true,
                         text: 'Rating (1-10)',
                         font: {
-                            size: 14,
+                            size: 16,  // Larger font
                             weight: 'bold'
                         },
                         padding: {
-                            top: 10
+                            top: 15    // More padding
                         }
                     },
                     ticks: {
                         font: {
-                            size: 12
+                            size: 14   // Larger tick font
                         },
-                        padding: 8,
+                        padding: 12,   // More padding
                         maxRotation: 0, // Keep labels horizontal
                         minRotation: 0
                     },
