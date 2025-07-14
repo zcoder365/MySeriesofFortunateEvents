@@ -104,28 +104,28 @@
     <!-- Add this section to your profile.html before the existing charts-container -->
     <div class="yearly-review-container">
         <div class="yearly-chart-block">
-            <h2 class="yearly-title">📊 {{ current_year }} Yearly Review</h2>
-            <canvas id="ratingsChartYearly" aria-label="Line chart showing average ratings by month for the year" role="img"></canvas>
+            <h3 style="text-align:center;">📊 {{ current_year }} Yearly Review</h3>
+            <canvas id="ratingsChartYearly" aria-label="Bar chart showing average ratings by month for the year" role="img"></canvas>
             <div class="yearly-stats-block">
-                <h4>{{ current_year }} Annual Statistics</h4>
-                <div class="yearly-stats-grid">
-                    <div class="yearly-stat-item">
-                        <span class="stat-label">📈 Average Rating</span>
-                        <span class="stat-value">{{ yearly_avg_rating }}</span>
-                    </div>
-                    <div class="yearly-stat-item">
-                        <span class="stat-label">🏆 Highest Month</span>
-                        <span class="stat-value">{{ yearly_max_rating }}</span>
-                    </div>
-                    <div class="yearly-stat-item">
-                        <span class="stat-label">📉 Lowest Month</span>
-                        <span class="stat-value">{{ yearly_min_rating }}</span>
-                    </div>
-                    <div class="yearly-stat-item">
-                        <span class="stat-label">📝 Total Entries</span>
-                        <span class="stat-value">{{ yearly_total_entries }}</span>
-                    </div>
-                </div>
+                <h4 style="margin-top:30px;">{{ current_year }} Annual Statistics</h4>
+                <table class="yearly-stats-grid">
+                    <tr class="yearly-stat-item">
+                        <th class="stat-label">📈 Average Rating</th>
+                        <td class="stat-value">{{ yearly_avg_rating }}</td>
+                    </tr>
+                    <tr class="yearly-stat-item">
+                        <th class="stat-label">🏆 Highest Month</th>
+                        <td class="stat-value">{{ yearly_max_rating }}</td>
+                    </tr>
+                    <tr class="yearly-stat-item">
+                        <th class="stat-label">📉 Lowest Month</th>
+                        <td class="stat-value">{{ yearly_min_rating }}</td>
+                    </tr>
+                    <tr class="yearly-stat-item">
+                        <th class="stat-label">📝 Total Entries</th>
+                        <td class="stat-value">{{ yearly_total_entries }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
