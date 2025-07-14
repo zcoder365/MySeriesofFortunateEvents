@@ -302,6 +302,7 @@ table td {
     width: 100%;
     max-width: 600px; /* Much larger width to accommodate bigger charts */
     min-width: 450px; /* Larger minimum width for better text display */
+    min-height: 800px; /* Force all charts to have the same height */
     justify-self: center; /* Center within grid cell */
 }
 
@@ -359,7 +360,8 @@ table td {
 /* ALL CHART CANVASES - Fixed dimensions to prevent text compression */
 canvas#ratingsChart,
 canvas#ratingsChartMonth,
-canvas#ratingsChartAll {
+canvas#ratingsChartAll,
+canvas#ratingsChartYearly {
     background: var(--chart-bg);
     border: 2px solid var(--text-dark);
     border-radius: 12px;
@@ -375,7 +377,8 @@ canvas#ratingsChartAll {
 
 canvas#ratingsChart:hover,
 canvas#ratingsChartMonth:hover,
-canvas#ratingsChartAll:hover {
+canvas#ratingsChartAll:hover,
+canvas#ratingsChartYearly:hover {
     box-shadow: var(--shadow-medium);
 }
 
@@ -501,7 +504,8 @@ canvas#ratingsChartAll:hover {
     
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
-    canvas#ratingsChartAll {
+    canvas#ratingsChartAll,
+    canvas#ratingsChartYearly {
         height: 480px !important;
         min-height: 450px;
     }
@@ -522,7 +526,8 @@ canvas#ratingsChartAll:hover {
     
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
-    canvas#ratingsChartAll {
+    canvas#ratingsChartAll,
+    canvas#ratingsChartYearly {
         height: 460px !important;
         min-height: 430px;
     }
@@ -543,7 +548,8 @@ canvas#ratingsChartAll:hover {
     
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
-    canvas#ratingsChartAll {
+    canvas#ratingsChartAll,
+    canvas#ratingsChartYearly {
         height: 500px !important; /* Full height when stacked */
         min-height: 450px;
     }
@@ -573,7 +579,8 @@ canvas#ratingsChartAll:hover {
     
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
-    canvas#ratingsChartAll {
+    canvas#ratingsChartAll,
+    canvas#ratingsChartYearly {
         height: 280px !important;
     }
     
@@ -599,7 +606,8 @@ canvas#ratingsChartAll:hover {
     
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
-    canvas#ratingsChartAll {
+    canvas#ratingsChartAll,
+    canvas#ratingsChartYearly {
         height: 250px !important;
     }
 }
