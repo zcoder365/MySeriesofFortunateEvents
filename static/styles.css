@@ -6,6 +6,9 @@
     --background-color: #F5EBDD;
     --surface-color: #C6F1D6;
     --text-dark: #333;
+    --chart-bg: #ffffff;
+    --shadow-light: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-medium: 0 4px 12px rgba(0,0,0,0.15);
     /* --text-light: #FFFFFF; */
 }
 
@@ -170,23 +173,37 @@ table td {
     color: var(--text-dark);
 }
 
-/* Profile info container - completely remove shadow */
+/* ENHANCED PROFILE INFO STYLING */
 .profile-info {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    gap: 15px; /* Consistent spacing between all elements */
-    box-shadow: none !important; /* Force remove shadow with !important */
-    -webkit-box-shadow: none !important; /* Remove webkit shadow */
-    -moz-box-shadow: none !important; /* Remove mozilla shadow */
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    border: 2px solid var(--text-dark);
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--surface-color) 0%, #d4f2df 100%);
+    gap: 20px;
+    box-shadow: var(--shadow-medium);
+    position: relative;
 }
 
-/* Profile info rows: label left, value right */
+/* Add a subtle header accent */
+.profile-info::before {
+    content: "👤 Profile Overview";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--primary-color);
+    padding: 5px 15px;
+    border: 2px solid var(--text-dark);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+/* Profile info rows: enhanced styling */
 .profile-info-username,
 .profile-info-streak,
 .profile-info-entries {
@@ -194,11 +211,20 @@ table td {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 12px 5px 12px; /* No top padding, 5px bottom padding, 12px left/right */
-    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 20px;
+    border-bottom: 2px solid rgba(51, 51, 51, 0.1);
     width: 100%;
     box-sizing: border-box;
     margin: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.profile-info-username:hover,
+.profile-info-streak:hover,
+.profile-info-entries:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
 /* Remove border from last row */
@@ -206,243 +232,321 @@ table td {
     border-bottom: none;
 }
 
-/* Center only the reset button - remove background color */
+/* Center the reset button with better styling */
 .profile-info-reset {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 0;
-    background: transparent !important; /* Remove any background */
-    background-color: transparent !important; /* Extra specificity */
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
+    margin: 10px 0 0 0;
+    background: transparent !important;
     padding: 0;
 }
 
-/* Also target any potential parent containers */
-.profile-info-reset * {
-    background: transparent !important;
+/* Make profile info labels bold with icons */
+.profile-info-username p:first-child::before {
+    content: "👤 ";
+}
+.profile-info-streak p:first-child::before {
+    content: "🔥 ";
+}
+.profile-info-entries p:first-child::before {
+    content: "📝 ";
 }
 
-/* Ensure the button container doesn't inherit background */
-.profile-info-reset > div,
-.profile-info-reset > span {
-    background: transparent !important;
-    background-color: transparent !important;
-}
-
-/* Make profile info labels bold */
 .profile-info-username p:first-child,
 .profile-info-streak p:first-child,
 .profile-info-entries p:first-child {
     font-weight: bold;
-}
-
-/* Remove shadow from reset button specifically - aggressive approach */
-.reset-button {
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    filter: none !important;
-    -webkit-filter: none !important;
-}
-
-/* Target all possible button variations in profile area */
-.profile-info button,
-.profile-info-reset button,
-button.reset-button,
-input[type="button"].reset-button,
-input[type="submit"].reset-button {
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    filter: none !important;
-    -webkit-filter: none !important;
-    text-shadow: none !important;
-    outline: none !important;
-}
-
-/* Remove any potential focus shadows */
-.reset-button:focus,
-.reset-button:hover,
-.reset-button:active {
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    filter: none !important;
-    outline: none !important;
-}
-
-.charts-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 40px auto 0 auto;
-}
-
-.chart-block {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-canvas#ratingsChart,
-canvas#ratingsChartMonth {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-
-.stats-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    background: #fff;
-    border-radius: 8px; /* Rounded corners from Option 1 */
-    overflow: hidden; /* Ensures border-radius works with table */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow like your forms */
-}
-
-.stats-table th, .stats-table td {
-    padding: 12px 16px; /* More generous padding from Option 1 */
-    border-bottom: 1px solid #f0f0f0;
-    text-align: left;
-}
-
-.stats-table th {
-    background: var(--primary-color); /* Use your yellow theme color from Option 1 */
-    font-weight: bold;
-    color: var(--text-dark);
-    border-bottom: 2px solid var(--text-dark); /* Thicker border for headers */
-}
-
-.stats-table tr:last-child td {
-    border-bottom: none; /* Remove border from last row */
-}
-
-.stats-table tr:nth-child(even) {
-    background-color: #fafafa; /* Zebra striping from Option 1 */
-}
-
-/* Badge style for stat values - from Option 5 */
-.stats-table .stat-badge {
-    background: var(--surface-color); /* Use your green surface color */
-    color: var(--text-dark);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-weight: bold;
-    border: 2px solid var(--text-dark);
-    display: inline-block;
-}
-
-/* Card-style container for stats sections - from Option 2 */
-.stats-section {
-    background: var(--surface-color);
-    border: 2px solid var(--text-dark);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* Reset button styling - ensure no background color inheritance */
-.reset-btn {
-    background: var(--primary-color) !important;
-    color: var(--text-dark) !important;
-    border: 2px solid var(--text-dark);
-    border-radius: 5px;
-    font-family: inherit;
     font-size: 16px;
-    cursor: pointer;
-    padding: 10px 20px; /* Explicit padding for consistency */
-    box-shadow: none !important; /* Remove shadow */
 }
 
-/* Add these CSS rules to fix the chart layout issues */
+/* Style the values */
+.profile-info-username p:last-child,
+.profile-info-streak p:last-child,
+.profile-info-entries p:last-child {
+    background: var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: 2px solid var(--text-dark);
+    font-weight: bold;
+    font-size: 16px;
+}
 
-/* Make charts container responsive and wrap on smaller screens */
+/* ENHANCED CHARTS CONTAINER */
 .charts-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px; /* Reduced gap for better fit */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
     width: 100%;
-    max-width: 1400px; /* Increased max-width to accommodate three charts */
-    margin: 40px auto 0 auto;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    max-width: 1300px;
+    margin: 50px auto 0 auto;
+    padding: 0 20px;
 }
 
-/* Ensure all chart blocks have consistent sizing */
+/* ENHANCED CHART BLOCKS */
 .chart-block {
-    width: 100%;
-    max-width: 400px; /* Reduced from 600px to fit three charts */
-    min-width: 350px; /* Minimum width to prevent too much shrinking */
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1; /* Allow flexible sizing */
+    background: var(--chart-bg);
+    border: 2px solid var(--text-dark);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Apply consistent styling to ALL chart canvases */
+.chart-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Add colorful top borders for each chart */
+.chart-block:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #FF6B6B, #4CAF50);
+}
+
+.chart-block:nth-child(2)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #36A2EB, #9966FF);
+}
+
+.chart-block:nth-child(3)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #FFB84D, #FF8E53);
+}
+
+/* Enhanced chart titles */
+.chart-block h3 {
+    margin: 0 0 20px 0;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    border: 2px solid var(--text-dark);
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-dark);
+    position: relative;
+    z-index: 1;
+}
+
+/* ALL CHART CANVASES - Enhanced styling */
 canvas#ratingsChart,
 canvas#ratingsChartMonth,
 canvas#ratingsChartAll {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    background: var(--chart-bg);
+    border: 2px solid var(--text-dark);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    margin: 20px 0;
+    width: 100% !important;
+    max-width: 100%;
+    height: 320px !important;
+    transition: box-shadow 0.2s ease;
+}
+
+canvas#ratingsChart:hover,
+canvas#ratingsChartMonth:hover,
+canvas#ratingsChartAll:hover {
+    box-shadow: var(--shadow-medium);
+}
+
+/* ENHANCED STATS TABLES */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
-    margin-bottom: 40px;
-    width: 100% !important; /* Force consistent width */
-    max-width: 380px; /* Prevent charts from getting too wide */
-    height: 300px !important; /* Fixed height for consistency */
+    background: var(--chart-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    border: 2px solid var(--text-dark);
 }
 
-/* Ensure chart containers have consistent height */
-.chart-block canvas {
-    aspect-ratio: 1.2; /* Maintain consistent aspect ratio */
+.stats-table th, .stats-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+    font-size: 15px;
 }
 
-/* Media query for smaller screens - stack charts vertically */
-@media (max-width: 1200px) {
+.stats-table th {
+    background: var(--primary-color);
+    font-weight: bold;
+    color: var(--text-dark);
+    border-bottom: 2px solid var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+.stats-table tr:last-child td {
+    border-bottom: none;
+}
+
+.stats-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* Enhanced stat values */
+.stats-table td {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Add icons to stat labels */
+.stats-table th:first-child {
+    position: relative;
+}
+
+/* Stats block headers */
+.stats-block h4 {
+    margin: 30px 0 15px 0;
+    padding: 10px 15px;
+    background: var(--accent-color);
+    border: 2px solid var(--text-dark);
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+/* Badge style for stat values - enhanced */
+.stats-table .stat-badge {
+    background: linear-gradient(135deg, var(--surface-color), #d4f2df);
+    color: var(--text-dark);
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid var(--text-dark);
+    display: inline-block;
+    box-shadow: var(--shadow-light);
+}
+
+/* Card-style container for stats sections */
+.stats-section {
+    background: var(--surface-color);
+    border: 2px solid var(--text-dark);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: var(--shadow-medium);
+}
+
+/* Enhanced reset button styling */
+.reset-btn {
+    background: linear-gradient(135deg, var(--primary-color), #ffd93d) !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--text-dark);
+    border-radius: 25px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 12px 25px;
+    box-shadow: var(--shadow-light) !important;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium) !important;
+    background: linear-gradient(135deg, #ffd93d, var(--primary-color)) !important;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
     .charts-container {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
         gap: 40px;
+        max-width: 600px;
     }
     
     .chart-block {
-        max-width: 600px; /* Larger width when stacked */
-        width: 90%;
+        width: 100%;
     }
     
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
     canvas#ratingsChartAll {
-        max-width: 500px;
         height: 350px !important;
     }
 }
 
-/* Media query for very small screens */
 @media (max-width: 768px) {
+    .profile-info {
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+    
+    .profile-info::before {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+    
     .chart-block {
-        width: 95%;
-        max-width: none;
+        padding: 20px;
+        margin: 0 10px;
+    }
+    
+    .charts-container {
+        padding: 0 10px;
+        gap: 30px;
     }
     
     canvas#ratingsChart,
     canvas#ratingsChartMonth,
     canvas#ratingsChartAll {
-        max-width: 100%;
         height: 280px !important;
+    }
+    
+    .stats-table th, .stats-table td {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-info-username,
+    .profile-info-streak,
+    .profile-info-entries {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .chart-block h3 {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+    
+    canvas#ratingsChart,
+    canvas#ratingsChartMonth,
+    canvas#ratingsChartAll {
+        height: 250px !important;
     }
 }
