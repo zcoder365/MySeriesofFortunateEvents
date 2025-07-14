@@ -684,6 +684,324 @@ form[action="/add-entry"] br {
     display: none;
 }
 
+/* ENHANCED HOME PAGE (INDEX.HTML) STYLES */
+
+/* Page header styling */
+h2 {
+    text-align: center;
+    margin: 30px 0;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--primary-color), #ffd93d);
+    border: 2px solid var(--text-dark);
+    border-radius: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-medium);
+    max-width: 400px;
+    margin: 30px auto;
+    position: relative;
+}
+
+h2::before {
+    content: "📝 ";
+    font-size: 28px;
+}
+
+/* Enhanced Add New Entry button */
+.new-entry-link {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.new-entry {
+    background: linear-gradient(135deg, var(--surface-color), #d4f2df) !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--text-dark);
+    border-radius: 25px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 15px 30px;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.new-entry::before {
+    content: "➕ ";
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.new-entry:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    background: linear-gradient(135deg, #d4f2df, var(--surface-color)) !important;
+}
+
+/* Enhanced table container for home page */
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 95%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: var(--chart-bg);
+    border: 2px solid var(--text-dark);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+}
+
+.table-container::before {
+    content: "📊 Entry History";
+    position: absolute;
+    top: -12px;
+    left: 30px;
+    background: var(--accent-color);
+    padding: 5px 15px;
+    border: 2px solid var(--text-dark);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+/* Enhanced table styling for home page */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--chart-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+table th {
+    border-bottom: 2px solid var(--text-dark);
+    background: var(--primary-color);
+    color: var(--text-dark);
+    padding: 15px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+table td {
+    border: none;
+    color: var(--text-dark);
+    padding: 15px 20px;
+    font-size: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+table tr:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.2s ease;
+}
+
+/* Style the rating column */
+table td:last-child {
+    font-weight: bold;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+/* Add rating color coding */
+table td:last-child::before {
+    content: "⭐ ";
+    color: #ffd700;
+}
+
+/* Load More button styling */
+.btn {
+    background: linear-gradient(135deg, var(--secondary-color), #ffb380);
+    color: var(--text-dark);
+    border: 2px solid var(--text-dark);
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin: 20px 0;
+    box-shadow: var(--shadow-light);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    background: linear-gradient(135deg, #ffb380, var(--secondary-color));
+}
+
+/* ENHANCED SEARCH PAGE STYLES */
+
+/* Search form container */
+form[method="post"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--surface-color), #d4f2df);
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: var(--shadow-medium);
+    border: 2px solid var(--text-dark);
+    max-width: 600px;
+    gap: 15px;
+    position: relative;
+}
+
+form[method="post"]::before {
+    content: "🔍 Search Your Entries";
+    position: absolute;
+    top: -12px;
+    left: 30px;
+    background: var(--primary-color);
+    padding: 5px 15px;
+    border: 2px solid var(--text-dark);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+/* Enhanced search input */
+form[method="post"] input[type="text"] {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid var(--text-dark);
+    border-radius: 25px;
+    font-family: inherit;
+    font-size: 16px;
+    background: var(--chart-bg);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-light);
+    transition: all 0.2s ease;
+}
+
+form[method="post"] input[type="text"]:focus {
+    outline: none;
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-1px);
+}
+
+/* Enhanced search button */
+form[method="post"] button[type="submit"] {
+    background: linear-gradient(135deg, var(--accent-color), #7ec8ff);
+    color: var(--text-dark);
+    border: 2px solid var(--text-dark);
+    border-radius: 25px;
+    padding: 15px 25px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-light);
+    white-space: nowrap;
+}
+
+form[method="post"] button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    background: linear-gradient(135deg, #7ec8ff, var(--accent-color));
+}
+
+/* Search results styling */
+.search-results {
+    margin-top: 40px;
+}
+
+/* No results message */
+p {
+    text-align: center;
+    margin: 40px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #ffe0e0, #ffcccc);
+    border: 2px solid var(--text-dark);
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-dark);
+    max-width: 400px;
+    margin: 40px auto;
+    box-shadow: var(--shadow-light);
+}
+
+p::before {
+    content: "😔 ";
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+/* RESPONSIVE DESIGN FOR NEW ELEMENTS */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 20px;
+        padding: 12px 20px;
+        margin: 20px auto;
+    }
+    
+    .new-entry {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .table-container {
+        width: 95%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+    
+    table th, table td {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    form[method="post"] {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    form[method="post"] input[type="text"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .table-container {
+        padding: 15px;
+    }
+    
+    table th, table td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+    
+    h2 {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+}
+
 /* Responsive design for add entry form */
 @media (max-width: 768px) {
     h2.form-text {
